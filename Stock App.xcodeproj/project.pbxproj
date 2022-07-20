@@ -17,6 +17,10 @@
 		64ABB1F72886D2D300B203F3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1F62886D2D300B203F3 /* SearchVC.swift */; };
 		64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1F82886D9AF00B203F3 /* Stock.swift */; };
 		64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FB2886DCDC00B203F3 /* StockTableViewCell.swift */; };
+		64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */; };
+		64ABB2012887C52800B203F3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 64ABB2002887C52800B203F3 /* Charts */; };
+		64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2072887F7BC00B203F3 /* StockChartView.swift */; };
+		64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,9 @@
 		64ABB1F62886D2D300B203F3 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		64ABB1F82886D9AF00B203F3 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		64ABB1FB2886DCDC00B203F3 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoVC.swift; sourceTree = "<group>"; };
+		64ABB2072887F7BC00B203F3 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
+		64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64ABB2012887C52800B203F3 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +99,7 @@
 				64ABB1F22886D29700B203F3 /* StockVC.swift */,
 				64ABB1F42886D2C400B203F3 /* FavoritesVC.swift */,
 				64ABB1F62886D2D300B203F3 /* SearchVC.swift */,
+				64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -107,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				64ABB1FA2886DCB300B203F3 /* Cells */,
+				64ABB2072887F7BC00B203F3 /* StockChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				64ABB1FB2886DCDC00B203F3 /* StockTableViewCell.swift */,
+				64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -135,6 +146,9 @@
 			dependencies = (
 			);
 			name = "Stock App";
+			packageProductDependencies = (
+				64ABB2002887C52800B203F3 /* Charts */,
+			);
 			productName = "Stock App";
 			productReference = 64ABB1D72886CEB800B203F3 /* Stock App.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +177,9 @@
 				Base,
 			);
 			mainGroup = 64ABB1CE2886CEB800B203F3;
+			packageReferences = (
+				64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 64ABB1D82886CEB800B203F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,12 +208,15 @@
 			files = (
 				64ABB1F72886D2D300B203F3 /* SearchVC.swift in Sources */,
 				64ABB1F52886D2C400B203F3 /* FavoritesVC.swift in Sources */,
+				64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */,
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */,
 				64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */,
+				64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */,
 				64ABB1F32886D29700B203F3 /* StockVC.swift in Sources */,
 				64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */,
 				64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */,
+				64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +422,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64ABB2002887C52800B203F3 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 64ABB1CF2886CEB800B203F3 /* Project object */;
 }

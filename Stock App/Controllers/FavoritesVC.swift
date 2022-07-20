@@ -27,6 +27,11 @@ class FavoritesVC: UIViewController {
 		tableView.delegate = self
 		tableView.register(StockTableViewCell.self, forCellReuseIdentifier: StockTableViewCell.reuseId)
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.navigationBar.prefersLargeTitles = true
+	}
 	
 	func configureUI() {
 		view.backgroundColor = .systemBackground
@@ -50,6 +55,10 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
 		cell.set(stock: stocks[indexPath.row], index: indexPath.row)
 		return cell
 	}
-	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let vc = StockInfoVC()
+		vc.title = stocks[indexPath.row].symbol
+		navigationController?.pushViewController(vc, animated: true)
+	}
 	
 }

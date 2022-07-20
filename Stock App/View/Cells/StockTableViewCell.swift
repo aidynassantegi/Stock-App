@@ -51,6 +51,7 @@ class StockTableViewCell: UITableViewCell {
 	let changesLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12)
+		label.textColor = .systemGreen
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
@@ -72,7 +73,7 @@ class StockTableViewCell: UITableViewCell {
 		starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
 		priceLabel.text = "$\(stock.price)"
 		changesLabel.text = "\(stock.changes)%"
-		backgroundColor = index%2==0 ? .systemGray6 : .white
+		backgroundColor = index%2==0 ? .systemGray6 : .systemBackground
 	}
 	
 	private func configureUI() {
