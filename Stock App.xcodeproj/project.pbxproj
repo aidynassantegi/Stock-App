@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		02CB459028880E090070D7AD /* MarketNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB458E28880E090070D7AD /* MarketNews.swift */; };
 		02CB459128880E090070D7AD /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB458F28880E090070D7AD /* SearchResponse.swift */; };
-		02CB45A128880EDC0070D7AD /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB459E28880EDC0070D7AD /* Manager.swift */; };
-		02CB45A228880EDC0070D7AD /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB459F28880EDC0070D7AD /* URLEncoding.swift */; };
-		02CB45A328880EDC0070D7AD /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A028880EDC0070D7AD /* RequestManager.swift */; };
+		02CB45A8288814880070D7AD /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A5288814880070D7AD /* RequestManager.swift */; };
+		02CB45A9288814880070D7AD /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A6288814880070D7AD /* Manager.swift */; };
+		02CB45AA288814880070D7AD /* URLEncoding.swift 16-35-00-973.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A7288814880070D7AD /* URLEncoding.swift 16-35-00-973.swift */; };
 		64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DA2886CEB800B203F3 /* AppDelegate.swift */; };
 		64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DC2886CEB800B203F3 /* SceneDelegate.swift */; };
 		64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DE2886CEB800B203F3 /* ViewController.swift */; };
@@ -31,9 +31,9 @@
 /* Begin PBXFileReference section */
 		02CB458E28880E090070D7AD /* MarketNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketNews.swift; path = ../../../Network/Network/Models/MarketNews.swift; sourceTree = "<group>"; };
 		02CB458F28880E090070D7AD /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResponse.swift; path = ../../../Network/Network/Models/SearchResponse.swift; sourceTree = "<group>"; };
-		02CB459E28880EDC0070D7AD /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = ../../../Network/Network/Networking/Manager.swift; sourceTree = "<group>"; };
-		02CB459F28880EDC0070D7AD /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLEncoding.swift; path = ../../../Network/Network/Networking/URLEncoding.swift; sourceTree = "<group>"; };
-		02CB45A028880EDC0070D7AD /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestManager.swift; path = ../../../Network/Network/Networking/RequestManager.swift; sourceTree = "<group>"; };
+		02CB45A5288814880070D7AD /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		02CB45A6288814880070D7AD /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		02CB45A7288814880070D7AD /* URLEncoding.swift 16-35-00-973.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLEncoding.swift 16-35-00-973.swift"; sourceTree = "<group>"; };
 		64ABB1D72886CEB800B203F3 /* Stock App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stock App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABB1DA2886CEB800B203F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64ABB1DC2886CEB800B203F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,14 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02CB459D28880EC90070D7AD /* Networking */ = {
+		02CB45A4288814740070D7AD /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				02CB459E28880EDC0070D7AD /* Manager.swift */,
-				02CB45A028880EDC0070D7AD /* RequestManager.swift */,
-				02CB459F28880EDC0070D7AD /* URLEncoding.swift */,
+				02CB45A6288814880070D7AD /* Manager.swift */,
+				02CB45A5288814880070D7AD /* RequestManager.swift */,
+				02CB45A7288814880070D7AD /* URLEncoding.swift 16-35-00-973.swift */,
 			);
-			path = Networking;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		64ABB1CE2886CEB800B203F3 = {
@@ -92,7 +92,7 @@
 		64ABB1D92886CEB800B203F3 /* Stock App */ = {
 			isa = PBXGroup;
 			children = (
-				02CB459D28880EC90070D7AD /* Networking */,
+				02CB45A4288814740070D7AD /* Network */,
 				64ABB1F02886D0CA00B203F3 /* Model */,
 				64ABB1F12886D0D200B203F3 /* View */,
 				64ABB1EF2886D0B700B203F3 /* Controllers */,
@@ -232,8 +232,8 @@
 				02CB459128880E090070D7AD /* SearchResponse.swift in Sources */,
 				64ABB1F72886D2D300B203F3 /* SearchVC.swift in Sources */,
 				64ABB1F52886D2C400B203F3 /* FavoritesVC.swift in Sources */,
-				02CB45A328880EDC0070D7AD /* RequestManager.swift in Sources */,
 				64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */,
+				02CB45A9288814880070D7AD /* Manager.swift in Sources */,
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */,
 				64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */,
@@ -241,8 +241,8 @@
 				64ABB1F32886D29700B203F3 /* StockVC.swift in Sources */,
 				02CB459028880E090070D7AD /* MarketNews.swift in Sources */,
 				64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */,
-				02CB45A228880EDC0070D7AD /* URLEncoding.swift in Sources */,
-				02CB45A128880EDC0070D7AD /* Manager.swift in Sources */,
+				02CB45A8288814880070D7AD /* RequestManager.swift in Sources */,
+				02CB45AA288814880070D7AD /* URLEncoding.swift 16-35-00-973.swift in Sources */,
 				64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */,
 				64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */,
 			);
