@@ -12,6 +12,7 @@ enum EndPoint: String {
     case news
     case companyNews = "company-news"
     case marketData = "stock/candle"
+    case financials = "stock/metric"
 }
 
 struct URLParametersEncoder {

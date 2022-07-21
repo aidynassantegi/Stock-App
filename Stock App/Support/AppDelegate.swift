@@ -13,11 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
        
-        NetworkManager.shared.marketData(for: "AAPL", numberOfDays: 7) { result in
+//        NetworkManager.shared.marketData(for: "AAPL", numberOfDays: 7) { result in
+//            switch result {
+//            case .success(let data):
+//                let candleSticks = data.candleSticks
+//                //print(data)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        NetworkManager.shared.financialMetrics(for: "AAPL") { result in
             switch result {
             case .success(let data):
-                let candleSticks = data.candleSticks
-                //print(data)
+                print(data)
             case .failure(let error):
                 print(error)
             }

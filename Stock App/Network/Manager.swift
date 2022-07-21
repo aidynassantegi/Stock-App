@@ -11,6 +11,7 @@ protocol StocksServiceProtocol: AnyObject {
     func searchStocks(query: String, completion: @escaping (Result<SearchResponse, Error>) -> Void)
     func news(query: String, completion: @escaping (Result<[News], Error>) -> Void)
     func marketData(for symbol: String, numberOfDays: TimeInterval, completion: @escaping (Result<MarketDataResponse, Error>) -> Void)
+    func financialMetrics(for symbol: String, completion: @escaping (Result<FinancialMetrics, Error>) -> Void)
 }
 
 class NetworkManager: StocksServiceProtocol {
@@ -20,6 +21,11 @@ class NetworkManager: StocksServiceProtocol {
     private var urlEncoder: URLParametersEncoder = .urlEncoder
         
     private init() {}
+    
+    func financialMetrics(for symbol: String, completion: @escaping (Result<FinancialMetrics, Error>) -> Void) {
+        let url = urlEncoder.url(for: .financials, queryParams: ["symbol" : symbol, "metric" : "all"])
+        requestManager.request(url: url, expecting: FinancialMetrics.self, completion: completion)
+    }
     
     func marketData(for symbol: String, numberOfDays: TimeInterval = 7, completion: @escaping (Result<MarketDataResponse, Error>) -> Void){
         let today = Date().addingTimeInterval(-(86400))
