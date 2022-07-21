@@ -11,54 +11,43 @@ class FavoritesVC: UIViewController {
 
 	let stocks = Stock.stocks.filter{ $0.isFavorite }
 	
-	let tableView: UITableView = {
-		let tableView = UITableView()
-		tableView.rowHeight = 68
-		tableView.separatorStyle = .none
-		tableView.showsVerticalScrollIndicator = false
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		return tableView
-	}()
+	let tableVCView = UIView()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureUI()
-		tableView.dataSource = self
-		tableView.delegate = self
-		tableView.register(StockTableViewCell.self, forCellReuseIdentifier: StockTableViewCell.reuseId)
+		configureTable()
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.prefersLargeTitles = true
 	}
 	
-	func configureUI() {
-		view.backgroundColor = .systemBackground
-		view.addSubview(tableView)
-		NSLayoutConstraint.activate([
-			tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-		])
+	func configureTable() {
+		tableVCView.translatesAutoresizingMaskIntoConstraints = false
+		let vc = StocksTableVC()
+		vc.stocks = stocks
+		add(childVC: vc, to: tableVCView)
 	}
-}
 
-extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		stocks.count
+	func add(childVC: UIViewController, to containerView: UIView) {
+		addChild(childVC)
+		containerView.addSubview(childVC.view)
+		childVC.view.frame = containerView.bounds
+		childVC.didMove(toParent: self)
 	}
 	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseId, for: indexPath) as! StockTableViewCell
-		cell.set(stock: stocks[indexPath.row], index: indexPath.row)
-		return cell
-	}
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let vc = StockInfoVC()
-		vc.title = stocks[indexPath.row].symbol
-		navigationController?.pushViewController(vc, animated: true)
+	func configureUI() {
+		view.backgroundColor = .systemBackground
+		
+		view.addSubview(tableVCView)
+		NSLayoutConstraint.activate([
+			tableVCView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			tableVCView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+			tableVCView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+			tableVCView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+		])
 	}
 	
 }

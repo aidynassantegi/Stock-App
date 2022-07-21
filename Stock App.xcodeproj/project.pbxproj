@@ -25,9 +25,10 @@
 		64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1F82886D9AF00B203F3 /* Stock.swift */; };
 		64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FB2886DCDC00B203F3 /* StockTableViewCell.swift */; };
 		64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */; };
-		64ABB2012887C52800B203F3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 64ABB2002887C52800B203F3 /* Charts */; };
 		64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2072887F7BC00B203F3 /* StockChartView.swift */; };
 		64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */; };
+		64D2E4C22889510100BBF4FF /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 64D2E4C12889510100BBF4FF /* Charts */; };
+		64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2E4C42889511D00BBF4FF /* StocksTableVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoVC.swift; sourceTree = "<group>"; };
 		64ABB2072887F7BC00B203F3 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
 		64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalCVCell.swift; sourceTree = "<group>"; };
+		64D2E4C42889511D00BBF4FF /* StocksTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64ABB2012887C52800B203F3 /* Charts in Frameworks */,
+				64D2E4C22889510100BBF4FF /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +146,7 @@
 		64ABB1F12886D0D200B203F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				64D2E4C32889511D00BBF4FF /* Controllers */,
 				64ABB1FA2886DCB300B203F3 /* Cells */,
 				64ABB2072887F7BC00B203F3 /* StockChartView.swift */,
 			);
@@ -157,6 +160,14 @@
 				64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		64D2E4C32889511D00BBF4FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				64D2E4C42889511D00BBF4FF /* StocksTableVC.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +187,7 @@
 			);
 			name = "Stock App";
 			packageProductDependencies = (
-				64ABB2002887C52800B203F3 /* Charts */,
+				64D2E4C12889510100BBF4FF /* Charts */,
 			);
 			productName = "Stock App";
 			productReference = 64ABB1D72886CEB800B203F3 /* Stock App.app */;
@@ -207,7 +218,7 @@
 			);
 			mainGroup = 64ABB1CE2886CEB800B203F3;
 			packageReferences = (
-				64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */,
+				64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 64ABB1D82886CEB800B203F3 /* Products */;
 			projectDirPath = "";
@@ -242,6 +253,7 @@
 				64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */,
 				02C42F7528890C04004D0091 /* SearchResponse.swift in Sources */,
 				02CB45A9288814880070D7AD /* Manager.swift in Sources */,
+				64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */,
 				02C42F7728890CDE004D0091 /* URLEncoding.swift in Sources */,
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */,
@@ -464,7 +476,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */ = {
+		64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
 			requirement = {
@@ -475,9 +487,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		64ABB2002887C52800B203F3 /* Charts */ = {
+		64D2E4C12889510100BBF4FF /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 64ABB1FF2887C52800B203F3 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = 64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
