@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import FloatingPanel
 
-class StockVC: UIViewController {
+class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	
 	let stocks = Stock.stocks
 	
@@ -17,6 +18,7 @@ class StockVC: UIViewController {
 		super.viewDidLoad()
 		configureUI()
 		configureTable()
+        setUpChild()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +26,15 @@ class StockVC: UIViewController {
 		navigationController?.navigationBar.prefersLargeTitles = true
 	}
 	
+    private func setUpChild(){
+        let vc = NewsViewController(type: .topNews)
+        let panel = FloatingPanelController(delegate: self)
+        panel.surfaceView.backgroundColor = .secondarySystemBackground
+        panel.set(contentViewController: vc)
+        panel.addPanel(toParent: self)
+        panel.track(scrollView: vc.tableView)
+    }
+    
 	func configureTable() {
 		tableVCView.translatesAutoresizingMaskIntoConstraints = false
 		let vc = StocksTableVC()

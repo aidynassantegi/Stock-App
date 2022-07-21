@@ -16,6 +16,9 @@
 		02C42F7F28895B24004D0091 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C42F7E28895B24004D0091 /* StockChartView.swift */; };
 		02CB45A8288814880070D7AD /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A5288814880070D7AD /* RequestManager.swift */; };
 		02CB45A9288814880070D7AD /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB45A6288814880070D7AD /* Manager.swift */; };
+		39D1D8612889A1E400FB2B9E /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 39D1D8602889A1E400FB2B9E /* FloatingPanel */; };
+		39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1D8622889A49A00FB2B9E /* NewsViewController.swift */; };
+		39D1D8652889B12400FB2B9E /* NewsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1D8642889B12400FB2B9E /* NewsTableHeaderView.swift */; };
 		64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DA2886CEB800B203F3 /* AppDelegate.swift */; };
 		64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DC2886CEB800B203F3 /* SceneDelegate.swift */; };
 		64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DE2886CEB800B203F3 /* ViewController.swift */; };
@@ -27,7 +30,6 @@
 		64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1F82886D9AF00B203F3 /* Stock.swift */; };
 		64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FB2886DCDC00B203F3 /* StockTableViewCell.swift */; };
 		64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */; };
-		64ABB2082887F7BC00B203F3 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2072887F7BC00B203F3 /* StockChartView.swift */; };
 		64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB2092887FA1300B203F3 /* IntervalCVCell.swift */; };
 		64D2E4C22889510100BBF4FF /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 64D2E4C12889510100BBF4FF /* Charts */; };
 		64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2E4C42889511D00BBF4FF /* StocksTableVC.swift */; };
@@ -43,6 +45,8 @@
 		02C42F7E28895B24004D0091 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
 		02CB45A5288814880070D7AD /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		02CB45A6288814880070D7AD /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		39D1D8622889A49A00FB2B9E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		39D1D8642889B12400FB2B9E /* NewsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableHeaderView.swift; sourceTree = "<group>"; };
 		64ABB1D72886CEB800B203F3 /* Stock App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stock App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABB1DA2886CEB800B203F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64ABB1DC2886CEB800B203F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D2E4C22889510100BBF4FF /* Charts in Frameworks */,
+				39D1D8612889A1E400FB2B9E /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +136,7 @@
 				64ABB1F42886D2C400B203F3 /* FavoritesVC.swift */,
 				64ABB1F62886D2D300B203F3 /* SearchVC.swift */,
 				64ABB1FD2887C4CB00B203F3 /* StockInfoVC.swift */,
+				39D1D8622889A49A00FB2B9E /* NewsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +159,7 @@
 				64D2E4C32889511D00BBF4FF /* Controllers */,
 				64ABB1FA2886DCB300B203F3 /* Cells */,
 				02C42F7E28895B24004D0091 /* StockChartView.swift */,
+				39D1D8642889B12400FB2B9E /* NewsTableHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 			name = "Stock App";
 			packageProductDependencies = (
 				64D2E4C12889510100BBF4FF /* Charts */,
+				39D1D8602889A1E400FB2B9E /* FloatingPanel */,
 			);
 			productName = "Stock App";
 			productReference = 64ABB1D72886CEB800B203F3 /* Stock App.app */;
@@ -223,6 +231,7 @@
 			mainGroup = 64ABB1CE2886CEB800B203F3;
 			packageReferences = (
 				64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */,
+				39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 64ABB1D82886CEB800B203F3 /* Products */;
 			projectDirPath = "";
@@ -255,6 +264,7 @@
 				02C42F7D28894FDD004D0091 /* FinancialMetrics.swift in Sources */,
 				02C42F7B288915E7004D0091 /* MarketDataResponse.swift in Sources */,
 				02C42F7428890C04004D0091 /* MarketNews.swift in Sources */,
+				39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */,
 				02C42F7528890C04004D0091 /* SearchResponse.swift in Sources */,
 				02CB45A9288814880070D7AD /* Manager.swift in Sources */,
 				64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */,
@@ -262,6 +272,7 @@
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				02C42F7F28895B24004D0091 /* StockChartView.swift in Sources */,
 				64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */,
+				39D1D8652889B12400FB2B9E /* NewsTableHeaderView.swift in Sources */,
 				64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */,
 				64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */,
 				64ABB1F32886D29700B203F3 /* StockVC.swift in Sources */,
@@ -481,6 +492,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
@@ -492,6 +511,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		39D1D8602889A1E400FB2B9E /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
 		64D2E4C12889510100BBF4FF /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */;

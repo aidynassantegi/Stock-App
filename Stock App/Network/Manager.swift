@@ -41,6 +41,7 @@ class NetworkManager: StocksServiceProtocol {
     
     func news(query: String, completion: @escaping (Result<[News], Error>) -> Void) {
         
+        
         //market news
         requestManager.request(url: urlEncoder.url(for: .news, queryParams: ["category":"general"]), expecting: [News].self, completion: completion)
         
