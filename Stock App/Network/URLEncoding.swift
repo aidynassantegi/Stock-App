@@ -1,8 +1,8 @@
 //
 //  URLEncoding.swift
-//  Network
+//  Stock App
 //
-//  Created by Aigerim Abdurakhmanova on 20.07.2022.
+//  Created by Aigerim Abdurakhmanova on 21.07.2022.
 //
 
 import Foundation
@@ -11,6 +11,7 @@ enum EndPoint: String {
     case search
     case news
     case companyNews = "company-news"
+    case marketData = "stock/candle"
 }
 
 struct URLParametersEncoder {
@@ -27,10 +28,12 @@ struct URLParametersEncoder {
         var urlString = Constants.baseUrl + endPoint.rawValue
         
         var queryItems = [URLQueryItem]()
-        queryItems.append(.init(name: "token", value: Constants.apiKey))
+//        queryItems.append(.init(name: "token", value: Constants.apiKey))
         for (name, value) in queryParams {
             queryItems.append(.init(name: name, value: value))
         }
+        
+        queryItems.append(.init(name: "token", value: Constants.apiKey))
         
         let queryString = queryItems.map { "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
         urlString += "?" + queryString

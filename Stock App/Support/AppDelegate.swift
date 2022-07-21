@@ -12,13 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-        NetworkManager.shared.searchStocks(query: "Apple") { result in
-            switch result{
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
+       
+        NetworkManager.shared.marketData(for: "AAPL", numberOfDays: 7) { result in
+            print(result)
         }
 		return true
 	}
