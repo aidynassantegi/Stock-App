@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol StocksData: AnyObject {
+protocol StocksServiceProtocol: AnyObject {
     func searchStocks(query: String, completion: @escaping (Result<SearchResponse, Error>) -> Void)
     func news(query: String, completion: @escaping (Result<[News], Error>) -> Void)
     func marketData(for symbol: String, numberOfDays: TimeInterval, completion: @escaping (Result<MarketDataResponse, Error>) -> Void)
 }
 
-class NetworkManager: StocksData {
+class NetworkManager: StocksServiceProtocol {
     
     static let shared = NetworkManager()
     private var requestManager: RequestManager = .requestManangerShared

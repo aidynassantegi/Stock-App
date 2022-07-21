@@ -11,6 +11,7 @@ import Charts
 class StockInfoVC: UIViewController {
 
 	let chart = StockChartView()
+    
 	let collectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		layout.sectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
