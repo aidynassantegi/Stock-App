@@ -46,14 +46,14 @@ class StockChartView: UIView {
     }
     
     func configure(with viewModel: ViewModel) {
-        var entries = [ChartDataEntry]()
-        
-        for (index, value) in viewModel.data.enumerated() {
-            entries.append(.init(x: Double(index), y: value))
-        }
-        
-        let dataSet = LineChartDataSet(entries: entries, label: "Label")
-        let data = LineChartData(dataSets: dataSet)
-        chartView.data = data
+//        var entries = [ChartDataEntry]()
+//        
+//        for (index, value) in viewModel.data.enumerated() {
+//            entries.append(.init(x: Double(index), y: value))
+//        }
+//        
+//        let dataSet = LineChartDataSet(entries: entries, label: "Label")
+//        let data = LineChartData(dataSets: dataSet)
+//        chartView.data = data
     }
 }
