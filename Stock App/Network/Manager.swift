@@ -9,7 +9,7 @@ import Foundation
 
 protocol StocksServiceProtocol: AnyObject {
     func searchStocks(query: String, completion: @escaping (Result<SearchResponse, Error>) -> Void)
-    func news(query: String, completion: @escaping (Result<[News], Error>) -> Void)
+    func news(for type: NewsViewController.`Type`, completion: @escaping (Result<[News], Error>) -> Void)
     func marketData(for symbol: String, numberOfDays: TimeInterval, completion: @escaping (Result<MarketDataResponse, Error>) -> Void)
     func financialMetrics(for symbol: String, completion: @escaping (Result<FinancialMetrics, Error>) -> Void)
 }
@@ -38,14 +38,18 @@ class NetworkManager: StocksServiceProtocol {
         guard let safeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
         requestManager.request(url: urlEncoder.url(for: .search, queryParams: ["q":query]), expecting: SearchResponse.self, completion: completion)
     }
-    
-    func news(query: String, completion: @escaping (Result<[News], Error>) -> Void) {
         
+    func news(for type: NewsViewController.`Type`,completion: @escaping (Result<[News], Error>) -> Void) {
         
-        //market news
-        requestManager.request(url: urlEncoder.url(for: .news, queryParams: ["category":"general"]), expecting: [News].self, completion: completion)
+        switch type{
+        case .topNews:
+            requestManager.request(url: urlEncoder.url(for: .news, queryParams: ["category":"general"]), expecting: [News].self, completion: completion)
+        case .company(let symbol):
+            let today = Date()
+            let oneMonthBack = today.addingTimeInterval(-(3600 * 24 * 30))
+            requestManager.request(url: urlEncoder.url(for: .companyNews, queryParams: ["symbol": symbol, "from": DateFormatter.newsDateFormatter.string(from: oneMonthBack), "to": DateFormatter.newsDateFormatter.string(from: today)]), expecting: [News].self, completion: completion)
+        }
         
-        //write end point for company news, use enum
     }
     
 }

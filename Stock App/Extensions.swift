@@ -8,10 +8,23 @@
 import Foundation
 import UIKit
 
+extension String {
+    static func string(from timeInterval: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return DateFormatter.readableDateFormatter.string(from: date)
+    }
+}
+
 extension DateFormatter {
     static let newsDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
+        return formatter
+    }()
+    
+    static let readableDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
         return formatter
     }()
 }
