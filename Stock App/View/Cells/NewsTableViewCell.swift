@@ -29,14 +29,14 @@ class NewsTableViewCell: UITableViewCell {
     
     private let sourceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .systemFont(ofSize: 15, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let headlineLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -53,7 +53,7 @@ class NewsTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -76,13 +76,13 @@ class NewsTableViewCell: UITableViewCell {
     func configureUI() {
         addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
         
-        let imageSize: CGFloat = contentView.height - 6
+        let imageSize: CGFloat = contentView.height - 15
         headlineLabel.sizeToFit()
         
-        NSLayoutConstraint.activate([storyImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
+        NSLayoutConstraint.activate([storyImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
                                      storyImageView.widthAnchor.constraint(equalToConstant: imageSize),
                                      storyImageView.heightAnchor.constraint(equalToConstant: imageSize),
-                                     storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 2),
+                                     storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
                                      
                                      sourceLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
                                      sourceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),

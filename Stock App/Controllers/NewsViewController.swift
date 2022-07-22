@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class NewsViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class NewsViewController: UIViewController {
         var title: String {
             switch self {
             case .topNews:
-                return "Top News"
+                return "Business News"
             case .company(let symbol):
                 return symbol.uppercased()
             }
@@ -81,8 +82,15 @@ class NewsViewController: UIViewController {
         }
     }
 
-    private func open(url: URL) {
-        
+    private func openNews(url: URL) {
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
+    
+    private func failedToOpenNewAlert() {
+        let alert = UIAlertController(title: "Unable to open", message: "Sorry, we were unable to open", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
 
@@ -114,7 +122,12 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //open news
+        let new = news[indexPath.row]
+        guard let url = URL(string: new.url) else {
+            failedToOpenNewAlert()
+            return
+        }
+        openNews(url: url)
     }
     
 }
