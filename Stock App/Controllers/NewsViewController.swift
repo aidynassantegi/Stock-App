@@ -24,12 +24,19 @@ class NewsViewController: UIViewController {
     }
     
     private let type: Type
-    private var news: [News] = []
+    private var news: [News] = [] {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     
     let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        table.separatorStyle = .singleLine
+        table.separatorColor = .label
+        table.separatorInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
         table.backgroundColor = .clear
         return table
     }()
@@ -46,7 +53,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
-        // Do any additional setup after loading the view.
+        loadNews()
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,8 +67,18 @@ class NewsViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func fetchNews() {
-        
+    func loadNews() {
+        NetworkManager.shared.news(for: type) { [weak self] result in
+            switch result {
+            case .success(let news):
+                DispatchQueue.main.async {
+                    self?.news = news
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     private func open(url: URL) {

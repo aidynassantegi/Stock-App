@@ -62,7 +62,6 @@ class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .secondarySystemBackground
-        addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
     }
     
     required init?(coder: NSCoder) {
@@ -71,13 +70,22 @@ class NewsTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        configureUI()
+    }
+    
+    func configureUI() {
+        addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
         
         let imageSize: CGFloat = contentView.height - 6
+        headlineLabel.sizeToFit()
         
-        NSLayoutConstraint.activate([storyImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2), storyImageView.widthAnchor.constraint(equalToConstant: imageSize),
-                                     storyImageView.heightAnchor.constraint(equalToConstant: imageSize), storyImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 2),
-                                     sourceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-                                     sourceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+        NSLayoutConstraint.activate([storyImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
+                                     storyImageView.widthAnchor.constraint(equalToConstant: imageSize),
+                                     storyImageView.heightAnchor.constraint(equalToConstant: imageSize),
+                                     storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 2),
+                                     
+                                     sourceLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
+                                     sourceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
                                      sourceLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: 5),
                                      
                                      headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
@@ -87,7 +95,7 @@ class NewsTableViewCell: UITableViewCell {
                                      dateLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: 5),
                                      dateLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
                                      dateLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor),
-                                     dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5)
+                                     dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
                                     ])
     }
     

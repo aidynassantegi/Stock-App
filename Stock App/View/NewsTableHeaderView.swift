@@ -35,8 +35,9 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .secondarySystemBackground
-        contentView.addSubviews(label, button)
+        backgroundColor = .secondarySystemBackground
+       // contentView.addSubviews(label, button)
+        addSubview(label)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
@@ -47,7 +48,12 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
-        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 30), label.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 5), label.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5), label.heightAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+                                     label.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+                                     label.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+//                                     label.heightAnchor.constraint(equalToConstant: 40),
+                                     label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+                                    ])
         //label.frame = CGRect(x: 14, y: 0, width: contentView.width-20, height: contentView.height)
     }
     
@@ -55,7 +61,7 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
     
     func configure(with viewModel: ViewModel) {
         label.text = viewModel.title
-        button.isHidden = !viewModel.showButton
+       // button.isHidden = !viewModel.showButton
     }
 }
 
