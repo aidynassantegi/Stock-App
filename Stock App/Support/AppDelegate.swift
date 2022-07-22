@@ -22,14 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                print(error)
 //            }
 //        }
-        NetworkManager.shared.financialMetrics(for: "AAPL") { result in
+        NetworkManager.shared.stockSymbols { result in
             switch result {
             case .success(let data):
-                print(data)
+                print("data \(data.count)")
             case .failure(let error):
-                print(error)
+                print("error \(error)")
             }
         }
+        
 		return true
 	}
 

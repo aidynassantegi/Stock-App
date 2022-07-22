@@ -6,11 +6,21 @@
 //
 
 import UIKit
+import Charts
 
 class StockTableViewCell: UITableViewCell {
 	
 	static let reuseId = "StockTableViewCell"
 	
+    struct ViewModel {
+        let symbol: String
+        let companyName: String
+        let price: String
+        let isFavorite: Bool
+        let changeColor: UIColor // red or green
+        let changePercentage: String
+    }
+    
 	let stockImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.layer.masksToBounds = true
@@ -51,21 +61,32 @@ class StockTableViewCell: UITableViewCell {
 	let changesLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12)
-		label.textColor = .systemGreen
+		label.textColor = .white
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
+    
+    private let miniChartView = StockChartView()
 
-	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
 		configureUI()
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
+    func configure(with viewModel: ViewModel, index: Int) {
+        symbolLabel.text = viewModel.symbol
+        companyNameLabel.text = viewModel.companyName
+        priceLabel.text = viewModel.price
+        changesLabel.text = viewModel.changePercentage
+        changesLabel.backgroundColor = viewModel.changeColor
+        backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
+    }
+    
 	func set(stock: Stock, index: Int) {
 		stockImageView.image = UIImage(named: stock.image ?? "")
 		symbolLabel.text = stock.symbol
@@ -76,16 +97,31 @@ class StockTableViewCell: UITableViewCell {
 		backgroundColor = index%2==0 ? .systemGray6 : .systemBackground
 	}
 	
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        symbolLabel.text = nil
+        companyNameLabel.text = nil
+        priceLabel.text = nil
+        changesLabel.text = nil
+        miniChartView.reset()
+    }
+    
 	private func configureUI() {
 		layer.masksToBounds = true
 		layer.cornerRadius = 16
 		
-		addSubview(stockImageView)
-		addSubview(symbolLabel)
-		addSubview(starImageView)
-		addSubview(companyNameLabel)
-		addSubview(priceLabel)
-		addSubview(changesLabel)
+//		addSubview(stockImageView)
+//		addSubview(symbolLabel)
+//		addSubview(starImageView)
+//		addSubview(companyNameLabel)
+//		addSubview(priceLabel)
+//		addSubview(changesLabel)
+        
+        addSubviews(stockImageView, symbolLabel, starImageView, companyNameLabel, priceLabel, changesLabel)
 		
 		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([

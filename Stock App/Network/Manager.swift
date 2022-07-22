@@ -12,15 +12,24 @@ protocol StocksServiceProtocol: AnyObject {
     func news(for type: NewsViewController.`Type`, completion: @escaping (Result<[News], Error>) -> Void)
     func marketData(for symbol: String, numberOfDays: TimeInterval, completion: @escaping (Result<MarketDataResponse, Error>) -> Void)
     func financialMetrics(for symbol: String, completion: @escaping (Result<FinancialMetrics, Error>) -> Void)
+    func stockSymbols(completion: @escaping (Result<[StockSymbols], Error>) -> Void)
 }
 
 class NetworkManager: StocksServiceProtocol {
-    
+
     static let shared = NetworkManager()
     private var requestManager: RequestManager = .requestManangerShared
     private var urlEncoder: URLParametersEncoder = .urlEncoder
         
     private init() {}
+    
+    ///stock/symbol?exchange=US
+
+    func stockSymbols(completion: @escaping (Result<[StockSymbols], Error>) -> Void) {
+        let url = urlEncoder.url(for: .symbols, queryParams: ["exchange" : "US"])
+        requestManager.request(url: url, expecting: [StockSymbols]
+            .self, completion: completion)
+    }
     
     func financialMetrics(for symbol: String, completion: @escaping (Result<FinancialMetrics, Error>) -> Void) {
         let url = urlEncoder.url(for: .financials, queryParams: ["symbol" : symbol, "metric" : "all"])
@@ -49,7 +58,7 @@ class NetworkManager: StocksServiceProtocol {
             let oneMonthBack = today.addingTimeInterval(-(3600 * 24 * 30))
             requestManager.request(url: urlEncoder.url(for: .companyNews, queryParams: ["symbol": symbol, "from": DateFormatter.newsDateFormatter.string(from: oneMonthBack), "to": DateFormatter.newsDateFormatter.string(from: today)]), expecting: [News].self, completion: completion)
         }
-        
     }
+    
     
 }

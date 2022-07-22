@@ -31,13 +31,6 @@ class FavoritesVC: UIViewController {
 		add(childVC: vc, to: tableVCView)
 	}
 
-	func add(childVC: UIViewController, to containerView: UIView) {
-		addChild(childVC)
-		containerView.addSubview(childVC.view)
-		childVC.view.frame = containerView.bounds
-		childVC.didMove(toParent: self)
-	}
-	
 	func configureUI() {
 		view.backgroundColor = .systemBackground
 		
