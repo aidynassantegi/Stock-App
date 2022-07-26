@@ -1,8 +1,8 @@
 //
-//  MarketNews.swift
-//  Network
+//  News.swift
+//  Stock App
 //
-//  Created by Aigerim Abdurakhmanova on 20.07.2022.
+//  Created by Айгерим Абдурахманова on 26.07.2022.
 //
 
 import Foundation

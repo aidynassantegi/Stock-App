@@ -10,7 +10,7 @@ import SafariServices
 
 class NewsViewController: UIViewController {
 
-    enum `Type` {
+    enum NewsType {
         case topNews
         case company(symbol: String)
         
@@ -24,7 +24,7 @@ class NewsViewController: UIViewController {
         }
     }
     
-    private let type: Type
+    private let type: NewsType
     private var news: [News] = [] {
         didSet{
             tableView.reloadData()
@@ -42,7 +42,7 @@ class NewsViewController: UIViewController {
         return table
     }()
     
-    init(type: Type){
+    init(type: NewsType){
         self.type = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,7 +54,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
-        loadNews()
+        fetchNews()
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,17 +68,18 @@ class NewsViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func loadNews() {
-        NetworkManager.shared.news(for: type) { [weak self] result in
-            switch result {
-            case .success(let news):
-                DispatchQueue.main.async {
-                    self?.news = news
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
+    func fetchNews() {
+        Task {
+            await loadNews()
+        }
+    }
+    
+    func loadNews() async {
+        do {
+            news = try await RequestManager().perform(MarketNewsRequest(type: .topNews))
+            print(news)
+        }catch {
+            print("error")
         }
     }
 

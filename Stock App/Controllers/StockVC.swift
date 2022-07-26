@@ -15,6 +15,7 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	let tableVCView = UIView()
 	
     private var stockSymbols: [String] = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "META", "NVDA", "KO", "NFLX", "DHR", "VZ"]
+    private var stocksMap: [String: [CandleStick]] = [:]
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -55,6 +56,29 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 			tableVCView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 	}
+    
+//    private func loadData() {
+//        let group = DispatchGroup()
+//
+//        for symbol in stockSymbols{
+//            group.enter()
+//            NetworkManager.shared.marketData(for: symbol) { [weak self] result in
+//                defer{
+//                    group.leave()
+//                }
+//
+//                switch result {
+//                case .success(let data):
+//                    self?.stocksMap[symbol] = data.candleSticks
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        }
+//        group.notify(queue: .main) { [weak self] in
+//
+//        }
+    //}
 	
 }
 
