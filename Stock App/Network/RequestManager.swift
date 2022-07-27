@@ -1,64 +1,32 @@
 //
 //  RequestManager.swift
-//  Network
+//  Stock App
 //
-//  Created by Aigerim Abdurakhmanova on 20.07.2022.
+//  Created by Айгерим Абдурахманова on 26.07.2022.
 //
 
 import Foundation
 
-enum APIError: Error {
-    case noDataReturned
-    case invalidUrl
-    case httpRequestFailed
+protocol RequestManagerProtocol {
+    func perform<T: Decodable>(_ request: RequestProtocol) async throws -> T
 }
 
-extension APIError: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .noDataReturned:
-            return "Error: Did bot receive data"
-        case .invalidUrl:
-            return "Error: Invalid url"
-        case .httpRequestFailed:
-            return "Error: HTTP request failed"
-        }
+class RequestManager: RequestManagerProtocol {
+    
+    let apiManager: APIManagerProtocol
+    let parser: DataParserProtocol
+    
+    init(apiManager: APIManagerProtocol = APIManager(), parser: DataParserProtocol = DataParser()) {
+        self.apiManager = apiManager
+        self.parser = parser
     }
-}
-
-struct RequestManager {
     
-    static var requestManangerShared = RequestManager()
-    
-    public func request<T: Codable>(url: URL?, expecting: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-
-        guard let url = url else {
-            completion(.failure(APIError.invalidUrl))
-            return
-        }
+    func perform<T>(_ request: RequestProtocol) async throws -> T where T : Decodable {
+        let data = try await apiManager.perform(request)
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                if let error = error {
-                    completion(.failure(error))
-                }else {
-                    completion(.failure(APIError.noDataReturned))
-                }
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
-                completion(.failure(APIError.httpRequestFailed))
-                return
-            }
-
-            do {
-                let result = try JSONDecoder().decode(expecting, from: data)
-                completion(.success(result))
-            }catch {
-                completion(.failure(error))
-            }
-        }
-        task.resume()
+        let decoded: T = try parser.parse(data: data)
+        
+        return decoded
     }
+    
 }
