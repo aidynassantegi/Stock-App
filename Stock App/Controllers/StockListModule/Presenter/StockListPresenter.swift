@@ -15,6 +15,7 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     
     func didLoadStockSymbols(_ symbols: [StockSymbols]) {
         view.handleObtainedSymbols(symbols)
+        interactor.obtainCompanyProfiles(with: symbols)
     }
     
     func didLoadCompanyProfiles(_ companies: [CompanyProfile]) {
@@ -22,8 +23,9 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     }
     
     func didLoadView() {
-        let symbols = interactor.obtainStockSymbols()
-        interactor.obtainCompanyProfiles(with: symbols)
+        interactor.obtainStockSymbols()
+//        print(symbols)
+//        interactor.obtainCompanyProfiles(with: symbols)
     }
     
     func didSelectStockSell(with index: Int) {

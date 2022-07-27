@@ -8,7 +8,7 @@
 import Foundation
 
 protocol StockListInteractorInput {
-    func obtainStockSymbols() -> [StockSymbols]
+    func obtainStockSymbols() 
     func obtainCompanyProfiles(with stockSymbol: [StockSymbols])
 }
 
@@ -25,20 +25,15 @@ final class StockListInteractor: StockListInteractorInput {
     private var companyProfile: CompanyProfile!
     
     private var companies: [CompanyProfile] = []
-    private var stockSymbols: [StockSymbols] = [] {
-        didSet {
-            
-        }
-    }
+    private var stockSymbols: [StockSymbols] = []
     
     required init(requestManager: APIManager){
         self.requestManager = requestManager
     }
     
-    func obtainStockSymbols() -> [StockSymbols] {
+    func obtainStockSymbols() {
         let group = DispatchGroup()
         var tempSymbols: [StockSymbols] = []
-        group.enter()
             self.requestManager.perform(SymbolsRequest.init()) { [weak self] (result: Result<[StockSymbols], Error>) in
                 switch result {
                 case .success(let data):
@@ -46,19 +41,12 @@ final class StockListInteractor: StockListInteractorInput {
                         self?.stockSymbols.append(data[index])
                     }
                     self?.output.didLoadStockSymbols(self!.stockSymbols)
-                    group.leave()
                     //return self!.stockSymbols
                 case .failure(let error):
                     print(error)
                 }
             }
         
-        group.notify(queue: .main) { [weak self] in
-            print(self?.stockSymbols)
-            tempSymbols = self!.stockSymbols
-            //return stockSymbols
-        }
-        return tempSymbols
     }
     
     func obtainCompanyProfiles(with stockSymbol: [StockSymbols]) {
@@ -82,6 +70,7 @@ final class StockListInteractor: StockListInteractorInput {
             print("companies \(self.companies)")
             self.output.didLoadCompanyProfiles(self.companies)
         }
+        print(self.companies)
     }
     
 //    func obtainCompanyProfiles(with stockSymbol: String) {
