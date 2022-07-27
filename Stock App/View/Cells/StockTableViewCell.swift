@@ -87,13 +87,13 @@ class StockTableViewCell: UITableViewCell {
         backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
     }
     
-	func set(stock: Stock, index: Int) {
-		stockImageView.image = UIImage(named: stock.image ?? "")
-		symbolLabel.text = stock.symbol
-		companyNameLabel.text = stock.companyName
-		starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
-		priceLabel.text = "$\(stock.price)"
-		changesLabel.text = "\(stock.changes)%"
+	func set(stock: String, index: Int) {
+		//stockImageView.image = UIImage(named: stock.image ?? "")
+		symbolLabel.text = stock
+		//companyNameLabel.text = stock.companyName
+		//starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
+		//priceLabel.text = "$\(stock.price)"
+		//changesLabel.text = "\(stock.changes)%"
 		backgroundColor = index%2==0 ? .systemGray6 : .systemBackground
 	}
 	

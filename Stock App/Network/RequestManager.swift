@@ -8,25 +8,36 @@
 import Foundation
 
 protocol RequestManagerProtocol {
-    func perform<T: Decodable>(_ request: RequestProtocol) async throws -> T
+    func perform<T>(_ request: RequestProtocol) -> T
 }
 
-class RequestManager: RequestManagerProtocol {
-    
-    let apiManager: APIManagerProtocol
-    let parser: DataParserProtocol
-    
-    init(apiManager: APIManagerProtocol = APIManager(), parser: DataParserProtocol = DataParser()) {
-        self.apiManager = apiManager
-        self.parser = parser
-    }
-    
-    func perform<T>(_ request: RequestProtocol) async throws -> T where T : Decodable {
-        let data = try await apiManager.perform(request)
-        
-        let decoded: T = try parser.parse(data: data)
-        
-        return decoded
-    }
-    
-}
+//class RequestManager: RequestManagerProtocol {
+//    
+//    let apiManager: APIManagerProtocol
+//    let parser: DataParserProtocol
+//    
+//    init(apiManager: APIManagerProtocol = APIManager(), parser: DataParserProtocol = DataParser()) {
+//        self.apiManager = apiManager
+//        self.parser = parser
+//    }
+//    
+//    func perform<T>(_ request: RequestProtocol) -> T{
+//        apiManager.perform(request) { result in
+//            switch result {
+//            case .success(let data):
+//                return data
+//            case .failure(let error):
+//                return error
+//            }
+//        }
+//    }
+//    
+//    func perform<T>(_ request: RequestProtocol) async throws -> T where T : Decodable {
+//        let data = try await apiManager.perform(request)
+//        
+//        let decoded: T = try parser.parse(data: data)
+//        
+//        return decoded
+//    }
+//    
+//}

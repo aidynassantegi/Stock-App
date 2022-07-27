@@ -69,19 +69,23 @@ class NewsViewController: UIViewController {
     }
     
     func fetchNews() {
-        Task {
-            await loadNews()
+        APIManager().perform(MarketNewsRequest(type: .topNews)) { [weak self] (result: Result<[News], Error>) in
+            switch result {
+            case .success(let data):
+                self?.news = data
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
-    func loadNews() async {
-        do {
-            news = try await RequestManager().perform(MarketNewsRequest(type: .topNews))
-            print(news)
-        }catch {
-            print("error")
-        }
-    }
+//    func loadNews() async {
+//        do {
+//            news = try await RequestManager().perform(MarketNewsRequest(type: .topNews))
+//        }catch {
+//            print("error")
+//        }
+//    }
 
     private func openNews(url: URL) {
         let vc = SFSafariViewController(url: url)

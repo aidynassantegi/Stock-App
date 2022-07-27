@@ -27,8 +27,6 @@ class StocksTableVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureUI()
-		tableView.dataSource = self
-		tableView.delegate = self
 		tableView.register(StockTableViewCell.self, forCellReuseIdentifier: StockTableViewCell.reuseId)
 	}
 	
@@ -49,22 +47,3 @@ class StocksTableVC: UIViewController {
 	}
 }
 
-extension StocksTableVC: UITableViewDataSource, UITableViewDelegate {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		stocks?.count ?? 0
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseId, for: indexPath) as! StockTableViewCell
-		guard let stocks = stocks else { return StockTableViewCell()}
-		cell.set(stock: stocks[indexPath.row], index: indexPath.row)
-		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let vc = StockInfoVC()
-		guard let stocks = stocks else { return }
-		vc.title = stocks[indexPath.row].symbol
-		navigationController?.pushViewController(vc, animated: true)
-	}
-}

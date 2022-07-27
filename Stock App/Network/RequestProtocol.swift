@@ -30,7 +30,7 @@ extension RequestProtocol {
         [:]
     }
     
-    func createURL() throws -> URL {
+    func createURL() -> URL {
         var urlString = host + path
         if !urlParams.isEmpty {
             var queryItems = [URLQueryItem]()

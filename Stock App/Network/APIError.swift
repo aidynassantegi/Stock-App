@@ -12,6 +12,7 @@ enum APIError: Error {
     case invalidUrl
     case httpRequestFailed
 }
+
 extension APIError: LocalizedError {
     public var errorDescription: String? {
         switch self {

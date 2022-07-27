@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct StockSymbols: Codable {
     let currency: String
     let description: String

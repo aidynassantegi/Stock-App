@@ -8,23 +8,47 @@
 import Foundation
 
 protocol APIManagerProtocol {
-  func perform(_ request: RequestProtocol) async throws -> Data
+    func perform<T: Codable>(_ request: RequestProtocol, completion: @escaping (Result< T,Error>) -> Void)
 }
 
 class APIManager: APIManagerProtocol {
-    
+   
     private let urlSession: URLSession
     
     init(urlSession: URLSession = URLSession.shared) {
         self.urlSession = urlSession
     }
     
-    func perform(_ request: RequestProtocol) async throws -> Data {
-  
-        let (data, response) = try await urlSession.data(from: request.createURL())
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else { throw APIError.httpRequestFailed }
+    func perform<T: Codable>(_ request: RequestProtocol, completion: @escaping (Result<T, Error>) -> Void) {
         
-        return data
+        let task = urlSession.dataTask(with: request.createURL()) { data, response, error in
+            guard let data = data, error == nil else {
+                if let error = error {
+                    completion(.failure(error))
+                }else {
+                    completion(.failure(APIError.noDataReturned))
+                }
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200  else {
+                completion(.failure(APIError.httpRequestFailed))
+                return
+            }
+
+            
+            do {
+                let result = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(result))
+                }
+            }catch {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
     }
 }
 

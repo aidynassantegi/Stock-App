@@ -15,4 +15,5 @@ enum EndPoint: String {
     case marketData = "/stock/candles"
     case financials = "/stock/metrics"
     case symbols = "/stock/symbol"
+    case companyProfile = "/stock/profile2"
 }
