@@ -22,7 +22,8 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     }
     
     func didLoadView() {
-        interactor.obtainStockSymbols()
+        let symbols = interactor.obtainStockSymbols()
+        interactor.obtainCompanyProfiles(with: symbols)
     }
     
     func didSelectStockSell(with index: Int) {

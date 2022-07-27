@@ -39,11 +39,11 @@ class APIManager: APIManagerProtocol {
             
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.async{
                     completion(.success(result))
                 }
             }catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async{
                     completion(.failure(error))
                 }
             }

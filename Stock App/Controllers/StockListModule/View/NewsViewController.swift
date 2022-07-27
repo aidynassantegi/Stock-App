@@ -70,12 +70,14 @@ class NewsViewController: UIViewController {
     
     func fetchNews() {
         APIManager().perform(MarketNewsRequest(type: .topNews)) { [weak self] (result: Result<[News], Error>) in
-            switch result {
-            case .success(let data):
-                self?.news = data
-            case .failure(let error):
-                print(error)
-            }
+    
+                switch result {
+                case .success(let data):
+                    self?.news = data
+                case .failure(let error):
+                    print(error)
+                }
+            
         }
     }
     

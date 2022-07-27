@@ -8,8 +8,8 @@
 import Foundation
 
 protocol StockListInteractorInput {
-    func obtainStockSymbols()
-    func obtainCompanyProfiles(with stockSymbols: String)
+    func obtainStockSymbols() -> [StockSymbols]
+    func obtainCompanyProfiles(with stockSymbol: [StockSymbols])
 }
 
 protocol StockListInteractorOutput: AnyObject {
@@ -23,31 +23,65 @@ final class StockListInteractor: StockListInteractorInput {
     private var requestManager = APIManager()
     
     private var companyProfile: CompanyProfile!
+    
     private var companies: [CompanyProfile] = []
-    
-    
-    private var stockSymbols: [StockSymbols] = []
+    private var stockSymbols: [StockSymbols] = [] {
+        didSet {
+            
+        }
+    }
     
     required init(requestManager: APIManager){
         self.requestManager = requestManager
     }
     
-    func obtainStockSymbols() {
-        requestManager.perform(SymbolsRequest.init()) { [weak self] (result: Result<[StockSymbols], Error>) in
-            switch result {
-            case .success(let data):
-                for index in 0...50 {
-                    self?.stockSymbols.append(data[index])
+    func obtainStockSymbols() -> [StockSymbols] {
+        let group = DispatchGroup()
+        var tempSymbols: [StockSymbols] = []
+        group.enter()
+            self.requestManager.perform(SymbolsRequest.init()) { [weak self] (result: Result<[StockSymbols], Error>) in
+                switch result {
+                case .success(let data):
+                    for index in 0...50 {
+                        self?.stockSymbols.append(data[index])
+                    }
+                    self?.output.didLoadStockSymbols(self!.stockSymbols)
+                    group.leave()
+                    //return self!.stockSymbols
+                case .failure(let error):
+                    print(error)
                 }
-                self?.output.didLoadStockSymbols(self!.stockSymbols)
-            case .failure(let error):
-                print(error)
             }
+        
+        group.notify(queue: .main) { [weak self] in
+            print(self?.stockSymbols)
+            tempSymbols = self!.stockSymbols
+            //return stockSymbols
         }
+        return tempSymbols
     }
     
-    func obtainCompanyProfiles(with stockSymbols: String) {
-        
+    func obtainCompanyProfiles(with stockSymbol: [StockSymbols]) {
+        let group = DispatchGroup()
+        for symbol in stockSymbol {
+            group.enter()
+            requestManager.perform(CompanyProfileRequest.init(symbol: symbol.symbol)) { [weak self] (result: Result<CompanyProfile, Error>) in
+                defer {
+                    group.leave()
+                }
+                switch result {
+                case .success(let data):
+                    self?.companies.append(data)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        group.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            print("companies \(self.companies)")
+            self.output.didLoadCompanyProfiles(self.companies)
+        }
     }
     
 //    func obtainCompanyProfiles(with stockSymbol: String) {
