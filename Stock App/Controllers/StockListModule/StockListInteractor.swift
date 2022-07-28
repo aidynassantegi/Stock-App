@@ -15,6 +15,8 @@ struct TableViewModel {
     let isFavorite: Bool
     let changeColor: UIColor // red or green
     let changePercentage: String
+    let logo: String
+    let currency: String
 }
 
 protocol StockListInteractorInput {
@@ -26,8 +28,7 @@ protocol StockListInteractorInput {
 protocol StockListInteractorOutput: AnyObject {
     func didLoadStockSymbols(_ symbols: [StockSymbols])
     func didLoadCompanyProfiles(_ companies: [CompanyProfile])
-    func didLoadCandleSticks(_ companiesMap: [CompanyProfile: [CandleStick]])
-    
+    func didLoadCandleSticks(_ tableViewModel: [TableViewModel])
 }
 
 final class StockListInteractor: StockListInteractorInput {
@@ -54,7 +55,6 @@ final class StockListInteractor: StockListInteractorInput {
                 }
                 switch result {
                 case .success(let data):
-                    print("data: \(data)")
                     self?.companiesMap[company] = data.candleSticks
                 case .failure(let error):
                     print(error)
@@ -65,7 +65,7 @@ final class StockListInteractor: StockListInteractorInput {
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
             self.createViewModels()
-            self.output.didLoadCandleSticks(self.companiesMap)
+            self.output.didLoadCandleSticks(self.viewModel)
         }
     }
     
@@ -77,7 +77,10 @@ final class StockListInteractor: StockListInteractorInput {
                                    price: CalculateStockDynamic.getLatestPrice(from: candleStick),
                                    isFavorite: false,
                                    changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
-                                   changePercentage: String.percentage(from: changePercentage)))
+                                   changePercentage: String.percentage(from: changePercentage),
+                                   logo: company.logo,
+                                   currency: company.currency
+                                  ))
         }
     }
     

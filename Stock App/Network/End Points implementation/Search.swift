@@ -27,3 +27,4 @@ struct SearchSymbolsRequest: RequestProtocol {
         return params
     }
 }
+

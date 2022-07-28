@@ -11,7 +11,7 @@ import FloatingPanel
 protocol StockListViewInput: AnyObject {
     func handleObtainedSymbols(_ symbols: [StockSymbols])
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile])
-    func handleObtaindeCompaniesMap(_ companiesMap: [CompanyProfile : [CandleStick]])
+    func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel])
 }
 
 protocol StockListViewOutput: AnyObject {
@@ -76,31 +76,7 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
         tableView.delegate = tableDataManager
         tableView.dataSource = tableDataManager
     }
-    
-//    private func loadData() {
-//        let group = DispatchGroup()
-//
-//        for symbol in stockSymbols{
-//            group.enter()
-//                }
-    //            NetworkManager.shared.marketData(for: symbol) { [weak self] result in
-    //                defer{
-    //                    group.leave()
-//
-//                switch result {
-//                case .success(let data):
-//                    self?.stocksMap[symbol] = data.candleSticks
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//        }
-//        group.notify(queue: .main) { [weak self] in
-//
-//        }
-//    }
-    
-	
+        
 }
 
 extension StockVC: StockListViewInput {
@@ -111,11 +87,13 @@ extension StockVC: StockListViewInput {
     
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile]) {
         tableDataManager?.companies = companies
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
-    func handleObtaindeCompaniesMap(_ companiesMap: [CompanyProfile : [CandleStick]]) {
-        
+    func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel]) {
+        tableDataManager?.viewModel = tableViewModel
+        tableView.reloadData()
+        print(tableViewModel)
     }
 }
 

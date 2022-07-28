@@ -40,9 +40,8 @@ extension RequestProtocol {
             
             queryItems.append(.init(name: "token", value: APIConstants.apiKey))
             urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
-            print(urlString)
         }
-        
+        print(urlString)
         return URL(string: urlString)!
     }
 }

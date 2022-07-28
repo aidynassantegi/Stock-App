@@ -11,15 +11,15 @@ import UIKit
 final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     var companies: [CompanyProfile] = []
     
-    var companiesMap: [CompanyProfile: [CandleStick]] = [:]
+    var viewModel: [TableViewModel] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        companies.count
+        viewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseId, for: indexPath) as! StockTableViewCell
-        cell.set(company: companies[indexPath.row], index: indexPath.row)
+        cell.configure(with: viewModel[indexPath.row], index: indexPath.row)
         return cell
     }
     

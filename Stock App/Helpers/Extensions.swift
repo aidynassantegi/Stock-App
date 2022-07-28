@@ -14,7 +14,7 @@ extension NumberFormatter {
         let formatter = NumberFormatter()
         formatter.locale = .current
         formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = 4
         return formatter
     }()
     
@@ -22,7 +22,7 @@ extension NumberFormatter {
         let formatter = NumberFormatter()
         formatter.locale = .current
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = 4
         return formatter
     }()
 }

@@ -49,6 +49,7 @@ class StockTableViewCell: UITableViewCell {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12)
 		label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
 		return label
 	}()
 	
@@ -64,6 +65,8 @@ class StockTableViewCell: UITableViewCell {
 		label.font = .systemFont(ofSize: 12)
 		label.textColor = .white
 		label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 3
 		return label
 	}()
     
@@ -87,12 +90,14 @@ class StockTableViewCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    func configure(with viewModel: ViewModel, index: Int) {
+    func configure(with viewModel: TableViewModel, index: Int) {
+        stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
         symbolLabel.text = viewModel.symbol
         companyNameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
         changesLabel.text = viewModel.changePercentage
         changesLabel.backgroundColor = viewModel.changeColor
+        currencyLabel.text = viewModel.currency
         backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
     }
     
@@ -156,7 +161,8 @@ class StockTableViewCell: UITableViewCell {
 			
 			companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
 			companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),
-			companyNameLabel.heightAnchor.constraint(equalToConstant: 16),
+            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2),
+			//companyNameLabel.heightAnchor.constraint(equalToConstant: 16),
 			
 			priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
 			priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
