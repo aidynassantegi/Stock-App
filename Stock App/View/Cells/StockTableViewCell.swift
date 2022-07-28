@@ -91,7 +91,12 @@ class StockTableViewCell: UITableViewCell {
 	}
 
     func configure(with viewModel: TableViewModel, index: Int) {
-        stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
+        
+        if viewModel.logo == "" {
+            stockImageView.image = UIImage(named: "local-file-not-found")
+        }else {
+            stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
+        }
         symbolLabel.text = viewModel.symbol
         companyNameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
@@ -101,17 +106,6 @@ class StockTableViewCell: UITableViewCell {
         backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
     }
     
-	func set(company: CompanyProfile, index: Int) {
-        symbolLabel.text = company.ticker
-        stockImageView.sd_setImage(with: URL(string: company.logo), completed: nil)
-        companyNameLabel.text = company.name
-        currencyLabel.text = company.currency
-		//starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
-		//priceLabel.text = "$\(stock.price)"
-		//changesLabel.text = "\(stock.changes)%"
-		backgroundColor = index%2==0 ? .systemGray6 : .systemBackground
-	}
-	
     override func layoutSubviews() {
         super.layoutSubviews()
     }
@@ -129,13 +123,6 @@ class StockTableViewCell: UITableViewCell {
 		layer.masksToBounds = true
 		layer.cornerRadius = 16
 		
-//		addSubview(stockImageView)
-//		addSubview(symbolLabel)
-//		addSubview(starImageView)
-//		addSubview(companyNameLabel)
-//		addSubview(priceLabel)
-//		addSubview(changesLabel)
-        
         addSubviews(stockImageView, symbolLabel, currencyLabel ,companyNameLabel, priceLabel, changesLabel)
 		
 		let padding: CGFloat = 8
@@ -159,9 +146,6 @@ class StockTableViewCell: UITableViewCell {
             currencyLabel.heightAnchor.constraint(equalToConstant: 16),
             //currencyLabel.widthAnchor.constraint(equalToConstant: 16),
 			
-			companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
-			companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),
-            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2),
 			//companyNameLabel.heightAnchor.constraint(equalToConstant: 16),
 			
 			priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
@@ -170,7 +154,11 @@ class StockTableViewCell: UITableViewCell {
 			
 			changesLabel.trailingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
 			changesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
-			changesLabel.heightAnchor.constraint(equalToConstant: 16)
+            changesLabel.heightAnchor.constraint(equalToConstant: 16),
+            
+            companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
+            companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),
+            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2)
 		])
 	}
 }

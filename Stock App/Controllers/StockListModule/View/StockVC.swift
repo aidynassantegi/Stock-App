@@ -51,12 +51,14 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	}
 	
     private func setUpChild(){
-        let vc = NewsViewController(type: .topNews)
+        let vc = NewsViewAssembly().assembly()
+        
+//        let vc = NewsViewController(type: .topNews)
         let panel = FloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = .secondarySystemBackground
         panel.set(contentViewController: vc)
         panel.addPanel(toParent: self)
-        panel.track(scrollView: vc.tableView)
+        panel.track(scrollView: vc.newsTableView)
     }
     
 	func configureUI() {

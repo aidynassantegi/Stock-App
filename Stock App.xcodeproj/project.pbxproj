@@ -14,6 +14,12 @@
 		022330032891090C00F364E9 /* StockListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022330022891090C00F364E9 /* StockListRouter.swift */; };
 		0223300528910DAD00F364E9 /* StockListModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223300428910DAD00F364E9 /* StockListModuleAssembly.swift */; };
 		022330072891143900F364E9 /* StockListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022330062891143900F364E9 /* StockListPresenter.swift */; };
+		0265284428928C0A00C4159A /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0265284328928C0A00C4159A /* TableViewModel.swift */; };
+		0265284D2892973800C4159A /* NewsTableDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0265284C2892973700C4159A /* NewsTableDataManager.swift */; };
+		0265284F2892979300C4159A /* NewsViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0265284E2892979300C4159A /* NewsViewRouter.swift */; };
+		0265285128929EB300C4159A /* NewsViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0265285028929EB300C4159A /* NewsViewInteractor.swift */; };
+		026528532892A3A800C4159A /* NewsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026528522892A3A800C4159A /* NewsViewPresenter.swift */; };
+		026528552892A3BF00C4159A /* NewsViewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026528542892A3BF00C4159A /* NewsViewAssembly.swift */; };
 		02797D40288A5BA90097EADC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */; };
 		02797D43288A6DE10097EADC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 02797D42288A6DE10097EADC /* SDWebImage */; };
 		02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D44288A9DFC0097EADC /* StockSymbols.swift */; };
@@ -64,6 +70,12 @@
 		022330022891090C00F364E9 /* StockListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListRouter.swift; sourceTree = "<group>"; };
 		0223300428910DAD00F364E9 /* StockListModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListModuleAssembly.swift; sourceTree = "<group>"; };
 		022330062891143900F364E9 /* StockListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListPresenter.swift; sourceTree = "<group>"; };
+		0265284328928C0A00C4159A /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		0265284C2892973700C4159A /* NewsTableDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableDataManager.swift; sourceTree = "<group>"; };
+		0265284E2892979300C4159A /* NewsViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewRouter.swift; sourceTree = "<group>"; };
+		0265285028929EB300C4159A /* NewsViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewInteractor.swift; sourceTree = "<group>"; };
+		026528522892A3A800C4159A /* NewsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewPresenter.swift; sourceTree = "<group>"; };
+		026528542892A3BF00C4159A /* NewsViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewAssembly.swift; sourceTree = "<group>"; };
 		02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		02797D44288A9DFC0097EADC /* StockSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbols.swift; sourceTree = "<group>"; };
 		028BA9AC289262710090B46C /* CalculateStockDynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateStockDynamic.swift; sourceTree = "<group>"; };
@@ -122,6 +134,7 @@
 		02232FF32890FA6700F364E9 /* StockListModule */ = {
 			isa = PBXGroup;
 			children = (
+				02652845289296D300C4159A /* NewsViewModule */,
 				02232FF92890FACE00F364E9 /* Assembly */,
 				02232FF82890FAC300F364E9 /* Presenter */,
 				02232FF72890FAB900F364E9 /* Interactor */,
@@ -137,7 +150,6 @@
 			children = (
 				64ABB1F22886D29700B203F3 /* StockVC.swift */,
 				64D2E4C42889511D00BBF4FF /* StocksTableVC.swift */,
-				39D1D8622889A49A00FB2B9E /* NewsViewController.swift */,
 				02232FFA2890FAF600F364E9 /* TableViewDataManager.swift */,
 			);
 			path = View;
@@ -154,6 +166,7 @@
 		02232FF62890FAB000F364E9 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				0265284328928C0A00C4159A /* TableViewModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -178,6 +191,67 @@
 			isa = PBXGroup;
 			children = (
 				0223300428910DAD00F364E9 /* StockListModuleAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		02652845289296D300C4159A /* NewsViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				0265284B2892970F00C4159A /* Assembly */,
+				0265284A2892970600C4159A /* Entity */,
+				02652849289296FC00C4159A /* Presenter */,
+				02652848289296F600C4159A /* Router */,
+				02652847289296EF00C4159A /* Interactor */,
+				02652846289296E500C4159A /* View */,
+			);
+			path = NewsViewModule;
+			sourceTree = "<group>";
+		};
+		02652846289296E500C4159A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39D1D8622889A49A00FB2B9E /* NewsViewController.swift */,
+				0265284C2892973700C4159A /* NewsTableDataManager.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		02652847289296EF00C4159A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0265285028929EB300C4159A /* NewsViewInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		02652848289296F600C4159A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				0265284E2892979300C4159A /* NewsViewRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		02652849289296FC00C4159A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				026528522892A3A800C4159A /* NewsViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0265284A2892970600C4159A /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		0265284B2892970F00C4159A /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				026528542892A3BF00C4159A /* NewsViewAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -390,12 +464,14 @@
 				64ABB1F72886D2D300B203F3 /* SearchVC.swift in Sources */,
 				39DA532D28900E530051A566 /* SymbolsRequest.swift in Sources */,
 				02232FFB2890FAF600F364E9 /* TableViewDataManager.swift in Sources */,
+				0265284428928C0A00C4159A /* TableViewModel.swift in Sources */,
 				64ABB1F52886D2C400B203F3 /* FavoritesVC.swift in Sources */,
 				02C42F7D28894FDD004D0091 /* FinancialMetrics.swift in Sources */,
 				39DA5316288E54300051A566 /* APIManager.swift in Sources */,
 				02C42F7B288915E7004D0091 /* MarketDataResponse.swift in Sources */,
 				02232FFF2890FEBA00F364E9 /* CompanyProfileRequest.swift in Sources */,
 				39DA5312288E53EE0051A566 /* RequestProtocol.swift in Sources */,
+				026528532892A3A800C4159A /* NewsViewPresenter.swift in Sources */,
 				39DA5314288E54110051A566 /* DataParserProtocol.swift in Sources */,
 				39DA531C288FFF230051A566 /* APIError.swift in Sources */,
 				39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */,
@@ -405,10 +481,13 @@
 				02797D40288A5BA90097EADC /* NewsTableViewCell.swift in Sources */,
 				39DA5318288FFEF20051A566 /* APIConstants.swift in Sources */,
 				022330032891090C00F364E9 /* StockListRouter.swift in Sources */,
+				0265284D2892973800C4159A /* NewsTableDataManager.swift in Sources */,
+				0265285128929EB300C4159A /* NewsViewInteractor.swift in Sources */,
 				64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */,
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				02C42F7F28895B24004D0091 /* StockChartView.swift in Sources */,
 				028BA9AD289262710090B46C /* CalculateStockDynamic.swift in Sources */,
+				0265284F2892979300C4159A /* NewsViewRouter.swift in Sources */,
 				39DA5331289014EE0051A566 /* MarketDataRequest.swift in Sources */,
 				022330072891143900F364E9 /* StockListPresenter.swift in Sources */,
 				0223300528910DAD00F364E9 /* StockListModuleAssembly.swift in Sources */,
@@ -423,6 +502,7 @@
 				64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */,
 				02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */,
 				39DA532B28900B210051A566 /* NewsRequest.swift in Sources */,
+				026528552892A3BF00C4159A /* NewsViewAssembly.swift in Sources */,
 				02C42F7928890E5D004D0091 /* Extensions.swift in Sources */,
 				02232FFD2890FE1100F364E9 /* CompanyProfile.swift in Sources */,
 				64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */,

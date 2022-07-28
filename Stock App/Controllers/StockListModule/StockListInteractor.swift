@@ -6,18 +6,6 @@
 //
 
 import Foundation
-import UIKit
-
-struct TableViewModel {
-    let symbol: String
-    let companyName: String
-    let price: String
-    let isFavorite: Bool
-    let changeColor: UIColor // red or green
-    let changePercentage: String
-    let logo: String
-    let currency: String
-}
 
 protocol StockListInteractorInput {
     func obtainStockSymbols() 
@@ -68,8 +56,6 @@ final class StockListInteractor: StockListInteractorInput {
             self.output.didLoadCandleSticks(self.viewModel)
         }
     }
-    
-    func temp () {}
     
     func createViewModels() {
         for (company, candleStick) in companiesMap {

@@ -9,9 +9,9 @@ import Foundation
 
 struct MarketNewsRequest: RequestProtocol {
     
-    var type: NewsViewController.NewsType
+    var type: NewsType
     
-    init(type: NewsViewController.NewsType) {
+    init(type: NewsType) {
         self.type = type
     }
     
