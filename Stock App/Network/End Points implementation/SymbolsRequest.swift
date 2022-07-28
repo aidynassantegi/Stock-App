@@ -18,7 +18,7 @@ struct SymbolsRequest: RequestProtocol {
     }
     
     var urlParams: [String : String] {
-        var params = ["exchange" : "US"]
+        let params = ["exchange" : "US"]
         return params
     }
 }

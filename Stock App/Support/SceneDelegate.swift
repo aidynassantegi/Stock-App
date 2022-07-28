@@ -22,7 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 	
 	func createStockNC() -> UINavigationController {
-		let stockVC = StockVC()
+//		let stockVC = StockVC()
+		let stockVC = StockListModuleAssembly().assembly()
 		stockVC.title = "Stocks"
 		let stockImage = UIImage(systemName: "chart.line.uptrend.xyaxis")
 		stockVC.tabBarItem = UITabBarItem(title: nil, image: stockImage, tag: 0)

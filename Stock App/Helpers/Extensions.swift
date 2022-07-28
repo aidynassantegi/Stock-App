@@ -8,6 +8,25 @@
 import Foundation
 import UIKit
 
+
+extension NumberFormatter {
+    static let percentFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 4
+        return formatter
+    }()
+    
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 4
+        return formatter
+    }()
+}
+
 extension URLSession {
     @available(iOS, deprecated: 15.0, message: "This extension is no longer necessary. Use API built into SDK")
     func data(from url: URL) async throws -> (Data, URLResponse) {
@@ -30,6 +49,16 @@ extension String {
     static func string(from timeInterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeInterval)
         return DateFormatter.readableDateFormatter.string(from: date)
+    }
+    
+    static func percentage(from double: Double) -> String {
+        let formatter = NumberFormatter.percentFormatter
+        return formatter.string(from: NSNumber(value: double)) ?? "\(double)"
+    }
+    
+    static func formatted(from number: Double) -> String {
+        let formatter = NumberFormatter.numberFormatter
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
     }
 }
 
