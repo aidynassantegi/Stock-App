@@ -6,34 +6,82 @@
 //
 
 import Foundation
+import UIKit
+
+struct TableViewModel {
+    let symbol: String
+    let companyName: String
+    let price: String
+    let isFavorite: Bool
+    let changeColor: UIColor // red or green
+    let changePercentage: String
+}
 
 protocol StockListInteractorInput {
     func obtainStockSymbols() 
     func obtainCompanyProfiles(with stockSymbol: [StockSymbols])
+    func obtainCandleSticks(with companies: [CompanyProfile])
 }
 
 protocol StockListInteractorOutput: AnyObject {
     func didLoadStockSymbols(_ symbols: [StockSymbols])
     func didLoadCompanyProfiles(_ companies: [CompanyProfile])
+    func didLoadCandleSticks(_ companiesMap: [CompanyProfile: [CandleStick]])
+    
 }
 
 final class StockListInteractor: StockListInteractorInput {
     
     weak var output: StockListInteractorOutput!
     private var requestManager = APIManager()
-    
-    private var companyProfile: CompanyProfile!
-    
     private var companies: [CompanyProfile] = []
     private var stockSymbols: [StockSymbols] = []
+    
+    private var companiesMap: [CompanyProfile: [CandleStick]] = [:]
+    var viewModel = [TableViewModel]()
     
     required init(requestManager: APIManager){
         self.requestManager = requestManager
     }
     
-    func obtainStockSymbols() {
+    func obtainCandleSticks(with companies: [CompanyProfile]) {
         let group = DispatchGroup()
-        var tempSymbols: [StockSymbols] = []
+        for company in companies {
+            group.enter()
+            requestManager.perform(MarketDataRequest.init(symbol: company.ticker, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+                defer {
+                    group.leave()
+                }
+                switch result {
+                case .success(let data):
+                    print("data: \(data)")
+                    self?.companiesMap[company] = data.candleSticks
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        
+        group.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            self.createViewModels()
+            self.output.didLoadCandleSticks(self.companiesMap)
+        }
+    }
+    
+    func createViewModels() {
+        for (company, candleStick) in companiesMap {
+            let changePercentage = CalculateStockDynamic.getChangePercentage(for: candleStick)
+            viewModel.append(.init(symbol: company.ticker,
+                                   companyName: company.name,
+                                   price: CalculateStockDynamic.getLatestPrice(from: candleStick),
+                                   isFavorite: false,
+                                   changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
+                                   changePercentage: String.percentage(from: changePercentage)))
+        }
+    }
+    
+    func obtainStockSymbols() {
             self.requestManager.perform(SymbolsRequest.init()) { [weak self] (result: Result<[StockSymbols], Error>) in
                 switch result {
                 case .success(let data):
@@ -41,12 +89,10 @@ final class StockListInteractor: StockListInteractorInput {
                         self?.stockSymbols.append(data[index])
                     }
                     self?.output.didLoadStockSymbols(self!.stockSymbols)
-                    //return self!.stockSymbols
                 case .failure(let error):
                     print(error)
                 }
             }
-        
     }
     
     func obtainCompanyProfiles(with stockSymbol: [StockSymbols]) {
@@ -67,10 +113,8 @@ final class StockListInteractor: StockListInteractorInput {
         }
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
-            print("companies \(self.companies)")
             self.output.didLoadCompanyProfiles(self.companies)
         }
-        print(self.companies)
     }
     
 }

@@ -11,6 +11,8 @@ import UIKit
 final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     var companies: [CompanyProfile] = []
     
+    var companiesMap: [CompanyProfile: [CandleStick]] = [:]
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         companies.count
     }

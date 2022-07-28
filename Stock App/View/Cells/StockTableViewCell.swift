@@ -101,7 +101,6 @@ class StockTableViewCell: UITableViewCell {
         stockImageView.sd_setImage(with: URL(string: company.logo), completed: nil)
         companyNameLabel.text = company.name
         currencyLabel.text = company.currency
-        print(company.currency)
 		//starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
 		//priceLabel.text = "$\(stock.price)"
 		//changesLabel.text = "\(stock.changes)%"

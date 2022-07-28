@@ -80,14 +80,6 @@ class NewsViewController: UIViewController {
             
         }
     }
-    
-//    func loadNews() async {
-//        do {
-//            news = try await RequestManager().perform(MarketNewsRequest(type: .topNews))
-//        }catch {
-//            print("error")
-//        }
-//    }
 
     private func openNews(url: URL) {
         let vc = SFSafariViewController(url: url)

@@ -11,6 +11,7 @@ import FloatingPanel
 protocol StockListViewInput: AnyObject {
     func handleObtainedSymbols(_ symbols: [StockSymbols])
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile])
+    func handleObtaindeCompaniesMap(_ companiesMap: [CompanyProfile : [CandleStick]])
 }
 
 protocol StockListViewOutput: AnyObject {
@@ -20,12 +21,8 @@ protocol StockListViewOutput: AnyObject {
 
 class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	
-	let stocks = Stock.stocks
    // private var stockSymbols: [String] = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "META", "NVDA", "KO", "NFLX", "DHR", "VZ"]
-    
-    private var companies: [CompanyProfile] = []
-    private var symbols: [StockSymbols] = []
-    
+        
     private var stocksMap: [String: [CandleStick]] = [:]
     
     var tableDataManager: TableViewDataManager?
@@ -108,15 +105,17 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 
 extension StockVC: StockListViewInput {
     func handleObtainedSymbols(_ symbols: [StockSymbols]) {
-        self.symbols = symbols
+      //  self.symbols = symbols
         print(symbols.count)
     }
     
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile]) {
-        self.companies = companies
         tableDataManager?.companies = companies
         tableView.reloadData()
-        //table view reload data
+    }
+    
+    func handleObtaindeCompaniesMap(_ companiesMap: [CompanyProfile : [CandleStick]]) {
+        
     }
 }
 

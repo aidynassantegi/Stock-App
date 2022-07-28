@@ -19,13 +19,17 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     }
     
     func didLoadCompanyProfiles(_ companies: [CompanyProfile]) {
+        interactor.obtainCandleSticks(with: companies)
         view.handleObtainedCompanyProfiles(companies)
+    }
+    
+    func didLoadCandleSticks(_ companiesMap: [CompanyProfile : [CandleStick]]) {
+        print("didLoadCandleSticks")
+        view.handleObtaindeCompaniesMap(companiesMap)
     }
     
     func didLoadView() {
         interactor.obtainStockSymbols()
-//        print(symbols)
-//        interactor.obtainCompanyProfiles(with: symbols)
     }
     
     func didSelectStockSell(with index: Int) {
