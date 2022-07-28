@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDelegate {
-    var stocks: [StockSymbols] = []
+    var companies: [CompanyProfile] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        stocks.count
+        companies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseId, for: indexPath) as! StockTableViewCell
-        cell.set(stock: stocks[indexPath.row].symbol, index: indexPath.row)
+        cell.set(company: companies[indexPath.row], index: indexPath.row)
         return cell
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import Charts
+import SDWebImage
 
 class StockTableViewCell: UITableViewCell {
 	
@@ -66,6 +67,14 @@ class StockTableViewCell: UITableViewCell {
 		return label
 	}()
     
+    let currencyLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let miniChartView = StockChartView()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -87,10 +96,12 @@ class StockTableViewCell: UITableViewCell {
         backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
     }
     
-	func set(stock: String, index: Int) {
-		//stockImageView.image = UIImage(named: stock.image ?? "")
-		symbolLabel.text = stock
-		//companyNameLabel.text = stock.companyName
+	func set(company: CompanyProfile, index: Int) {
+        symbolLabel.text = company.ticker
+        stockImageView.sd_setImage(with: URL(string: company.logo), completed: nil)
+        companyNameLabel.text = company.name
+        currencyLabel.text = company.currency
+        print(company.currency)
 		//starImageView.tintColor = stock.isFavorite ? UIColor.systemYellow : UIColor.systemGray
 		//priceLabel.text = "$\(stock.price)"
 		//changesLabel.text = "\(stock.changes)%"
@@ -121,7 +132,7 @@ class StockTableViewCell: UITableViewCell {
 //		addSubview(priceLabel)
 //		addSubview(changesLabel)
         
-        addSubviews(stockImageView, symbolLabel, starImageView, companyNameLabel, priceLabel, changesLabel)
+        addSubviews(stockImageView, symbolLabel, currencyLabel ,companyNameLabel, priceLabel, changesLabel)
 		
 		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([
@@ -134,10 +145,15 @@ class StockTableViewCell: UITableViewCell {
 			symbolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
 			symbolLabel.heightAnchor.constraint(equalToConstant: 24),
 			
-			starImageView.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
-			starImageView.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
-			starImageView.heightAnchor.constraint(equalToConstant: 16),
-			starImageView.widthAnchor.constraint(equalToConstant: 16),
+//			starImageView.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
+//			starImageView.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
+//			starImageView.heightAnchor.constraint(equalToConstant: 16),
+//			starImageView.widthAnchor.constraint(equalToConstant: 16),
+            
+            currencyLabel.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
+            currencyLabel.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
+            currencyLabel.heightAnchor.constraint(equalToConstant: 16),
+            //currencyLabel.widthAnchor.constraint(equalToConstant: 16),
 			
 			companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
 			companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),

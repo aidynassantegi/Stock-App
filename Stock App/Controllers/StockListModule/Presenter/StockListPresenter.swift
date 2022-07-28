@@ -14,7 +14,7 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     var router: StockListRouterInput!
     
     func didLoadStockSymbols(_ symbols: [StockSymbols]) {
-        view.handleObtainedSymbols(symbols)
+        //view.handleObtainedSymbols(symbols)
         interactor.obtainCompanyProfiles(with: symbols)
     }
     

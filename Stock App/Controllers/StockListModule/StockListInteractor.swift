@@ -73,17 +73,4 @@ final class StockListInteractor: StockListInteractorInput {
         print(self.companies)
     }
     
-//    func obtainCompanyProfiles(with stockSymbol: String) {
-//        Task {
-//            for index in stockSymbols {
-//                await fetchCompanies(with: index)
-//                companies.append(companyProfile)
-//            }
-//        }
-//        output.didLoadCompanyProfiles(companies)
-//    }
-    
-
-
-    
 }

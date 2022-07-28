@@ -110,12 +110,12 @@ extension StockVC: StockListViewInput {
     func handleObtainedSymbols(_ symbols: [StockSymbols]) {
         self.symbols = symbols
         print(symbols.count)
-        tableDataManager?.stocks = symbols
-        tableView.reloadData()
     }
     
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile]) {
         self.companies = companies
+        tableDataManager?.companies = companies
+        tableView.reloadData()
         //table view reload data
     }
 }
