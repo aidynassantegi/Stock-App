@@ -69,6 +69,8 @@ final class StockListInteractor: StockListInteractorInput {
         }
     }
     
+    func temp () {}
+    
     func createViewModels() {
         for (company, candleStick) in companiesMap {
             let changePercentage = CalculateStockDynamic.getChangePercentage(for: candleStick)
