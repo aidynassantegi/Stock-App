@@ -13,6 +13,8 @@ final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDe
     
     var viewModel: [TableViewModel] = []
     
+    var onStockDidSelect: ((String, String) -> Void)?
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.count
     }
@@ -24,6 +26,7 @@ final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onStockDidSelect?(viewModel[indexPath.row].symbol, viewModel[indexPath.row].companyName)
 //        let vc = StockInfoVC()
 //        guard let stocks = stocks else { return }
 //        vc.title = stocks[indexPath.row].symbol

@@ -36,7 +36,7 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
         interactor.obtainStockSymbols()
     }
     
-    func didSelectStockSell(with index: Int) {
-        router.openChart(with: index)
+    func didSelectStockSell(with symbol: String, companyName: String) {
+        router.openChart(with: symbol, and: companyName)
     }
 }

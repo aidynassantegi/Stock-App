@@ -8,8 +8,8 @@
 import UIKit
 
 class StockDetailsViewController: UIViewController {
-    private var symbol: String!
-    private var companyName: String!
+    var symbol: String!
+    var companyName: String!
     private var candleStickdata: [CandleStick] = []
     private var news: [News] = []
     private let apiManager = APIManager()
@@ -25,6 +25,7 @@ class StockDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = companyName
+        print(symbol)
         configureTable()
         fetchFinancialData()
         fetchNews()

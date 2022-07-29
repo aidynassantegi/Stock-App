@@ -16,7 +16,7 @@ protocol StockListViewInput: AnyObject {
 
 protocol StockListViewOutput: AnyObject {
     func didLoadView()
-    func didSelectStockSell(with index: Int)
+    func didSelectStockSell(with symbol: String, companyName: String)
 }
 
 class StockVC: UIViewController, FloatingPanelControllerDelegate {
@@ -77,6 +77,11 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
         tableView.register(StockTableViewCell.self, forCellReuseIdentifier: StockTableViewCell.reuseId)
         tableView.delegate = tableDataManager
         tableView.dataSource = tableDataManager
+        
+        tableDataManager?.onStockDidSelect = { [weak self] symbol, name in
+            print("symbol \(symbol) name \(name)")
+            self?.output?.didSelectStockSell(with: symbol, companyName: name)
+        }
     }
         
 }
