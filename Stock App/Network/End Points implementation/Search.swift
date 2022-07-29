@@ -15,7 +15,7 @@ struct SearchSymbolsRequest: RequestProtocol {
     }
     
     var path: String {
-        EndPoint.symbols.rawValue
+        "/search"
     }
     
     var requestType: RequestType {
