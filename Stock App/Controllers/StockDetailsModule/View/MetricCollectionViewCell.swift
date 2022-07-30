@@ -41,7 +41,15 @@ class MetricCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         valueLabel.sizeToFit()
         nameLabel.sizeToFit()
-        //constraints
+        
+        NSLayoutConstraint.activate([nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
+                                     nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+                                     nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
+                                    
+                                     valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
+                                     valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+                                     valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+                                    ])
     }
  
     override func prepareForReuse() {
@@ -52,6 +60,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
     
     func configure(with viewModel: ViewModel){
         nameLabel.text = viewModel.name + ":"
+        
         valueLabel.text = viewModel.value
     }
 }

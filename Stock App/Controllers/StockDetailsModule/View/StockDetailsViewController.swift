@@ -88,9 +88,11 @@ class StockDetailsViewController: UIViewController {
     func setUpConstraints() {
         view.addSubviews(headerView, tableView)
         NSLayoutConstraint.activate([headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-                                     headerView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10),
-                                     headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+                                     headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                     headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     headerView.heightAnchor.constraint(equalToConstant: (view.height * 0.8) + 100),
+                                     
+                                     tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
                                      tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
                                      tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
@@ -101,12 +103,41 @@ class StockDetailsViewController: UIViewController {
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         
         if let metrics = metrics {
-            viewModels.append(.init(name: "52W High", value: "\(metrics.AnnualWeekHigh)"))
-            viewModels.append(.init(name: "52W Low", value: "\(metrics.AnnualWeekLow)"))
-            viewModels.append(.init(name: "52W Low Date", value: "\(metrics.AnnualWeekLowDate)"))
-            viewModels.append(.init(name: "52W Return", value: "\(metrics.AnnualWeekPriceReturnDaily)"))
-            viewModels.append(.init(name: "Beta", value: "\(metrics.beta)"))
-            viewModels.append(.init(name: "Avg Vol", value: "\(metrics.TenDayAverageTradingVolume)"))
+            if let annualWeekHigh = metrics.AnnualWeekHigh {
+                viewModels.append(.init(name: "52W High", value: "\(annualWeekHigh)"))
+            } else {
+                viewModels.append(.init(name: "52W High", value: "no data"))
+            }
+    
+            if  let annualWeekLow = metrics.AnnualWeekLow {
+                viewModels.append(.init(name: "52W Low", value: "\(annualWeekLow)"))
+            } else {
+                viewModels.append(.init(name: "52W High", value: "no data"))
+            }
+            
+            if let annualWeekLowDate = metrics.AnnualWeekLowDate {
+                viewModels.append(.init(name: "52W Low Date", value: "\(annualWeekLowDate)"))
+            } else {
+                viewModels.append(.init(name: "52W Low Date", value: "no data"))
+            }
+            
+            if let annualWeekPriceReturnDaily = metrics.AnnualWeekPriceReturnDaily {
+                viewModels.append(.init(name: "52W Return", value: "\(annualWeekPriceReturnDaily)"))
+            }else {
+                viewModels.append(.init(name: "52W Return", value: "no data"))
+            }
+            
+            if let beta = metrics.beta {
+                viewModels.append(.init(name: "Beta", value: "\(beta)"))
+            }else {
+                viewModels.append(.init(name: "Beta", value: "no data"))
+            }
+            
+            if let tenDayAverageTradingVolume = metrics.TenDayAverageTradingVolume {
+                viewModels.append(.init(name: "Avg Vol", value: "\(tenDayAverageTradingVolume)"))
+            }else {
+                viewModels.append(.init(name: "Avg Vol", value: "no data"))
+            }
         }
         
        // headerView.backgroundColor = .link
