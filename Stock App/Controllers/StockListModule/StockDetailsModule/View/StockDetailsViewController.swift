@@ -25,7 +25,6 @@ class StockDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = companyName
-        print(symbol)
         configureTable()
         fetchFinancialData()
         fetchNews()
@@ -41,24 +40,26 @@ class StockDetailsViewController: UIViewController {
     private func fetchFinancialData() {
         let group = DispatchGroup()
         
-        if candleStickdata.isEmpty {
-            group.enter()
-        }
+//        if candleStickdata.isEmpty {
+//            group.enter()
+//        }
         
         group.enter()
-        apiManager.perform(FinancialMetricsRequest(symbol: symbol)) { [weak self] (result: Result<Metrics, Error>) in
+        apiManager.perform(FinancialMetricsRequest(symbol: symbol)) { [weak self] (result: Result<FinancialMetrics, Error>) in
             defer {
                 group.leave()
             }
             switch result {
             case .success(let data):
-                self?.metrics = data
+                self?.metrics = data.metric
             case .failure(let error):
-                print(error)
+                print("error \(error)")
             }
         }
         
         group.notify(queue: .main) { [weak self] in
+            print("notify")
+            print(self?.metrics)
             self?.renderChart()
         }
     }
@@ -88,6 +89,7 @@ class StockDetailsViewController: UIViewController {
             viewModels.append(.init(name: "Avg Vol", value: "\(metrics.TenDayAverageTradingVolume)"))
         }
         
+        print(viewModels)
        // headerView.backgroundColor = .link
         headerView.configure(chartViewModel: .init(data: [], showLegend: false, showAxis: false), metricViewModels: viewModels)
         tableView.tableHeaderView = headerView

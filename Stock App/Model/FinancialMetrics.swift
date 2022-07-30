@@ -9,15 +9,16 @@ import Foundation
 
 struct FinancialMetrics: Codable {
     let metric: Metrics
+    let symbol: String
 }
 
 struct Metrics: Codable {
-    let TenDayAverageTradingVolume: Float
-    let AnnualWeekHigh: Double
-    let AnnualWeekLow: Double
-    let AnnualWeekLowDate: String
-    let AnnualWeekPriceReturnDaily: Float
-    let beta: Float
+    let TenDayAverageTradingVolume: Float?
+    let AnnualWeekHigh: Double?
+    let AnnualWeekLow: Double?
+    let AnnualWeekLowDate: String?
+    let AnnualWeekPriceReturnDaily: Float?
+    let beta: Float?
     
     enum CodingKeys: String, CodingKey {
         case TenDayAverageTradingVolume = "10DayAverageTradingVolume"

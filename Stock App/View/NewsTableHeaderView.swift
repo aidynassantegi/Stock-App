@@ -14,7 +14,7 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

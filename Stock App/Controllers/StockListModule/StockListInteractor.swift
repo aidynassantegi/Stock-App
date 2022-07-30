@@ -104,6 +104,7 @@ final class StockListInteractor: StockListInteractorInput {
         }
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
+            print(self.companies)
             self.output.didLoadCompanyProfiles(self.companies)
         }
     }

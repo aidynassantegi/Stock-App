@@ -23,6 +23,7 @@ class APIManager: APIManagerProtocol {
         
         let task = urlSession.dataTask(with: request.createURL()) { data, response, error in
             guard let data = data, error == nil else {
+    
                 if let error = error {
                     completion(.failure(error))
                 }else {
@@ -30,15 +31,14 @@ class APIManager: APIManagerProtocol {
                 }
                 return
             }
-            
             guard let response = response as? HTTPURLResponse, response.statusCode == 200  else {
                 completion(.failure(APIError.httpRequestFailed))
                 return
             }
-
             
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
+               //print(result)
                 DispatchQueue.main.async{
                     completion(.success(result))
                 }

@@ -11,7 +11,11 @@ import UIKit
 class StockDetailsHeaderView: UIView {
     
     private var metricViewModels: [MetricCollectionViewCell.ViewModel] = []
-    private let chartView = StockChartView()
+    private let chartView: StockChartView = {
+        let chartView = StockChartView()
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        return chartView
+    }()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,12 +25,12 @@ class StockDetailsHeaderView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(MetricCollectionViewCell.self, forCellWithReuseIdentifier: MetricCollectionViewCell.identifier)
         collectionView.backgroundColor = .secondarySystemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews(chartView, collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -37,6 +41,18 @@ class StockDetailsHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        addSubviews(chartView, collectionView)
+        NSLayoutConstraint.activate([chartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                                     chartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                                     chartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+                                     chartView.heightAnchor.constraint(equalToConstant: 50),
+                                     
+                                     collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
+                                     collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                                     collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
+                                     collectionView.heightAnchor.constraint(equalToConstant: 100)
+                                    ])
+        
     }
     
     func configure(chartViewModel: StockChartView.ViewModel, metricViewModels: [MetricCollectionViewCell.ViewModel]) {

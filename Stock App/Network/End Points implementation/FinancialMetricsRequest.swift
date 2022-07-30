@@ -15,7 +15,7 @@ struct FinancialMetricsRequest: RequestProtocol{
     }
     
     var path: String {
-        EndPoint.financials.rawValue
+        "/stock/metric"
     }
     
     var requestType: RequestType {
@@ -23,7 +23,8 @@ struct FinancialMetricsRequest: RequestProtocol{
     }
     
     var urlParams: [String : String] {
-        var params = ["symbol" : symbol]
+        var params = ["symbol" : symbol,
+                      "metric" : "all"]
         return params
     }
     
