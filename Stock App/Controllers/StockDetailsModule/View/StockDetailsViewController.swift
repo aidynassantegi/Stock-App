@@ -15,26 +15,35 @@ class StockDetailsViewController: UIViewController {
     private let apiManager = APIManager()
     private var metrics: Metrics?
     
+    let headerView: StockDetailsHeaderView = {
+        let headerView = StockDetailsHeaderView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         title = companyName
+        setUpConstraints()
         configureTable()
         fetchFinancialData()
         fetchNews()
     }
     
     private func configureTable() {
-        view.addSubviews(tableView)
+      // view.addSubviews(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = view.bounds
+        //tableView.frame = view.bounds
     }
     
     private func fetchFinancialData() {
@@ -76,8 +85,19 @@ class StockDetailsViewController: UIViewController {
         }
     }
     
+    func setUpConstraints() {
+        view.addSubviews(headerView, tableView)
+        NSLayoutConstraint.activate([headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                     headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+                                     headerView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10),
+                                     headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+                                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+                                    ])
+    }
     private func renderChart() {
-        let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
+        //let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         
         if let metrics = metrics {
@@ -89,10 +109,9 @@ class StockDetailsViewController: UIViewController {
             viewModels.append(.init(name: "Avg Vol", value: "\(metrics.TenDayAverageTradingVolume)"))
         }
         
-        print(viewModels)
        // headerView.backgroundColor = .link
         headerView.configure(chartViewModel: .init(data: [], showLegend: false, showAxis: false), metricViewModels: viewModels)
-        tableView.tableHeaderView = headerView
+        //tableView.tableHeaderView = headerView
     }
 }
 
