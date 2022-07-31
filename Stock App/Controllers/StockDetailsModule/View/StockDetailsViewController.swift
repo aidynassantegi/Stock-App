@@ -152,9 +152,13 @@ class StockDetailsViewController: UIViewController {
             }
         }
         
+        let change = CalculateStockDynamic.getChangePercentage(for: candleStickdata)
+        
         headerView.configure(chartViewModel: .init(data: candleStickdata.reversed().map{ $0.close},
                                                    showLegend: true,
-                                                   showAxis: true), metricViewModels: viewModels)
+                                                   showAxis: true,
+                                                   fillColor: change < 0 ? .systemRed : .systemGreen),
+                             metricViewModels: viewModels)
         tableView.tableHeaderView = headerView
     }
 }
