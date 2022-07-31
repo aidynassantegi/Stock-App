@@ -60,8 +60,8 @@ extension RequestProtocol {
         print(urlString)
 
         //{"error":"You don't have access to this resource."} -> nil url
-        return URL(string: urlString)!
-        //return components.url!
+//        return URL(string: urlString)!
+        return components.url!
     }
 }
 

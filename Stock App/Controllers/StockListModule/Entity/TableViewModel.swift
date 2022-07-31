@@ -17,4 +17,5 @@ struct TableViewModel {
     let changePercentage: String
     let logo: String
     let currency: String
+    let chartView: StockChartView.ViewModel
 }

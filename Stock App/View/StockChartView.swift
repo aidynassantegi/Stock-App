@@ -57,11 +57,7 @@ class StockChartView: UIView {
     
     func configure(with viewModel: ViewModel) {
         var entries = [ChartDataEntry]()
-        
-//        for (index, value) in viewModel.data.enumerated() {
-//            entries.append(.init(x: Double(index), y: value))
-//        }
-        
+                
         for index in 0...viewModel.data.count - 1 {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
@@ -74,7 +70,7 @@ class StockChartView: UIView {
         dataSet.fillColor = viewModel.fillColor
         dataSet.drawFilledEnabled = true
         dataSet.drawIconsEnabled = false
-        dataSet.drawValuesEnabled = true
+        dataSet.drawValuesEnabled = false
         dataSet.drawCirclesEnabled = false
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data

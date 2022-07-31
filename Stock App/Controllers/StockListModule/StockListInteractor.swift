@@ -67,7 +67,8 @@ final class StockListInteractor: StockListInteractorInput {
                                    changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
                                    changePercentage: String.percentage(from: changePercentage),
                                    logo: company.logo,
-                                   currency: company.currency
+                                   currency: company.currency,
+                                   chartView: .init(data: candleStick.reversed().map{ $0.close}, showLegend: false, showAxis: false, fillColor: changePercentage < 0 ? .systemRed : .systemGreen, timeStamp: candleStick.reversed().map { $0.date.timeIntervalSince1970})
                                   ))
         }
     }

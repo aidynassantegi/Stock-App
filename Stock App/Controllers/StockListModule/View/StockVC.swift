@@ -52,8 +52,6 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	
     private func setUpChild(){
         let vc = NewsViewAssembly().assembly()
-        
-//        let vc = NewsViewController(type: .topNews)
         let panel = FloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = .secondarySystemBackground
         panel.set(contentViewController: vc)

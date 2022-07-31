@@ -78,7 +78,11 @@ class StockTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let miniChartView = StockChartView()
+    private let miniChartView: StockChartView = {
+        let chartView = StockChartView()
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        return chartView
+    }()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -92,11 +96,11 @@ class StockTableViewCell: UITableViewCell {
 
     func configure(with viewModel: TableViewModel, index: Int) {
         
-        if viewModel.logo == "" {
-            stockImageView.image = UIImage(named: "local-file-not-found")
-        }else {
-            stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
-        }
+//        if viewModel.logo == "" {
+//            stockImageView.image = UIImage(named: "local-file-not-found")
+//        }else {
+//            stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
+//        }
         symbolLabel.text = viewModel.symbol
         companyNameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
@@ -104,6 +108,8 @@ class StockTableViewCell: UITableViewCell {
         changesLabel.backgroundColor = viewModel.changeColor
         currencyLabel.text = viewModel.currency
         backgroundColor = index % 2 == 0 ? .systemGray6 : .systemBackground
+        
+        miniChartView.configure(with: viewModel.chartView)
     }
     
     override func layoutSubviews() {
@@ -123,31 +129,26 @@ class StockTableViewCell: UITableViewCell {
 		layer.masksToBounds = true
 		layer.cornerRadius = 16
 		
-        addSubviews(stockImageView, symbolLabel, currencyLabel ,companyNameLabel, priceLabel, changesLabel)
+        addSubviews(symbolLabel, currencyLabel ,companyNameLabel, priceLabel, changesLabel, miniChartView)
 		
 		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([
-			stockImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-			stockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-			stockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
-			stockImageView.widthAnchor.constraint(equalTo: stockImageView.heightAnchor),
+//			stockImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+//			stockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+//			stockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+//			stockImageView.widthAnchor.constraint(equalTo: stockImageView.heightAnchor),
 			
-			symbolLabel.leadingAnchor.constraint(equalTo: stockImageView.trailingAnchor, constant: 12),
+			symbolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
 			symbolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
 			symbolLabel.heightAnchor.constraint(equalToConstant: 24),
 			
-//			starImageView.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
-//			starImageView.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
-//			starImageView.heightAnchor.constraint(equalToConstant: 16),
-//			starImageView.widthAnchor.constraint(equalToConstant: 16),
-            
             currencyLabel.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
             currencyLabel.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
             currencyLabel.heightAnchor.constraint(equalToConstant: 16),
             //currencyLabel.widthAnchor.constraint(equalToConstant: 16),
 			
 			//companyNameLabel.heightAnchor.constraint(equalToConstant: 16),
-			
+            
 			priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
 			priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
 			priceLabel.heightAnchor.constraint(equalToConstant: 24),
@@ -158,7 +159,14 @@ class StockTableViewCell: UITableViewCell {
             
             companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
             companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),
-            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2)
+            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2),
+            
+            miniChartView.topAnchor.constraint(equalTo: topAnchor, constant: 14),
+            miniChartView.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -(contentView.width/3) - 5),
+            miniChartView.widthAnchor.constraint(equalToConstant: contentView.width/3),
+            miniChartView.heightAnchor.constraint(equalToConstant: contentView.height * 0.8)
+            // miniChartView.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: -5)
+           // miniChartView.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: -5)
 		])
 	}
 }

@@ -16,7 +16,6 @@ class StockDetailsHeaderView: UIView {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "Data"
         label.textColor = .black
         label.font = .systemFont(ofSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
