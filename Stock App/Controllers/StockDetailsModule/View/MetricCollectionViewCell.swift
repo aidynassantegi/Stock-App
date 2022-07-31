@@ -17,6 +17,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -24,6 +25,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,6 +50,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
 
                                      valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
                                      valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+                                     valueLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor),
                                      valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
                                     ])
     }

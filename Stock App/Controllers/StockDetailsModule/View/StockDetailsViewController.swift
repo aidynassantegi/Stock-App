@@ -109,6 +109,7 @@ class StockDetailsViewController: UIViewController {
                                      tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
                                     ])
     }
+    
     private func renderChart() {
         let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
         var viewModels = [MetricCollectionViewCell.ViewModel]()
