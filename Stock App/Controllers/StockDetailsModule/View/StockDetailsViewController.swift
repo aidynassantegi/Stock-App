@@ -57,6 +57,7 @@ class StockDetailsViewController: UIViewController {
                 }
                 switch result {
                 case .success(let data):
+                    print("Date \(data.candleSticks[0].date)")
                     self?.candleStickdata = data.candleSticks
                 case .failure(let error):
                     print(error)
@@ -151,13 +152,17 @@ class StockDetailsViewController: UIViewController {
                 viewModels.append(.init(name: "Avg Vol", value: "no data"))
             }
         }
+       // candleStickdata.reversed().map{ $0.close}
         
         let change = CalculateStockDynamic.getChangePercentage(for: candleStickdata)
+        
+        let data: [Double : Date] = [:]
         
         headerView.configure(chartViewModel: .init(data: candleStickdata.reversed().map{ $0.close},
                                                    showLegend: true,
                                                    showAxis: true,
-                                                   fillColor: change < 0 ? .systemRed : .systemGreen),
+                                                   fillColor: change < 0 ? .systemRed : .systemGreen,
+                                                   timeStamp: candleStickdata.reversed().map { $0.date.timeIntervalSince1970}),
                              metricViewModels: viewModels)
         tableView.tableHeaderView = headerView
     }

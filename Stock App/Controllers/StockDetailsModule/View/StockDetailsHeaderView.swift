@@ -11,6 +11,18 @@ import UIKit
 class StockDetailsHeaderView: UIView {
     
     private var metricViewModels: [MetricCollectionViewCell.ViewModel] = []
+    
+    private var showData: String?
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.text = "Data"
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let chartView: StockChartView = {
         let chartView = StockChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +53,13 @@ class StockDetailsHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addSubviews(chartView, collectionView)
-        NSLayoutConstraint.activate([chartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+        addSubviews(label, chartView, collectionView)
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                                     label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                                     label.heightAnchor.constraint(equalToConstant: 20),
+                                     label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+                                     
+                                     chartView.topAnchor.constraint(equalTo: label.bottomAnchor),
                                      chartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
                                      chartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
                                      chartView.heightAnchor.constraint(equalToConstant: 250),
@@ -57,17 +74,23 @@ class StockDetailsHeaderView: UIView {
     
     func configure(chartViewModel: StockChartView.ViewModel, metricViewModels: [MetricCollectionViewCell.ViewModel]) {
         chartView.configure(with: chartViewModel)
+        chartView.delegate = self
+        print(showData)
         self.metricViewModels = metricViewModels
         collectionView.reloadData()
     }
 }
 
+extension StockDetailsHeaderView: ChartData {
+    func showValue(x: Double, y: Double) {
+        let date = Date(timeIntervalSince1970: x)
+        showData = "\(date) \(y)"
+        label.text = showData
+    }
+}
+
 extension StockDetailsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        1
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         metricViewModels.count
     }
