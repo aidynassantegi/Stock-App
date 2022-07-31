@@ -33,25 +33,36 @@ class StockDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = companyName
-        setUpConstraints()
+       // setUpConstraints()
         configureTable()
         fetchFinancialData()
         fetchNews()
     }
     
     private func configureTable() {
-      // view.addSubviews(tableView)
+       view.addSubviews(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.frame = view.bounds
+        tableView.frame = view.bounds
     }
     
     private func fetchFinancialData() {
         let group = DispatchGroup()
         
-//        if candleStickdata.isEmpty {
-//            group.enter()
-//        }
+        if candleStickdata.isEmpty {
+            group.enter()
+            apiManager.perform(MarketDataRequest.init(symbol: symbol, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+                defer {
+                    group.leave()
+                }
+                switch result {
+                case .success(let data):
+                    self?.candleStickdata = data.candleSticks
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
         
         group.enter()
         apiManager.perform(FinancialMetricsRequest(symbol: symbol)) { [weak self] (result: Result<FinancialMetrics, Error>) in
@@ -99,7 +110,7 @@ class StockDetailsViewController: UIViewController {
                                     ])
     }
     private func renderChart() {
-        //let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
+        let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         
         if let metrics = metrics {
@@ -140,9 +151,10 @@ class StockDetailsViewController: UIViewController {
             }
         }
         
-       // headerView.backgroundColor = .link
-        headerView.configure(chartViewModel: .init(data: [], showLegend: false, showAxis: false), metricViewModels: viewModels)
-        //tableView.tableHeaderView = headerView
+        headerView.configure(chartViewModel: .init(data: candleStickdata.reversed().map{ $0.close},
+                                                   showLegend: true,
+                                                   showAxis: true), metricViewModels: viewModels)
+        tableView.tableHeaderView = headerView
     }
 }
 

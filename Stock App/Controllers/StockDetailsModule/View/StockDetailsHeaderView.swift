@@ -45,7 +45,7 @@ class StockDetailsHeaderView: UIView {
         NSLayoutConstraint.activate([chartView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                                      chartView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
                                      chartView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-                                     chartView.heightAnchor.constraint(equalToConstant: 50),
+                                     chartView.heightAnchor.constraint(equalToConstant: 250),
                                      
                                      collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
                                      collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -56,6 +56,7 @@ class StockDetailsHeaderView: UIView {
     }
     
     func configure(chartViewModel: StockChartView.ViewModel, metricViewModels: [MetricCollectionViewCell.ViewModel]) {
+        chartView.configure(with: chartViewModel)
         self.metricViewModels = metricViewModels
         collectionView.reloadData()
     }

@@ -45,7 +45,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
                                      nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
                                      nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
-                                    
+
                                      valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
                                      valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
                                      valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
@@ -59,8 +59,8 @@ class MetricCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with viewModel: ViewModel){
+        print(viewModel)
         nameLabel.text = viewModel.name + ":"
-        
         valueLabel.text = viewModel.value
     }
 }

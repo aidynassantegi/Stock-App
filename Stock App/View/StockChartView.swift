@@ -24,6 +24,7 @@ class StockChartView: UIView {
         chartView.drawGridBackgroundEnabled = false
         chartView.leftAxis.enabled = false
         chartView.rightAxis.enabled = false
+        chartView.legend.enabled = false
         return chartView
     }()
     
@@ -46,14 +47,19 @@ class StockChartView: UIView {
     }
     
     func configure(with viewModel: ViewModel) {
-//        var entries = [ChartDataEntry]()
-//        
-//        for (index, value) in viewModel.data.enumerated() {
-//            entries.append(.init(x: Double(index), y: value))
-//        }
-//        
-//        let dataSet = LineChartDataSet(entries: entries, label: "Label")
-//        let data = LineChartData(dataSets: dataSet)
-//        chartView.data = data
+        var entries = [ChartDataEntry]()
+        
+        for (index, value) in viewModel.data.enumerated() {
+            entries.append(.init(x: Double(index), y: value))
+        }
+        
+        let dataSet = LineChartDataSet(entries: entries, label: "label")
+        dataSet.fillColor = .systemGreen
+        dataSet.drawFilledEnabled = true
+        dataSet.drawIconsEnabled = false
+        dataSet.drawValuesEnabled = false
+        dataSet.drawCirclesEnabled = false
+        let data = LineChartData(dataSet: dataSet)
+        chartView.data = data
     }
 }
