@@ -19,7 +19,8 @@ final class StockDetailsAssembly{
         let collectionView = FinancialDataAssembly().assemble { [weak self] input in
             input.configure(with: vc.symbol, and: vc.companyName)
         }
-        vc.setViews(subViews: [collectionView])
+        vc.collectionView = collectionView
+       // vc.setViews(subViews: [collectionView])
         return vc
     }
 }

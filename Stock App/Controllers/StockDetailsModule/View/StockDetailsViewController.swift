@@ -15,11 +15,7 @@ class StockDetailsViewController: UIViewController {
     private let apiManager = APIManager()
     private var metrics: Metrics?
     
-//    let collectionView: FinancialCollectionView = {
-//        let headerView = FinancialCollectionView()
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//        return headerView
-//    }()
+    var collectionView: FinancialCollectionView?
     
     let timePeriodCollectionView: PeriodCollection = {
         let timePeriodView = PeriodCollection()
@@ -39,12 +35,16 @@ class StockDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = companyName
+        setViews()
+        //setViews(subViews: [collectionView])
         configureTable()
         fetchNews()
     }
     
-    func setViews(subViews: [UIView]) {
-        let collectionView = subViews[0]
+    func setViews() {
+        guard let collectionView = collectionView else {
+            return
+        }
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
