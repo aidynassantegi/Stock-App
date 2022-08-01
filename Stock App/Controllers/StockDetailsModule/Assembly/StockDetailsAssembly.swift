@@ -16,6 +16,10 @@ typealias StockDetailsModuleConfiguration = (StockDetailsModuleInput) -> Void
 final class StockDetailsAssembly{
     func assemble(_ configuration: StockDetailsModuleConfiguration) -> StockDetailsViewController {
         let vc = StockDetailsViewController()
+        let collectionView = FinancialDataAssembly().assemble { [weak self] input in
+            input.configure(with: vc.symbol, and: vc.companyName)
+        }
+        vc.setViews(subViews: [collectionView])
         return vc
     }
 }

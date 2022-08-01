@@ -15,11 +15,11 @@ class StockDetailsViewController: UIViewController {
     private let apiManager = APIManager()
     private var metrics: Metrics?
     
-    let collectionView: FinancialCollectionView = {
-        let headerView = FinancialCollectionView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        return headerView
-    }()
+//    let collectionView: FinancialCollectionView = {
+//        let headerView = FinancialCollectionView()
+//        headerView.translatesAutoresizingMaskIntoConstraints = false
+//        return headerView
+//    }()
     
     let timePeriodCollectionView: PeriodCollection = {
         let timePeriodView = PeriodCollection()
@@ -39,9 +39,18 @@ class StockDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = companyName
-        setUpConstraints()
         configureTable()
         fetchNews()
+    }
+    
+    func setViews(subViews: [UIView]) {
+        let collectionView = subViews[0]
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                             collectionView.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
     private func configureTable() {
@@ -100,24 +109,24 @@ class StockDetailsViewController: UIViewController {
         }
     }
     
-    func setUpConstraints() {
-        view.addSubviews(collectionView,timePeriodCollectionView, tableView)
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                     collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     collectionView.heightAnchor.constraint(equalToConstant: (view.height * 0.45)),
-                                     
-                                     timePeriodCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
-                                     timePeriodCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                     timePeriodCollectionView.heightAnchor.constraint(equalToConstant: 30),
-                                     timePeriodCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     
-                                     tableView.topAnchor.constraint(equalTo: timePeriodCollectionView
-                                        .bottomAnchor),
-                                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-                                    ])
+//    func setUpConstraints() {
+//        view.addSubviews(collectionView,timePeriodCollectionView, tableView)
+//        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+//                                     collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//                                     collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+//                                     collectionView.heightAnchor.constraint(equalToConstant: (view.height * 0.45)),
+//
+//                                     timePeriodCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+//                                     timePeriodCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//                                     timePeriodCollectionView.heightAnchor.constraint(equalToConstant: 30),
+//                                     timePeriodCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+//
+//                                     tableView.topAnchor.constraint(equalTo: timePeriodCollectionView
+//                                        .bottomAnchor),
+//                                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//                                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//                                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+//                                    ])
     }
     
 //    private func renderChart() {
@@ -135,7 +144,7 @@ class StockDetailsViewController: UIViewController {
 //                                                   timeStamp: candleStickdata.reversed().map { $0.date.timeIntervalSince1970}),
 //                             metricViewModels: viewModels)
 //    }
-}
+//}
 
 extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
