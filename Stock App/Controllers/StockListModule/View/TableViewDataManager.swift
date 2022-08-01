@@ -27,9 +27,6 @@ final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onStockDidSelect?(viewModel[indexPath.row].symbol, viewModel[indexPath.row].companyName)
-//        let vc = StockInfoVC()
-//        guard let stocks = stocks else { return }
-//        vc.title = stocks[indexPath.row].symbol
-//        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

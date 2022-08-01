@@ -13,15 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
       
-//        let apiManager = APIManager()
-//        apiManager.perform(FinancialMetricsRequest(symbol: "AAPL")) { (result: Result<FinancialMetrics, Error>) in
-//            switch result {
-//            case .success(let success):
-//                print(success)
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
 		return true
 	}
 

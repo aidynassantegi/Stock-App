@@ -89,4 +89,6 @@ extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         delegate?.showValue(x: entry.x, y: entry.y)
     }
+    
+    
 }

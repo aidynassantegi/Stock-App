@@ -10,11 +10,6 @@ import UIKit
 class MetricCollectionViewCell: UICollectionViewCell {
     static let identifier = "MetricCollectionViewCell"
     
-    struct ViewModel {
-        let name: String
-        let value: String
-    }
-    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -61,7 +56,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
         valueLabel.text = nil
     }
     
-    func configure(with viewModel: ViewModel){
+    func configure(with viewModel: MetricCollectionViewEntity){
         print(viewModel)
         nameLabel.text = viewModel.name + ":"
         valueLabel.text = viewModel.value
