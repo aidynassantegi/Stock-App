@@ -67,11 +67,19 @@ class StockChartView: UIView {
         chartView.legend.enabled = viewModel.showLegend
         
         let dataSet = LineChartDataSet(entries: entries, label: "7 Days")
-        dataSet.fillColor = viewModel.fillColor
+        let colorTop = viewModel.fillColor.cgColor
+        let colorBottom = UIColor.white.cgColor
+        let gradientColors = [colorTop, colorBottom] as CFArray // Colors of the gradient
+        let colorLocations:[CGFloat] = [0.9, 0.0] // Positioning of the gradient
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(),
+                                       colors: gradientColors, locations: colorLocations) // Gradient Object
+        dataSet.fill = LinearGradientFill(gradient: gradient!, angle: 90.0) // Set the Gradient
+        //dataSet.fillColor = viewModel.fillColor
         dataSet.drawFilledEnabled = true
         dataSet.drawIconsEnabled = false
         dataSet.drawValuesEnabled = false
         dataSet.drawCirclesEnabled = false
+        dataSet.setColor(viewModel.fillColor)
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
     }
@@ -79,8 +87,6 @@ class StockChartView: UIView {
 
 extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-//        let date = Date(timeIntervalSince1970: entry.x)
-//        print("Chart value \(date) \(entry.y)")
         delegate?.showValue(x: entry.x, y: entry.y)
     }
 }

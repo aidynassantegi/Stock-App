@@ -83,7 +83,7 @@ class StockDetailsHeaderView: UIView {
 extension StockDetailsHeaderView: ChartData {
     func showValue(x: Double, y: Double) {
         let date = Date(timeIntervalSince1970: x)
-        showData = "\(date) \(y)"
+        showData = "\(date.converToMonthYearHourFormat()) \(y) USD"
         label.text = showData
     }
 }
@@ -102,7 +102,7 @@ extension StockDetailsHeaderView: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: width / 2, height: 100 / 3) // collectionView height / 3
+        CGSize(width: width * 0.7, height: 100 / 3) // collectionView height / 3
     }
 }
 

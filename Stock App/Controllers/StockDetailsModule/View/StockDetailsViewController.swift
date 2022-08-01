@@ -33,17 +33,17 @@ class StockDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = companyName
-       // setUpConstraints()
+       setUpConstraints()
         configureTable()
         fetchFinancialData()
         fetchNews()
     }
     
     private func configureTable() {
-       view.addSubviews(tableView)
+      //view.addSubviews(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = view.bounds
+        //tableView.frame = view.bounds
     }
     
     private func fetchFinancialData() {
@@ -102,9 +102,9 @@ class StockDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
                                      headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                      headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     headerView.heightAnchor.constraint(equalToConstant: (view.height * 0.8) + 100),
+                                     headerView.heightAnchor.constraint(equalToConstant: (view.height * 0.45)),
                                      
-                                     tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
+                                     tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
                                      tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
                                      tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
@@ -112,48 +112,46 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func renderChart() {
-        let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
+       // let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         
         if let metrics = metrics {
             if let annualWeekHigh = metrics.AnnualWeekHigh {
                 viewModels.append(.init(name: "52W High", value: "\(annualWeekHigh)"))
             } else {
-                viewModels.append(.init(name: "52W High", value: "no data"))
+                viewModels.append(.init(name: "52W High", value: "-"))
             }
     
             if  let annualWeekLow = metrics.AnnualWeekLow {
                 viewModels.append(.init(name: "52W Low", value: "\(annualWeekLow)"))
             } else {
-                viewModels.append(.init(name: "52W High", value: "no data"))
+                viewModels.append(.init(name: "52W High", value: "-"))
             }
             
             if let annualWeekLowDate = metrics.AnnualWeekLowDate {
                 viewModels.append(.init(name: "52W Low Date", value: "\(annualWeekLowDate)"))
             } else {
-                viewModels.append(.init(name: "52W Low Date", value: "no data"))
+                viewModels.append(.init(name: "52W Low Date", value: "-"))
             }
             
             if let annualWeekPriceReturnDaily = metrics.AnnualWeekPriceReturnDaily {
                 viewModels.append(.init(name: "52W Return", value: "\(annualWeekPriceReturnDaily)"))
             }else {
-                viewModels.append(.init(name: "52W Return", value: "no data"))
+                viewModels.append(.init(name: "52W Return", value: "-"))
             }
             
             if let beta = metrics.beta {
                 viewModels.append(.init(name: "Beta", value: "\(beta)"))
             }else {
-                viewModels.append(.init(name: "Beta", value: "no data"))
+                viewModels.append(.init(name: "Beta", value: "-"))
             }
             
             if let tenDayAverageTradingVolume = metrics.TenDayAverageTradingVolume {
                 viewModels.append(.init(name: "Avg Vol", value: "\(tenDayAverageTradingVolume)"))
             }else {
-                viewModels.append(.init(name: "Avg Vol", value: "no data"))
+                viewModels.append(.init(name: "Avg Vol", value: "-"))
             }
         }
-       // candleStickdata.reversed().map{ $0.close}
-        
         let change = CalculateStockDynamic.getChangePercentage(for: candleStickdata)
         
         let data: [Double : Date] = [:]
@@ -164,7 +162,7 @@ class StockDetailsViewController: UIViewController {
                                                    fillColor: change < 0 ? .systemRed : .systemGreen,
                                                    timeStamp: candleStickdata.reversed().map { $0.date.timeIntervalSince1970}),
                              metricViewModels: viewModels)
-        tableView.tableHeaderView = headerView
+        //tableView.tableHeaderView = headerView
     }
 }
 

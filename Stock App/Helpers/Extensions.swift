@@ -44,19 +44,38 @@ extension String {
         return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
     }
     
-//    func convertToDate() -> Date? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.timeZone = .current
-//
-//        return dateFormatter.date(from: self)
-//    }
-//
-//    func converToDisplayFormat() -> String {
-//        guard let date = self.convertToDate() else { return "N/A" }
-//        return date.converToMonthYearFormat()
-//    }
+    func convertToDate() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = .current
+
+        return dateFormatter.date(from: self)
+    }
+
+    func converToDisplayFullFormat() -> String {
+        guard let date = self.convertToDate() else { return "N/A" }
+        return date.converToMonthYearHourFormat()
+    }
+    
+    func converToDisplayFormat() -> String {
+        guard let date = self.convertToDate() else { return "N/A" }
+        return date.converToMonthYearFormat()
+    }
+}
+
+extension Date {
+    func converToMonthYearHourFormat() -> String {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "E, d MMM yyyy HH:mm:ss"
+        return dateFormater.string(from: self)
+    }
+    
+    func converToMonthYearFormat() -> String {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "MMM d, yyyy"
+        return dateFormater.string(from: self)
+    }
 }
 
 extension DateFormatter {

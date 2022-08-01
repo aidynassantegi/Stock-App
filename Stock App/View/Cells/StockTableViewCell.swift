@@ -70,6 +70,13 @@ class StockTableViewCell: UITableViewCell {
 		return label
 	}()
     
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let currencyLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
@@ -129,14 +136,13 @@ class StockTableViewCell: UITableViewCell {
 		layer.masksToBounds = true
 		layer.cornerRadius = 16
 		
-        addSubviews(symbolLabel, currencyLabel ,companyNameLabel, priceLabel, changesLabel, miniChartView)
+        stackView.addArrangedSubview(priceLabel)
+        stackView.addArrangedSubview(changesLabel)
+        
+        addSubviews(symbolLabel, currencyLabel ,companyNameLabel, miniChartView, stackView)
 		
 		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([
-//			stockImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-//			stockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-//			stockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
-//			stockImageView.widthAnchor.constraint(equalTo: stockImageView.heightAnchor),
 			
 			symbolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
 			symbolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
@@ -145,28 +151,25 @@ class StockTableViewCell: UITableViewCell {
             currencyLabel.leadingAnchor.constraint(equalTo: symbolLabel.trailingAnchor, constant: 2),
             currencyLabel.centerYAnchor.constraint(equalTo: symbolLabel.centerYAnchor),
             currencyLabel.heightAnchor.constraint(equalToConstant: 16),
-            //currencyLabel.widthAnchor.constraint(equalToConstant: 16),
-			
-			//companyNameLabel.heightAnchor.constraint(equalToConstant: 16),
             
-			priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 14),
-			priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
-			priceLabel.heightAnchor.constraint(equalToConstant: 24),
-			
-			changesLabel.trailingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
-			changesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
-            changesLabel.heightAnchor.constraint(equalToConstant: 16),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 320),
+//            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+            
+            miniChartView.topAnchor.constraint(equalTo: topAnchor, constant: 14),
+            miniChartView.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 5),
+            miniChartView.widthAnchor.constraint(equalToConstant: width/3),
+            miniChartView.heightAnchor.constraint(equalToConstant: height * 0.9),
             
             companyNameLabel.leadingAnchor.constraint(equalTo: symbolLabel.leadingAnchor),
             companyNameLabel.topAnchor.constraint(equalTo: symbolLabel.bottomAnchor, constant: 2),
-            companyNameLabel.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: 2),
+            companyNameLabel.trailingAnchor.constraint(equalTo: miniChartView.leadingAnchor, constant: 2),
             
-            miniChartView.topAnchor.constraint(equalTo: topAnchor, constant: 14),
-            miniChartView.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -(contentView.width/3) - 5),
-            miniChartView.widthAnchor.constraint(equalToConstant: contentView.width/3),
-            miniChartView.heightAnchor.constraint(equalToConstant: contentView.height * 0.8)
-            // miniChartView.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: -5)
-           // miniChartView.trailingAnchor.constraint(equalTo: changesLabel.leadingAnchor, constant: -5)
+            stackView.widthAnchor.constraint(equalTo: changesLabel.frame.width > priceLabel.frame.width ? changesLabel.widthAnchor : priceLabel.widthAnchor)
 		])
+        
+        
+        
 	}
 }
