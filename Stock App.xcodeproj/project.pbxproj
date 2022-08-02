@@ -29,6 +29,8 @@
 		028689D228994393008321A2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D128994393008321A2 /* ChartViewController.swift */; };
 		028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */; };
 		028689D628994F98008321A2 /* ChartViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D528994F98008321A2 /* ChartViewInteractor.swift */; };
+		028689D828995410008321A2 /* ChartViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D728995410008321A2 /* ChartViewPresenter.swift */; };
+		028689DA289954B2008321A2 /* ChartViewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D9289954B2008321A2 /* ChartViewAssembly.swift */; };
 		028BA9AD289262710090B46C /* CalculateStockDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028BA9AC289262710090B46C /* CalculateStockDynamic.swift */; };
 		02BC87142897A34500CB209C /* TimePeriodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC87132897A34500CB209C /* TimePeriodCollectionViewCell.swift */; };
 		02BC871E2897ABC400CB209C /* FinancialDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC871D2897ABC400CB209C /* FinancialDataInteractor.swift */; };
@@ -96,6 +98,8 @@
 		028689D128994393008321A2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalCollectionViewDataManager.swift; sourceTree = "<group>"; };
 		028689D528994F98008321A2 /* ChartViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewInteractor.swift; sourceTree = "<group>"; };
+		028689D728995410008321A2 /* ChartViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewPresenter.swift; sourceTree = "<group>"; };
+		028689D9289954B2008321A2 /* ChartViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewAssembly.swift; sourceTree = "<group>"; };
 		028BA9AC289262710090B46C /* CalculateStockDynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateStockDynamic.swift; sourceTree = "<group>"; };
 		02BC87132897A34500CB209C /* TimePeriodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodCollectionViewCell.swift; sourceTree = "<group>"; };
 		02BC871D2897ABC400CB209C /* FinancialDataInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataInteractor.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 		028689CF28994302008321A2 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				028689D728995410008321A2 /* ChartViewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 		028689D02899430A008321A2 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				028689D9289954B2008321A2 /* ChartViewAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -668,7 +674,9 @@
 				39DA5323289000490051A566 /* Search.swift in Sources */,
 				64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */,
 				028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */,
+				028689DA289954B2008321A2 /* ChartViewAssembly.swift in Sources */,
 				39E1918A288A54DE007FAFAE /* NewsTableHeaderView.swift in Sources */,
+				028689D828995410008321A2 /* ChartViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
