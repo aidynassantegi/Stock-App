@@ -307,7 +307,6 @@
 		02BC87162897AB4C00CB209C /* FinancialDataModule */ = {
 			isa = PBXGroup;
 			children = (
-				02BC871C2897ABA800CB209C /* Router */,
 				02BC871B2897AB9600CB209C /* Assembly */,
 				02BC871A2897AB8E00CB209C /* Entity */,
 				02BC87192897AB8900CB209C /* Presenter */,
@@ -356,13 +355,6 @@
 				02BC87252897D3C300CB209C /* FinancialDataAssembly.swift */,
 			);
 			path = Assembly;
-			sourceTree = "<group>";
-		};
-		02BC871C2897ABA800CB209C /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		02BC87272897F78600CB209C /* Assembly */ = {

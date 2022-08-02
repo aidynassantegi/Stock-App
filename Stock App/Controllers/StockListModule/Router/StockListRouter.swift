@@ -18,9 +18,12 @@ final class StockListRouter: StockListRouterInput {
 //        let collection = FinancialDataAssembly().assemble { [weak self] input in
 //            input.configure(with: symbol, and: companyName)
 //        }
-        let vc = StockDetailsAssembly().assemble { [weak self] input in
-            input.configure(with: symbol, and: companyName)
-        }
+        
+//        let vc = StockDetailsAssembly().assemble { [weak self] input in
+//            input.configure(with: symbol, and: companyName)
+//        }
+        
+        let vc = StockDetailsAssembly().assemble(symbol)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

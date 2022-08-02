@@ -46,7 +46,7 @@ final class FinancialDataInteractor: FinancailDataInteractorInput {
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
             self.createEntity()
-            self.financialDataInteractorOutput.didLoadFinancialMetricsModel(self.entity)
+//            self.financialDataInteractorOutput.didLoadFinancialMetricsModel(self.entity)
         }
     }
     
@@ -87,6 +87,8 @@ final class FinancialDataInteractor: FinancailDataInteractorInput {
             }else {
                 entity.append(.init(name: "Avg Vol", value: "-"))
             }
+            
+            self.financialDataInteractorOutput.didLoadFinancialMetricsModel(self.entity)
         }
     }
     

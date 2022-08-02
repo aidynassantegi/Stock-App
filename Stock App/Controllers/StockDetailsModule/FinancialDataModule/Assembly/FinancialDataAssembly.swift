@@ -21,13 +21,17 @@ final class FinancialDataAssembly{
         let requestManager = APIManager()
         let interactor = FinancialDataInteractor(requestManager: requestManager)
         
-        configuration(presenter)
+        
         
         view.financialMetricDataManager = dataDisplayManager
         view.financialDataViewOutput = presenter
         presenter.financialDataView = view
         presenter.financialDataInteractor = interactor
         interactor.financialDataInteractorOutput = presenter
+        
+        configuration(presenter)
+        
+        view.didLoadAgain()
         return view
     }
 }

@@ -16,11 +16,14 @@ typealias StockDetailsModuleConfiguration = (StockDetailsModuleInput) -> Void
 
 final class StockDetailsAssembly{
     
-    func assemble(_ configuration: StockDetailsModuleConfiguration) -> StockDetailsViewController {
+    func assemble(_ stockSymbol: String) -> StockDetailsViewController {
+    
         let vc = StockDetailsViewController()
         
+        
+        
         let collectionView = FinancialDataAssembly().assemble { input in
-            input.configure(with: "AAPL", and: "Apple Inc.")
+            input.configure(with: stockSymbol, and: "Apple Inc.")
         }
         
         vc.collectionView = collectionView

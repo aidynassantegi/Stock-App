@@ -57,6 +57,12 @@ class FinancialCollectionView: UIView {
         collectionView.dataSource = financialMetricDataManager
     }
     
+    func didLoadAgain() {
+        financialDataViewOutput?.didLoadView()
+        collectionView.delegate = financialMetricDataManager
+        collectionView.dataSource = financialMetricDataManager
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -85,7 +91,9 @@ class FinancialCollectionView: UIView {
 extension FinancialCollectionView: FinancialDataViewInput {
     func handleObtainedEntity(_ entity: [MetricCollectionViewEntity]) {
         print("entity \(entity)")
-        financialMetricDataManager?.metricViewModels = entity
+        if financialMetricDataManager != nil {
+            financialMetricDataManager?.metricViewModels = entity
+        }
         collectionView.reloadData()
     }
     
