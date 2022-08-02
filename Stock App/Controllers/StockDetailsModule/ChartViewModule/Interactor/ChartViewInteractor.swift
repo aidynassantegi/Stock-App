@@ -12,7 +12,7 @@ protocol ChartViewInteractorInput {
 }
 
 protocol ChartViewInteractorOutput: AnyObject{
-    func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel)
+    func didLoadChartViewModel(_ viewModel: StockChartView.ViewModel)
 }
 
 final class ChartViewInteractor: ChartViewInteractorInput {
@@ -36,6 +36,7 @@ final class ChartViewInteractor: ChartViewInteractorInput {
             
             switch result {
                 case .success(let data):
+                print(data.candleSticks)
                     self?.candleStickData = data.candleSticks
                 case .failure(let error):
                     print(error)
@@ -54,6 +55,6 @@ final class ChartViewInteractor: ChartViewInteractorInput {
                                                                            showAxis: true,
                                                                            fillColor: change < 0 ? .systemRed : .systemGreen,
                                                                            timeStamp: candleStickData.reversed().map { $0.date.timeIntervalSince1970})
-        chartViewInteractorOutput.handleObtainedChartViewModel(viewModel)
+        chartViewInteractorOutput.didLoadChartViewModel(viewModel)
     }
 }

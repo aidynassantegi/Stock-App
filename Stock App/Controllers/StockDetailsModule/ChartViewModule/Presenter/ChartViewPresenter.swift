@@ -14,7 +14,7 @@ final class ChartViewPresenter: ChartViewInteractorOutput, ChartViewOutput, Char
     
     private var stockSymbol: String!
     
-    func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
+    func didLoadChartViewModel(_ viewModel: StockChartView.ViewModel) {
         chartView.handleObtainedChartViewModel(viewModel)
     }
     

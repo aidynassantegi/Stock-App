@@ -77,7 +77,6 @@ class ChartViewController: UIViewController {
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
         chartView.configure(with: viewModel)
-        
-        //Do not forget about chart view delegate
+        //Do not forget chart view delegate
     }
 }

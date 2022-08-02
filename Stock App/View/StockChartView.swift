@@ -61,7 +61,7 @@ class StockChartView: UIView {
         for index in 0...viewModel.data.count - 1 {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
-        
+
         chartView.rightAxis.enabled = viewModel.showAxis
 //        chartView.leftAxis.enabled =
         chartView.legend.enabled = viewModel.showLegend

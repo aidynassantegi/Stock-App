@@ -17,8 +17,11 @@ class StockDetailsViewController: UIViewController {
     private var metrics: Metrics?
     
     var collectionView: FinancialCollectionViewController?
-    var collectionViewPlaceholder: UIView = UIView()
+    var collectionViewPlaceholder = UIView()
 
+    var chartView: ChartViewController?
+    var chartViewPlaceholder = UIView()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
@@ -35,20 +38,26 @@ class StockDetailsViewController: UIViewController {
         guard let collectionView = collectionView else {
             return
         }
-        add(childVC: collectionView, to: collectionViewPlaceholder)
         
+        guard let chartView = chartView else { return }
+        add(childVC: collectionView, to: collectionViewPlaceholder)
+        add(childVC: chartView, to: chartViewPlaceholder)
         setViews()
         configureTable()
     }
     
     func setViews() {
-        
+        chartViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionViewPlaceholder)
-        NSLayoutConstraint.activate([collectionViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                     collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
+        view.addSubviews(chartViewPlaceholder, collectionViewPlaceholder)
+        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+                                      chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 100),
+                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 10),
+                                      collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                      collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                      collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
     private func configureTable() {
@@ -56,44 +65,7 @@ class StockDetailsViewController: UIViewController {
         tableView.dataSource = self
     }
     
-//    private func fetchFinancialData() {
-//        let group = DispatchGroup()
-//
-//        if candleStickdata.isEmpty {
-//            group.enter()
-//            apiManager.perform(MarketDataRequest.init(symbol: symbol, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
-//                defer {
-//                    group.leave()
-//                }
-//                switch result {
-//                case .success(let data):
-//                    print("Date \(data.candleSticks[0].date)")
-//                    self?.candleStickdata = data.candleSticks
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//        }
-//
-//        group.enter()
-//        apiManager.perform(FinancialMetricsRequest(symbol: symbol)) { [weak self] (result: Result<FinancialMetrics, Error>) in
-//            defer {
-//                group.leave()
-//            }
-//            switch result {
-//            case .success(let data):
-//                self?.metrics = data.metric
-//            case .failure(let error):
-//                print("error \(error)")
-//            }
-//        }
-//
-//        group.notify(queue: .main) { [weak self] in
-//            print("notify")
-//            print(self?.metrics)
-//            self?.renderChart()
-//        }
-//    }
+
     
 //    private func fetchNews() {
 //        apiManager.perform(MarketNewsRequest(type: .company(symbol: symbol))) { [weak self] (result: Result<[News], Error>) in
@@ -125,26 +97,8 @@ class StockDetailsViewController: UIViewController {
 //                                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 //                                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
 //                                    ])
-    }
+}
     
-//    private func renderChart() {
-//       // let headerView = StockDetailsHeaderView(frame: CGRect(x: 0, y: 0, width: view.width, height: (view.height * 0.8) + 100))
-//        var viewModels = [MetricCollectionViewCell.ViewModel]()
-//
-//        let change = CalculateStockDynamic.getChangePercentage(for: candleStickdata)
-//
-//        let data: [Double : Date] = [:]
-//
-//        headerView.configure(chartViewModel: .init(data: candleStickdata.reversed().map{ $0.close},
-//                                                   showLegend: true,
-//                                                   showAxis: true,
-//                                                   fillColor: change < 0 ? .systemRed : .systemGreen,
-//                                                   timeStamp: candleStickdata.reversed().map { $0.date.timeIntervalSince1970}),
-//                             metricViewModels: viewModels)
-//    }
-//}
-
-
 extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1

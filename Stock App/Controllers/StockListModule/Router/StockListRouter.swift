@@ -23,7 +23,7 @@ final class StockListRouter: StockListRouterInput {
 //            input.configure(with: symbol, and: companyName)
 //        }
         
-        let vc = StockDetailsAssembly().assemble(symbol)
+        let vc = StockDetailsAssembly().assemble(symbol, companyName)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
