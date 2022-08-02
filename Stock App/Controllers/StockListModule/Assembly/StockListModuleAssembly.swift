@@ -16,6 +16,7 @@ final class StockListModuleAssembly {
         let network = APIManager()
         let interactor = StockListInteractor(requestManager: network)
         let router = StockListRouter()
+        
         vc.tableDataManager = tableDataManager
         vc.output = presenter
         

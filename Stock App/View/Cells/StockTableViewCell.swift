@@ -80,7 +80,7 @@ class StockTableViewCell: UITableViewCell {
     let currencyLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .black
+        label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

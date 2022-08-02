@@ -15,9 +15,12 @@ protocol StockListRouterInput {
 final class StockListRouter: StockListRouterInput {
     weak var viewController: UIViewController?
     func openChart(with symbol: String, and companyName: String) {
-        let vc = StockDetailsViewController()
-        vc.symbol = symbol
-        vc.companyName = companyName
+//        let collection = FinancialDataAssembly().assemble { [weak self] input in
+//            input.configure(with: symbol, and: companyName)
+//        }
+        let vc = StockDetailsAssembly().assemble { [weak self] input in
+            input.configure(with: symbol, and: companyName)
+        }
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

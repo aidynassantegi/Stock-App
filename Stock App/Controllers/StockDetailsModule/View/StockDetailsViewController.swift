@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class StockDetailsViewController: UIViewController {
     var symbol: String!
     var companyName: String!
@@ -38,7 +39,7 @@ class StockDetailsViewController: UIViewController {
         setViews()
         //setViews(subViews: [collectionView])
         configureTable()
-        fetchNews()
+        //fetchNews()
     }
     
     func setViews() {
@@ -97,17 +98,17 @@ class StockDetailsViewController: UIViewController {
 //        }
 //    }
     
-    private func fetchNews() {
-        apiManager.perform(MarketNewsRequest(type: .company(symbol: symbol))) { [weak self] (result: Result<[News], Error>) in
-            switch result {
-            case .success(let data):
-                self?.news = data
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+//    private func fetchNews() {
+//        apiManager.perform(MarketNewsRequest(type: .company(symbol: symbol))) { [weak self] (result: Result<[News], Error>) in
+//            switch result {
+//            case .success(let data):
+//                self?.news = data
+//                self?.tableView.reloadData()
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
     
 //    func setUpConstraints() {
 //        view.addSubviews(collectionView,timePeriodCollectionView, tableView)
@@ -145,6 +146,7 @@ class StockDetailsViewController: UIViewController {
 //                             metricViewModels: viewModels)
 //    }
 //}
+
 
 extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
