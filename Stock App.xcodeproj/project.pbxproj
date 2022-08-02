@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0221550C28939E97000025CA /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221550B28939E97000025CA /* StockDetailsViewController.swift */; };
-		022155102893ABFE000025CA /* FinancialCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221550F2893ABFE000025CA /* FinancialCollectionView.swift */; };
+		022155102893ABFE000025CA /* FinancialCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221550F2893ABFE000025CA /* FinancialCollectionViewController.swift */; };
 		022155122893B240000025CA /* MetricCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022155112893B240000025CA /* MetricCollectionViewCell.swift */; };
 		02232FFB2890FAF600F364E9 /* TableViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02232FFA2890FAF600F364E9 /* TableViewDataManager.swift */; };
 		02232FFD2890FE1100F364E9 /* CompanyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02232FFC2890FE1100F364E9 /* CompanyProfile.swift */; };
@@ -26,8 +26,10 @@
 		02797D40288A5BA90097EADC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */; };
 		02797D43288A6DE10097EADC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 02797D42288A6DE10097EADC /* SDWebImage */; };
 		02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D44288A9DFC0097EADC /* StockSymbols.swift */; };
+		028689D228994393008321A2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D128994393008321A2 /* ChartViewController.swift */; };
+		028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */; };
+		028689D628994F98008321A2 /* ChartViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D528994F98008321A2 /* ChartViewInteractor.swift */; };
 		028BA9AD289262710090B46C /* CalculateStockDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028BA9AC289262710090B46C /* CalculateStockDynamic.swift */; };
-		02BC87122897A22800CB209C /* PeriodCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC87112897A22800CB209C /* PeriodCollection.swift */; };
 		02BC87142897A34500CB209C /* TimePeriodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC87132897A34500CB209C /* TimePeriodCollectionViewCell.swift */; };
 		02BC871E2897ABC400CB209C /* FinancialDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC871D2897ABC400CB209C /* FinancialDataInteractor.swift */; };
 		02BC87202897ABE500CB209C /* FinancialMetricDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC871F2897ABE500CB209C /* FinancialMetricDataManager.swift */; };
@@ -74,7 +76,7 @@
 
 /* Begin PBXFileReference section */
 		0221550B28939E97000025CA /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
-		0221550F2893ABFE000025CA /* FinancialCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialCollectionView.swift; sourceTree = "<group>"; };
+		0221550F2893ABFE000025CA /* FinancialCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialCollectionViewController.swift; sourceTree = "<group>"; };
 		022155112893B240000025CA /* MetricCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCollectionViewCell.swift; sourceTree = "<group>"; };
 		02232FFA2890FAF600F364E9 /* TableViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataManager.swift; sourceTree = "<group>"; };
 		02232FFC2890FE1100F364E9 /* CompanyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyProfile.swift; sourceTree = "<group>"; };
@@ -91,8 +93,10 @@
 		026528542892A3BF00C4159A /* NewsViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewAssembly.swift; sourceTree = "<group>"; };
 		02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		02797D44288A9DFC0097EADC /* StockSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbols.swift; sourceTree = "<group>"; };
+		028689D128994393008321A2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalCollectionViewDataManager.swift; sourceTree = "<group>"; };
+		028689D528994F98008321A2 /* ChartViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewInteractor.swift; sourceTree = "<group>"; };
 		028BA9AC289262710090B46C /* CalculateStockDynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateStockDynamic.swift; sourceTree = "<group>"; };
-		02BC87112897A22800CB209C /* PeriodCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCollection.swift; sourceTree = "<group>"; };
 		02BC87132897A34500CB209C /* TimePeriodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodCollectionViewCell.swift; sourceTree = "<group>"; };
 		02BC871D2897ABC400CB209C /* FinancialDataInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataInteractor.swift; sourceTree = "<group>"; };
 		02BC871F2897ABE500CB209C /* FinancialMetricDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMetricDataManager.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 		0221550528939E43000025CA /* StockDetailsModule */ = {
 			isa = PBXGroup;
 			children = (
+				028689CC289941A9008321A2 /* ChartViewModule */,
 				02BC87272897F78600CB209C /* Assembly */,
 				02BC87162897AB4C00CB209C /* FinancialDataModule */,
 				0221550628939E59000025CA /* View */,
@@ -165,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				0221550B28939E97000025CA /* StockDetailsViewController.swift */,
-				02BC87112897A22800CB209C /* PeriodCollection.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +299,48 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
+		028689CC289941A9008321A2 /* ChartViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				028689D02899430A008321A2 /* Assembly */,
+				028689CF28994302008321A2 /* Presenter */,
+				028689CE289942F9008321A2 /* Interactor */,
+				028689CD289941B6008321A2 /* View */,
+			);
+			path = ChartViewModule;
+			sourceTree = "<group>";
+		};
+		028689CD289941B6008321A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				028689D128994393008321A2 /* ChartViewController.swift */,
+				028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		028689CE289942F9008321A2 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				028689D528994F98008321A2 /* ChartViewInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		028689CF28994302008321A2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		028689D02899430A008321A2 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		028BA9AB2892623E0090B46C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,7 +365,7 @@
 		02BC87172897AB7C00CB209C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0221550F2893ABFE000025CA /* FinancialCollectionView.swift */,
+				0221550F2893ABFE000025CA /* FinancialCollectionViewController.swift */,
 				02BC871F2897ABE500CB209C /* FinancialMetricDataManager.swift */,
 			);
 			path = View;
@@ -573,10 +619,12 @@
 				02BC87242897D3B600CB209C /* FinancialDataPresenter.swift in Sources */,
 				39DA5316288E54300051A566 /* APIManager.swift in Sources */,
 				02C42F7B288915E7004D0091 /* MarketDataResponse.swift in Sources */,
+				028689D228994393008321A2 /* ChartViewController.swift in Sources */,
 				02232FFF2890FEBA00F364E9 /* CompanyProfileRequest.swift in Sources */,
+				028689D628994F98008321A2 /* ChartViewInteractor.swift in Sources */,
 				39DA5312288E53EE0051A566 /* RequestProtocol.swift in Sources */,
 				026528532892A3A800C4159A /* NewsViewPresenter.swift in Sources */,
-				022155102893ABFE000025CA /* FinancialCollectionView.swift in Sources */,
+				022155102893ABFE000025CA /* FinancialCollectionViewController.swift in Sources */,
 				39DA5314288E54110051A566 /* DataParserProtocol.swift in Sources */,
 				39DA531C288FFF230051A566 /* APIError.swift in Sources */,
 				39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */,
@@ -608,7 +656,6 @@
 				64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */,
 				64ABB1F32886D29700B203F3 /* StockVC.swift in Sources */,
 				64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */,
-				02BC87122897A22800CB209C /* PeriodCollection.swift in Sources */,
 				0221550C28939E97000025CA /* StockDetailsViewController.swift in Sources */,
 				022155122893B240000025CA /* MetricCollectionViewCell.swift in Sources */,
 				02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */,
@@ -620,6 +667,7 @@
 				64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */,
 				39DA5323289000490051A566 /* Search.swift in Sources */,
 				64ABB20A2887FA1300B203F3 /* IntervalCVCell.swift in Sources */,
+				028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */,
 				39E1918A288A54DE007FAFAE /* NewsTableHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

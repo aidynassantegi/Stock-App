@@ -17,26 +17,12 @@ protocol FinancialDataViewOutput: AnyObject {
     func didLoadView()
 }
 
-class FinancialCollectionView: UIView {
+class FinancialCollectionViewController: UIViewController {
     
     private var showData: String?
     
     var financialMetricDataManager: FinancialMetricDataManager?
     var financialDataViewOutput: FinancialDataViewOutput?
-//
-//    private let label: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .black
-//        label.font = .systemFont(ofSize: 15)
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        return label
-//    }()
-//
-//    private let chartView: StockChartView = {
-//        let chartView = StockChartView()
-//        chartView.translatesAutoresizingMaskIntoConstraints = false
-//        return chartView
-//    }()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -50,34 +36,25 @@ class FinancialCollectionView: UIView {
         return collectionView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func viewDidLoad() {
         financialDataViewOutput?.didLoadView()
         collectionView.delegate = financialMetricDataManager
         collectionView.dataSource = financialMetricDataManager
+        setUpConstraints()
     }
     
-    func didLoadAgain() {
-        financialDataViewOutput?.didLoadView()
-        collectionView.delegate = financialMetricDataManager
-        collectionView.dataSource = financialMetricDataManager
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        addSubview(collectionView)
+    private func setUpConstraints() {
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-                                     collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-                                     collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
-                                     collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
-                                     collectionView.heightAnchor.constraint(equalToConstant: 100)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+                                    collectionView.heightAnchor.constraint(equalToConstant: 100)
                                     ])
-        
     }
+   
+}
     
 //    func configure(chartViewModel: StockChartView.ViewModel, metricViewModels: [MetricCollectionViewEntity]) {
 //        chartView.configure(with: chartViewModel)
@@ -86,9 +63,9 @@ class FinancialCollectionView: UIView {
 //        //self.metricViewModels = metricViewModels
 //        collectionView.reloadData()
 //    }
-}
 
-extension FinancialCollectionView: FinancialDataViewInput {
+
+extension FinancialCollectionViewController: FinancialDataViewInput {
     func handleObtainedEntity(_ entity: [MetricCollectionViewEntity]) {
         print("entity \(entity)")
         if financialMetricDataManager != nil {

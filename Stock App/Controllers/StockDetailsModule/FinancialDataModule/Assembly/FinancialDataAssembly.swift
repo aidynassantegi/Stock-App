@@ -14,13 +14,13 @@ protocol FinancialDataModuleInput {
 typealias FinancialDataModuleConfiguration = (FinancialDataModuleInput) -> Void
 
 final class FinancialDataAssembly{
-    func assemble(_ configuration: FinancialDataModuleConfiguration) -> FinancialCollectionView {
-        let view = FinancialCollectionView()
+    func assemble(_ configuration: FinancialDataModuleConfiguration) -> FinancialCollectionViewController {
+        
         let dataDisplayManager = FinancialMetricDataManager()
         let presenter = FinancialDataPresenter()
         let requestManager = APIManager()
         let interactor = FinancialDataInteractor(requestManager: requestManager)
-        
+        let view = FinancialCollectionViewController()
         
         
         view.financialMetricDataManager = dataDisplayManager
@@ -31,7 +31,6 @@ final class FinancialDataAssembly{
         
         configuration(presenter)
         
-        view.didLoadAgain()
         return view
     }
 }

@@ -20,8 +20,6 @@ final class StockDetailsAssembly{
     
         let vc = StockDetailsViewController()
         
-        
-        
         let collectionView = FinancialDataAssembly().assemble { input in
             input.configure(with: stockSymbol, and: "Apple Inc.")
         }
@@ -30,27 +28,3 @@ final class StockDetailsAssembly{
         return vc
     }
 }
-
-//
-//final class StockDetailsPresenter: StockDetailsModuleInput {
-//    private var symbol: String!
-//    var stockDetailsRouter: StockDetailsRouterInput!
-//    
-//    func configure(with stockSymbol: String, and companyName: String) {
-//        self.symbol = stockSymbol
-//    }
-//}
-//
-//protocol StockDetailsRouterInput {
-//    func sendStockSymbol(_ symbol: String)
-//}
-//
-//final class StockDetailsRouter: StockDetailsRouterInput {
-//    weak var financeDataView: UIView?
-//    
-//    func sendStockSymbol(_ symbol: String) {
-//        let view = FinancialDataAssembly().assemble {  input in
-//            input.configure(with: symbol, and: "name")
-//        }
-//    }
-//}

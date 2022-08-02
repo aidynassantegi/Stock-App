@@ -16,14 +16,9 @@ class StockDetailsViewController: UIViewController {
     private let apiManager = APIManager()
     private var metrics: Metrics?
     
-    var collectionView: FinancialCollectionView?
-    
-    let timePeriodCollectionView: PeriodCollection = {
-        let timePeriodView = PeriodCollection()
-        timePeriodView.translatesAutoresizingMaskIntoConstraints = false
-        return timePeriodView
-    }()
-    
+    var collectionView: FinancialCollectionViewController?
+    var collectionViewPlaceholder: UIView = UIView()
+
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
@@ -36,22 +31,24 @@ class StockDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = companyName
-        setViews()
-        //setViews(subViews: [collectionView])
-        configureTable()
-        //fetchNews()
-    }
-    
-    func setViews() {
+        
         guard let collectionView = collectionView else {
             return
         }
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                             collectionView.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
+        add(childVC: collectionView, to: collectionViewPlaceholder)
+        
+        setViews()
+        configureTable()
+    }
+    
+    func setViews() {
+        
+        collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionViewPlaceholder)
+        NSLayoutConstraint.activate([collectionViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                     collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                     collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
     private func configureTable() {
