@@ -85,12 +85,10 @@ class ChartViewController: UIViewController {
 
 
 extension ChartViewController: ChartData {
-    func showValue(x: Double, y: Double, with color: UIColor) {
+    func showValue(x: Double, y: Double) {
         let date = Date(timeIntervalSince1970: x)
         let showData = "\(date.converToMonthYearHourFormat())"
         label.text = showData
-        //label.textColor = color
-        print(showData)
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 protocol ChartData: AnyObject {
-    func showValue(x: Double, y: Double, with color: UIColor )
+    func showValue(x: Double, y: Double)
 }
 
 
@@ -91,7 +91,7 @@ class StockChartView: UIView {
         dataSet.drawHorizontalHighlightIndicatorEnabled = false
         dataSet.highlightColor = viewModel.fillColor
         dataSet.highlightLineWidth = 2.5
-        textColor = viewModel.fillColor
+        
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
         
@@ -100,7 +100,7 @@ class StockChartView: UIView {
 
 extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        delegate?.showValue(x: entry.x, y: entry.y, with: textColor)
+        delegate?.showValue(x: entry.x, y: entry.y)
         
         let graphPoint = chartView.getMarkerPosition(highlight: highlight)
         
