@@ -15,14 +15,17 @@ final class ChartViewPresenter: ChartViewInteractorOutput, ChartViewOutput, Char
     private var stockSymbol: String!
     
     func didLoadChartViewModel(_ viewModel: StockChartView.ViewModel) {
+        print("chart view  got view model \(viewModel)")
         chartView.handleObtainedChartViewModel(viewModel)
     }
     
     func didLoadView() {
+        print("chart view loaded")
         chartViewInteractor.obtainCandles(with: stockSymbol)
     }
     
     func configure(with stockSymbol: String) {
+        print("chart view \(stockSymbol)")
         self.stockSymbol = stockSymbol
     }
 }

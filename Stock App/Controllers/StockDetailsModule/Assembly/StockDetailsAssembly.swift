@@ -20,12 +20,12 @@ final class StockDetailsAssembly{
     
         let vc = StockDetailsViewController()
         
-        let collectionView = FinancialDataAssembly().assemble { input in
-            input.configure(with: stockSymbol, and: companyName)
-        }
-        
         let chartView = ChartViewAssembly().assemble { input in
             input.configure(with: stockSymbol)
+        }
+        
+        let collectionView = FinancialDataAssembly().assemble { input in
+            input.configure(with: stockSymbol, and: companyName)
         }
         
         vc.chartView = chartView
