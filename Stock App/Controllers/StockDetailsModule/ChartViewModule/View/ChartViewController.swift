@@ -18,7 +18,7 @@ protocol ChartViewOutput: AnyObject {
 class ChartViewController: UIViewController {
 
     var timePeriodCollectionDataManager: TimeIntervalCollectionViewDataManager?
-    weak var chartViewOutput: ChartViewOutput?
+    var chartViewOutput: ChartViewOutput?
     
     private let label: UILabel = {
         let label = UILabel()
