@@ -19,7 +19,7 @@ protocol RequestProtocol {
 extension RequestProtocol {
     
     var host: String {
-        APIConstants.baseUrl
+        APIConstants.host
     }
     
     var params: [String : String] {
@@ -33,8 +33,8 @@ extension RequestProtocol {
     func createURL() -> URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "finnhub.io"
-        components.path = "/api/v1" + path
+        components.host = host
+        components.path = APIConstants.path + path
         
         var query = [URLQueryItem]()
         for (name, value) in urlParams {

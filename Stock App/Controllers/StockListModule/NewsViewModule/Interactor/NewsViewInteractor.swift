@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsViewInteractorInput {
-    func obtainNewsList()
+    func obtainNewsList(news: NewsType)
 }
 
 protocol NewsViewInteractorOutput: AnyObject {
@@ -24,8 +24,8 @@ final class NewsViewInteractor: NewsViewInteractorInput {
         self.apiManager = apiManager
     }
     
-    func obtainNewsList() {
-        apiManager.perform(MarketNewsRequest(type: NewsType.topNews)) { [weak self] (result: Result<[News], Error>) in
+    func obtainNewsList(news: NewsType) {
+        apiManager.perform(MarketNewsRequest(type: news)) { [weak self] (result: Result<[News], Error>) in
             switch result {
             case .success(let data):
                 self?.newsInteractorOutput.didLoadNews(data)

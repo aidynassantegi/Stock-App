@@ -23,7 +23,7 @@ class ChartViewController: UIViewController {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .systemPurple
         label.font = .systemFont(ofSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,15 +41,14 @@ class ChartViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TimePeriodCollectionViewCell.self, forCellWithReuseIdentifier: TimePeriodCollectionViewCell.identifier)
-//        collectionView.backgroundColor = .secondarySystemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-//        collectionView.layer.cornerRadius = 10
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chartView.delegate = self
         chartViewOutput?.didLoadView()
         collectionView.delegate = timePeriodCollectionDataManager
         collectionView.dataSource = timePeriodCollectionDataManager
@@ -58,7 +57,7 @@ class ChartViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let indexPath = IndexPath(item: 0, section: 0)
+        let indexPath = IndexPath(item: 1, section: 0)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
     
@@ -67,8 +66,8 @@ class ChartViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
            // label.heightAnchor.constraint(equalToConstant: 20),
             
             chartView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
@@ -85,13 +84,14 @@ class ChartViewController: UIViewController {
 }
 
 
-//extension ChartViewController: ChartData {
-//    func showValue(x: Double, y: Double) {
-//        let date = Date(timeIntervalSince1970: x)
-//        let showData = "\(date.converToMonthYearHourFormat()) \(y) USD"
-//        label.text = showData
-//    }
-//}
+extension ChartViewController: ChartData {
+    func showValue(x: Double, y: Double) {
+        let date = Date(timeIntervalSince1970: x)
+        let showData = "\(date.converToMonthYearHourFormat())"
+        label.text = showData
+        print(showData)
+    }
+}
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {

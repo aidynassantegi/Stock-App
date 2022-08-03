@@ -13,7 +13,7 @@ class CustomMarkerView: MarkerView {
         let label = UILabel()
         label.textColor = .systemPurple
         label.backgroundColor = .clear
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,12 +45,11 @@ class CustomMarkerView: MarkerView {
         
         self.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
         self.offset.x = -self.frame.size.width / 2.0
-        self.offset.y = -self.frame.size.height - 7.0
+        self.offset.y = -150 //chart view height
     }
     
     override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
-        print(highlight)
-        label.text = "\(entry.y)"
+        label.text = "\(entry.y) USD"
         layoutIfNeeded()
     }
 }

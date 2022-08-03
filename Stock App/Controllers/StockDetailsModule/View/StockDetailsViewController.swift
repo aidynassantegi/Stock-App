@@ -17,6 +17,7 @@ class StockDetailsViewController: UIViewController {
     var chartView: ChartViewController?
     var chartViewPlaceholder = UIView()
     
+    var apiManager = APIManager()
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
@@ -37,6 +38,8 @@ class StockDetailsViewController: UIViewController {
         add(childVC: chartView, to: chartViewPlaceholder)
         setViews()
         configureTable()
+        
+        fetchNews(type: .company(symbol: "AAPL"))
     }
     
     func setViews() {
@@ -56,17 +59,19 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func configureTable() {}
-//    private func fetchNews() {
-//        apiManager.perform(MarketNewsRequest(type: .company(symbol: symbol))) { [weak self] (result: Result<[News], Error>) in
-//            switch result {
-//            case .success(let data):
+    
+    private func fetchNews(type: NewsType) {
+        apiManager.perform(MarketNewsRequest(type: type)) { [weak self] (result: Result<[News], Error>) in
+            switch result {
+            case .success(let data):
+                print(data)
 //                self?.news = data
 //                self?.tableView.reloadData()
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 
 }

@@ -64,7 +64,7 @@ class StockChartView: UIView {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
         
-        chartView.delegate = self
+       // chartView.delegate = self
         chartView.rightAxis.enabled = viewModel.showAxis
         chartView.legend.enabled = viewModel.showLegend
         
@@ -85,7 +85,9 @@ class StockChartView: UIView {
         dataSet.drawValuesEnabled = false
         dataSet.drawCirclesEnabled = false
         dataSet.setColor(viewModel.fillColor)
-        dataSet.highlightColor = .black
+        dataSet.drawHorizontalHighlightIndicatorEnabled = false
+        dataSet.highlightColor = .systemPurple
+        dataSet.highlightLineWidth = 2.5
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
         
@@ -94,13 +96,11 @@ class StockChartView: UIView {
 
 extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-//        delegate?.showValue(x: entry.x, y: entry.y)
+        delegate?.showValue(x: entry.x, y: entry.y)
         
         let graphPoint = chartView.getMarkerPosition(highlight: highlight)
         
-        let date = Date(timeIntervalSince1970: entry.x)
         //customMarkerView.label.text = "\(date.converToMonthYearHourFormat()) \(entry.y) USD"
-        print("\(date.converToMonthYearHourFormat()) \(entry.y) USD")
 //        customMarkerView.center = CGPoint(x: graphPoint.x, y: customMarkerView.center.y)
 //        customMarkerView.isHidden = false
     }

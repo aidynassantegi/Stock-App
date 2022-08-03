@@ -10,5 +10,6 @@ import Foundation
 struct APIConstants {
     static let apiKey = "cbbpt1aad3ibhoa29210"
     static let sandboxApiKey = "sandbox_cbbpt1aad3ibhoa2921g"
-    static let baseUrl = "https://finnhub.io/api/v1"
+    static let host = "finnhub.io"
+    static let path = "/api/v1"
 }
