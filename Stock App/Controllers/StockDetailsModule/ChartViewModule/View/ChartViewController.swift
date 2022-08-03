@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 protocol ChartViewInput: AnyObject {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel)
@@ -18,7 +19,7 @@ protocol ChartViewOutput: AnyObject {
 class ChartViewController: UIViewController {
 
     var timePeriodCollectionDataManager: TimeIntervalCollectionViewDataManager?
-    weak var chartViewOutput: ChartViewOutput?
+    var chartViewOutput: ChartViewOutput?
     
     private let label: UILabel = {
         let label = UILabel()
@@ -40,10 +41,10 @@ class ChartViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TimePeriodCollectionViewCell.self, forCellWithReuseIdentifier: TimePeriodCollectionViewCell.identifier)
-        collectionView.backgroundColor = .secondarySystemBackground
+//        collectionView.backgroundColor = .secondarySystemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.layer.cornerRadius = 10
+        collectionView.backgroundColor = .clear
+//        collectionView.layer.cornerRadius = 10
         return collectionView
     }()
     
@@ -55,6 +56,12 @@ class ChartViewController: UIViewController {
         setUpConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+    
     private func setUpConstraints() {
         view.addSubviews(label, chartView, collectionView)
         
@@ -69,13 +76,22 @@ class ChartViewController: UIViewController {
             chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             chartView.heightAnchor.constraint(equalToConstant: 150),
             
-            collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 5),
+            collectionView.widthAnchor.constraint(equalToConstant: 312),
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
+
+
+//extension ChartViewController: ChartData {
+//    func showValue(x: Double, y: Double) {
+//        let date = Date(timeIntervalSince1970: x)
+//        let showData = "\(date.converToMonthYearHourFormat()) \(y) USD"
+//        label.text = showData
+//    }
+//}
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {

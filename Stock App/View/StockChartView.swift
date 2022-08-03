@@ -36,6 +36,8 @@ class StockChartView: UIView {
         return chartView
     }()
     
+    private let customMarkerView = CustomMarkerView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(chartView)
@@ -61,11 +63,14 @@ class StockChartView: UIView {
         for index in 0...viewModel.data.count - 1 {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
-
+        
+        chartView.delegate = self
         chartView.rightAxis.enabled = viewModel.showAxis
-//        chartView.leftAxis.enabled =
         chartView.legend.enabled = viewModel.showLegend
         
+        customMarkerView.chartView = chartView
+        chartView.marker = customMarkerView
+
         let dataSet = LineChartDataSet(entries: entries, label: "7 Days")
         let colorTop = viewModel.fillColor.cgColor
         let colorBottom = UIColor.systemBackground.cgColor
@@ -74,21 +79,29 @@ class StockChartView: UIView {
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(),
                                        colors: gradientColors, locations: colorLocations) // Gradient Object
         dataSet.fill = LinearGradientFill(gradient: gradient!, angle: 90.0) // Set the Gradient
-        //dataSet.fillColor = viewModel.fillColor
+        
         dataSet.drawFilledEnabled = true
         dataSet.drawIconsEnabled = false
         dataSet.drawValuesEnabled = false
         dataSet.drawCirclesEnabled = false
         dataSet.setColor(viewModel.fillColor)
+        dataSet.highlightColor = .black
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
+        
     }
 }
 
 extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        delegate?.showValue(x: entry.x, y: entry.y)
+//        delegate?.showValue(x: entry.x, y: entry.y)
+        
+        let graphPoint = chartView.getMarkerPosition(highlight: highlight)
+        
+        let date = Date(timeIntervalSince1970: entry.x)
+        //customMarkerView.label.text = "\(date.converToMonthYearHourFormat()) \(entry.y) USD"
+        print("\(date.converToMonthYearHourFormat()) \(entry.y) USD")
+//        customMarkerView.center = CGPoint(x: graphPoint.x, y: customMarkerView.center.y)
+//        customMarkerView.isHidden = false
     }
-    
-    
 }

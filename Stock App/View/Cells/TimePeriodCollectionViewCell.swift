@@ -34,8 +34,10 @@ class TimePeriodCollectionViewCell: UICollectionViewCell {
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        translatesAutoresizingMaskIntoConstraints = false
         layer.masksToBounds = true
-        layer.cornerRadius = 5
+        layer.cornerRadius = 14
+        layer.cornerCurve = .continuous
         backgroundColor = .systemGray6
     }
     

@@ -7,14 +7,9 @@
 
 import UIKit
 
-
 class StockDetailsViewController: UIViewController {
     var symbol: String!
     var companyName: String!
-    private var candleStickdata: [CandleStick] = []
-    private var news: [News] = []
-    private let apiManager = APIManager()
-    private var metrics: Metrics?
     
     var collectionView: FinancialCollectionViewController?
     var collectionViewPlaceholder = UIView()
@@ -49,24 +44,18 @@ class StockDetailsViewController: UIViewController {
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubviews(chartViewPlaceholder, collectionViewPlaceholder)
-        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
                                       chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                       chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
                                       chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 200),
                                       
-                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 10),
+                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 20),
                                       collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                       collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
                                       collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
-    private func configureTable() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-
-    
+    private func configureTable() {}
 //    private func fetchNews() {
 //        apiManager.perform(MarketNewsRequest(type: .company(symbol: symbol))) { [weak self] (result: Result<[News], Error>) in
 //            switch result {
@@ -79,52 +68,35 @@ class StockDetailsViewController: UIViewController {
 //        }
 //    }
     
-//    func setUpConstraints() {
-//        view.addSubviews(collectionView,timePeriodCollectionView, tableView)
-//        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//                                     collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//                                     collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//                                     collectionView.heightAnchor.constraint(equalToConstant: (view.height * 0.45)),
-//
-//                                     timePeriodCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
-//                                     timePeriodCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//                                     timePeriodCollectionView.heightAnchor.constraint(equalToConstant: 30),
-//                                     timePeriodCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//
-//                                     tableView.topAnchor.constraint(equalTo: timePeriodCollectionView
-//                                        .bottomAnchor),
-//                                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//                                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//                                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-//                                    ])
+
 }
     
-extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as! NewsTableViewCell
-        cell.configure(with: .init(model: news[indexPath.row]))
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        NewsTableViewCell.prefferedHeight
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsTableHeaderView.identifier) as! NewsTableHeaderView
-        header.configure(with: .init(title: symbol.uppercased(), showButton: false))
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        NewsTableHeaderView.preferredHeight
-    }
-}
+//extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        news.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as! NewsTableViewCell
+//        cell.configure(with: .init(model: news[indexPath.row]))
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        NewsTableViewCell.prefferedHeight
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsTableHeaderView.identifier) as! NewsTableHeaderView
+//        header.configure(with: .init(title: symbol.uppercased(), showButton: false))
+//        return header
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        NewsTableHeaderView.preferredHeight
+//    }
+//}
