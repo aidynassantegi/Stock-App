@@ -11,7 +11,7 @@ import Charts
 class CustomMarkerView: MarkerView {
     let label: UILabel = {
         let label = UILabel()
-        label.textColor = .systemPurple
+        label.textColor = .black
         label.backgroundColor = .clear
         label.font = .systemFont(ofSize: 12, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false

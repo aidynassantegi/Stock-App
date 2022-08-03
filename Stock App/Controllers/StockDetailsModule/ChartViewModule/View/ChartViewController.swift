@@ -23,8 +23,8 @@ class ChartViewController: UIViewController {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .systemPurple
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -85,10 +85,11 @@ class ChartViewController: UIViewController {
 
 
 extension ChartViewController: ChartData {
-    func showValue(x: Double, y: Double) {
+    func showValue(x: Double, y: Double, with color: UIColor) {
         let date = Date(timeIntervalSince1970: x)
         let showData = "\(date.converToMonthYearHourFormat())"
         label.text = showData
+        //label.textColor = color
         print(showData)
     }
 }
