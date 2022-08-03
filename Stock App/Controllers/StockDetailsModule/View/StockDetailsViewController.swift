@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import FloatingPanel
 
-class StockDetailsViewController: UIViewController {
+class StockDetailsViewController: UIViewController, FloatingPanelControllerDelegate {
     var symbol: String!
     var companyName: String!
     
@@ -17,7 +18,8 @@ class StockDetailsViewController: UIViewController {
     var chartView: ChartViewController?
     var chartViewPlaceholder = UIView()
     
-    var apiManager = APIManager()
+    var newsController: NewsViewController?
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
@@ -37,12 +39,11 @@ class StockDetailsViewController: UIViewController {
         add(childVC: collectionView, to: collectionViewPlaceholder)
         add(childVC: chartView, to: chartViewPlaceholder)
         setViews()
-        configureTable()
         
-        fetchNews(type: .company(symbol: "AAPL"))
+        setUpFloatingPanel()
     }
     
-    func setViews() {
+    private func setViews() {
         chartViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
 
@@ -58,50 +59,15 @@ class StockDetailsViewController: UIViewController {
                                       collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
-    private func configureTable() {}
-    
-    private func fetchNews(type: NewsType) {
-        apiManager.perform(MarketNewsRequest(type: type)) { [weak self] (result: Result<[News], Error>) in
-            switch result {
-            case .success(let data):
-                print(data)
-//                self?.news = data
-//                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
-        }
+    private func setUpFloatingPanel() {
+        guard let vc = newsController else { return }
+        
+        let panel = FloatingPanelController(delegate: self)
+        panel.surfaceView.backgroundColor = .secondarySystemBackground
+        panel.set(contentViewController: vc)
+        panel.addPanel(toParent: self)
+        panel.track(scrollView: vc.newsTableView)
     }
     
-
 }
     
-//extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        news.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as! NewsTableViewCell
-//        cell.configure(with: .init(model: news[indexPath.row]))
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        NewsTableViewCell.prefferedHeight
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsTableHeaderView.identifier) as! NewsTableHeaderView
-//        header.configure(with: .init(title: symbol.uppercased(), showButton: false))
-//        return header
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        NewsTableHeaderView.preferredHeight
-//    }
-//}

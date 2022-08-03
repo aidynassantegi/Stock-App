@@ -28,8 +28,12 @@ final class StockDetailsAssembly{
             input.configure(with: stockSymbol, and: companyName)
         }
         
+        let newsVc = NewsViewAssembly().assembly(newsType: .company(symbol: stockSymbol))
+        
         vc.chartView = chartView
         vc.collectionView = collectionView
+        vc.newsController = newsVc
+        
         return vc
     }
 }

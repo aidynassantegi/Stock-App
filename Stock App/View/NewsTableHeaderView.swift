@@ -19,15 +19,6 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("+ Watchlist", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 6
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
     struct ViewModel {
         let title: String
         let showButton: Bool
@@ -36,9 +27,7 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         backgroundColor = .secondarySystemBackground
-       // contentView.addSubviews(label, button)
         addSubview(label)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -57,11 +46,8 @@ class NewsTableHeaderView: UITableViewHeaderFooterView {
         //label.frame = CGRect(x: 14, y: 0, width: contentView.width-20, height: contentView.height)
     }
     
-    @objc private func didTapButton() {}
-    
     func configure(with viewModel: ViewModel) {
         label.text = viewModel.title
-       // button.isHidden = !viewModel.showButton
     }
 }
 

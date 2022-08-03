@@ -19,13 +19,15 @@ final class NewsViewInteractor: NewsViewInteractorInput {
     
     weak var newsInteractorOutput: NewsViewInteractorOutput!
     private var apiManager = APIManager()
+    private var newsType: NewsType!
     
-    required init(apiManager: APIManager) {
+    required init(apiManager: APIManager, newsType: NewsType) {
         self.apiManager = apiManager
+        self.newsType = newsType
     }
     
     func obtainNewsList(news: NewsType) {
-        apiManager.perform(MarketNewsRequest(type: news)) { [weak self] (result: Result<[News], Error>) in
+        apiManager.perform(MarketNewsRequest(type: newsType)) { [weak self] (result: Result<[News], Error>) in
             switch result {
             case .success(let data):
                 self?.newsInteractorOutput.didLoadNews(data)

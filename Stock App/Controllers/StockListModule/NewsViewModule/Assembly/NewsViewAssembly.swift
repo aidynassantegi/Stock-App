@@ -10,12 +10,12 @@ import UIKit
 import SafariServices
 
 final class NewsViewAssembly {
-    func assembly() -> NewsViewController {
+    func assembly(newsType: NewsType) -> NewsViewController {
         let vc = NewsViewController(type: .topNews)
         let newsTableDataManager = NewsTableDataManager()
         let apiManager = APIManager()
         let router = NewsViewRouter()
-        let interactor = NewsViewInteractor(apiManager: apiManager)
+        let interactor = NewsViewInteractor(apiManager: apiManager, newsType: newsType)
         let presenter = NewsViewPresenter()
         
         vc.newsTableDataManager = newsTableDataManager

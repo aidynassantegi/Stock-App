@@ -88,6 +88,7 @@ class StockChartView: UIView {
         dataSet.drawHorizontalHighlightIndicatorEnabled = false
         dataSet.highlightColor = .systemPurple
         dataSet.highlightLineWidth = 2.5
+        
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
         

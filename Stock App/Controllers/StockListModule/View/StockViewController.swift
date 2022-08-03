@@ -19,7 +19,7 @@ protocol StockListViewOutput: AnyObject {
     func didSelectStockSell(with symbol: String, companyName: String)
 }
 
-class StockVC: UIViewController, FloatingPanelControllerDelegate {
+class StockViewController: UIViewController, FloatingPanelControllerDelegate {
 	
    // private var stockSymbols: [String] = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "META", "NVDA", "KO", "NFLX", "DHR", "VZ"]
         
@@ -51,7 +51,7 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
 	}
 	
     private func setUpChild(){
-        let vc = NewsViewAssembly().assembly()
+        let vc = NewsViewAssembly().assembly(newsType: .topNews)
         let panel = FloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = .secondarySystemBackground
         panel.set(contentViewController: vc)
@@ -83,7 +83,7 @@ class StockVC: UIViewController, FloatingPanelControllerDelegate {
         
 }
 
-extension StockVC: StockListViewInput {
+extension StockViewController: StockListViewInput {
     func handleObtainedSymbols(_ symbols: [StockSymbols]) {
       //  self.symbols = symbols
         print(symbols.count)

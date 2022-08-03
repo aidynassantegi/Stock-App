@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 final class StockListModuleAssembly {
-    func assembly() -> StockVC {
-        let vc = StockVC()
+    func assembly() -> StockViewController {
+        let vc = StockViewController()
         let tableDataManager = TableViewDataManager()
         let presenter = StockListPresenter()
         let network = APIManager()
