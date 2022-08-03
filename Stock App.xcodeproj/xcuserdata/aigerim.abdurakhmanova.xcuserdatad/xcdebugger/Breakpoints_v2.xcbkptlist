@@ -510,9 +510,9 @@
             filePath = "Stock App/Controllers/StockDetailsModule/View/StockDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "setViews()"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -520,7 +520,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "82DC2095-B6AF-4EFB-9827-EA16F5BDFAFD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/Assembly/StockDetailsAssembly.swift"
@@ -528,7 +528,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "assemble(_:)"
+            landmarkName = "assemble(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -568,7 +568,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "12475DD7-8C26-4604-99B5-19B558FC1898"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/Assembly/StockDetailsAssembly.swift"
@@ -576,7 +576,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "assemble(_:)"
+            landmarkName = "assemble(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -584,7 +584,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "41D3EE45-3529-4C91-B904-C1CD564FB1E1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -600,7 +600,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FAB9B6FC-112E-4B58-9C67-5C7A4FD74493"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -616,7 +616,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "49C738F0-B019-4670-A72C-4AC676B54C89"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -632,7 +632,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1A5AE8DD-8B99-49A3-B876-99DC85AE4CED"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -648,7 +648,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ED6D8AFD-9C28-4EC9-AD80-D89E4AB47A06"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -664,7 +664,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AE7F10F6-37A5-463B-A939-3F18123B11E2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -680,7 +680,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "89871844-AF75-46AB-B0C7-43CC068A74E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -696,7 +696,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1C607328-4C7C-4AA2-ABBD-577B9E85AD01"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -712,7 +712,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "511D168C-278B-4CDD-9DD7-27AC519385A0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Assembly/FinancialDataAssembly.swift"
@@ -728,7 +728,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "48F429D6-5EF6-4D8E-AC0F-86E72E8B321B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Interactor/FinancialDataInteractor.swift"
@@ -744,7 +744,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D91F143C-36DE-409B-8E56-D3F117996C76"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Interactor/FinancialDataInteractor.swift"
@@ -760,7 +760,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AA6A1CB7-0EF6-4DA7-B0E9-4543A7D75B55"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Interactor/FinancialDataInteractor.swift"
@@ -776,7 +776,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B5167E2E-1FE0-4E1F-8C2F-C0A8CDAA7992"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Interactor/FinancialDataInteractor.swift"
@@ -792,7 +792,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B3789DF0-3E96-4816-8CFC-28E4FED771B9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Presenter/FinancialDataPresenter.swift"
@@ -808,7 +808,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C6D09987-492F-479B-A6C2-7FD8B01D68D1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Presenter/FinancialDataPresenter.swift"
@@ -824,7 +824,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6A6DA9AC-871A-4D60-BED8-4D2191181210"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock App/Controllers/StockDetailsModule/FinancialDataModule/Presenter/FinancialDataPresenter.swift"
@@ -850,6 +850,102 @@
             endingLineNumber = "82"
             landmarkName = "unknown"
             landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA40067C-1A92-4A42-B3DC-5E935C576F7F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/ChartViewModule/Interactor/ChartViewInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "obtainCandles(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "906163D5-8A49-4176-9AA9-89F34251BA2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/ChartViewModule/Interactor/ChartViewInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "obtainCandles(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A2E988F-E14F-4221-9254-3196DFF7847F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/ChartViewModule/Interactor/ChartViewInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "obtainCandles(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12117DAC-A361-443C-8C58-4187E4C1019C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/ChartViewModule/Interactor/ChartViewInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "createViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E2AF235-BFE0-4313-9596-2F39FBC6725E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/Assembly/StockDetailsAssembly.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "assemble(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3442F754-8E85-4388-80B2-C6B55A6BC9D4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock App/Controllers/StockDetailsModule/Assembly/StockDetailsAssembly.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "assemble(_:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

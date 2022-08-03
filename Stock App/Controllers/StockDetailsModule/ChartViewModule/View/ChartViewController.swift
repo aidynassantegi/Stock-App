@@ -42,6 +42,8 @@ class ChartViewController: UIViewController {
         collectionView.register(TimePeriodCollectionViewCell.self, forCellWithReuseIdentifier: TimePeriodCollectionViewCell.identifier)
         collectionView.backgroundColor = .secondarySystemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.layer.cornerRadius = 10
         return collectionView
     }()
     
@@ -55,27 +57,29 @@ class ChartViewController: UIViewController {
 
     private func setUpConstraints() {
         view.addSubviews(label, chartView, collectionView)
+        
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            label.heightAnchor.constraint(equalToConstant: 20),
+           // label.heightAnchor.constraint(equalToConstant: 20),
             
             chartView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
             chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            chartView.heightAnchor.constraint(equalToConstant: 100),
+            chartView.heightAnchor.constraint(equalToConstant: 150),
             
             collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 50)
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            collectionView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
+        print(viewModel)
         chartView.configure(with: viewModel)
         //Do not forget chart view delegate
     }

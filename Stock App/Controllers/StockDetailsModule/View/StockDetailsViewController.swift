@@ -35,11 +35,9 @@ class StockDetailsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = companyName
         
-        guard let collectionView = collectionView else {
-            return
-        }
-        
+        guard let collectionView = collectionView else { return }
         guard let chartView = chartView else { return }
+        
         add(childVC: collectionView, to: collectionViewPlaceholder)
         add(childVC: chartView, to: chartViewPlaceholder)
         setViews()
@@ -49,11 +47,13 @@ class StockDetailsViewController: UIViewController {
     func setViews() {
         chartViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubviews(chartViewPlaceholder, collectionViewPlaceholder)
-        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-                                      chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 100),
+        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                      chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 200),
+                                      
                                       collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 10),
                                       collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                       collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),

@@ -20,6 +20,9 @@ final class ChartViewAssembly {
         vc.timePeriodCollectionDataManager = dataManager
         
         let presenter = ChartViewPresenter()
+        
+        configuration(presenter)
+        
         let requestManager = APIManager()
         let interactor = ChartViewInteractor(requestManager: requestManager)
         
@@ -27,8 +30,6 @@ final class ChartViewAssembly {
         presenter.chartView = vc
         presenter.chartViewInteractor = interactor
         interactor.chartViewInteractorOutput = presenter
-        
-        configuration(presenter)
         
         return vc
     }

@@ -33,6 +33,7 @@ class FinancialCollectionViewController: UIViewController {
         collectionView.register(MetricCollectionViewCell.self, forCellWithReuseIdentifier: MetricCollectionViewCell.identifier)
         collectionView.backgroundColor = .secondarySystemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.layer.cornerRadius = 5
         return collectionView
     }()
     
