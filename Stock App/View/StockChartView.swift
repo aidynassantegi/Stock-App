@@ -38,7 +38,6 @@ class StockChartView: UIView {
     }()
     
     private let customMarkerView = CustomMarkerView()
-    var textColor: UIColor!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,6 +68,7 @@ class StockChartView: UIView {
         }
         
         chartView.rightAxis.enabled = viewModel.showAxis
+        
         //chartView.legend.enabled = viewModel.showLegend
         
         customMarkerView.chartView = chartView
@@ -112,6 +112,7 @@ extension StockChartView: ChartViewDelegate {
     
     
     func chartViewDidEndPanning(_ chartView: ChartViewBase) {
+        customMarkerView.label.text = nil
         delegate?.removeText(true)
     }
 //    

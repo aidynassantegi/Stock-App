@@ -23,6 +23,6 @@ class FinancialMetricDataManager: NSObject, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.width * 0.7, height: 100 / 3) // collectionView height / 3
+        CGSize(width: collectionView.width * 0.5, height: 100 / 3) // collectionView height / 3
     }
 }

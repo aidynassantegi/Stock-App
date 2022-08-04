@@ -96,7 +96,7 @@ class NewsTableViewCell: UITableViewCell {
                                      
                                      headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
                                      headlineLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
-                                     headlineLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor, constant: -2),
+                                     headlineLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: -5),
                                      headlineLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -2)
                                      
                                     ])

@@ -27,9 +27,14 @@ final class ChartViewInteractor: ChartViewInteractorInput {
     
     func obtainCandles(with stockSymbol: String, numberOfDays: TimeInterval) {
         let group = DispatchGroup()
-        
+        var resolution: String!
         group.enter()
-        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+        if numberOfDays < 31 {
+            resolution = "1"
+        } else {
+            resolution = "D"
+        }
+        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays, resolution: resolution)) { [weak self] (result: Result<MarketDataResponse, Error>) in
             defer {
                 group.leave()
             }
