@@ -60,7 +60,6 @@ class FinancialCollectionViewController: UIViewController {
     
 extension FinancialCollectionViewController: FinancialDataViewInput {
     func handleObtainedEntity(_ entity: [MetricCollectionViewEntity]) {
-        print("entity \(entity)")
         if financialMetricDataManager != nil {
             financialMetricDataManager?.metricViewModels = entity
         }
@@ -68,7 +67,7 @@ extension FinancialCollectionViewController: FinancialDataViewInput {
     }
     
     func handleObtainedMetrics(_ metrics: Metrics) {
-        print(metrics)
+       // print(metrics)
     }
 }
 

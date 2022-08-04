@@ -10,9 +10,8 @@ import Charts
 
 protocol ChartData: AnyObject {
     func showValue(x: Double, y: Double)
+    func removeText(_ deselected: Bool)
 }
-
-
 
 class StockChartView: UIView {
 
@@ -109,5 +108,9 @@ extension StockChartView: ChartViewDelegate {
         //customMarkerView.label.text = "\(date.converToMonthYearHourFormat()) \(entry.y) USD"
 //        customMarkerView.center = CGPoint(x: graphPoint.x, y: customMarkerView.center.y)
 //        customMarkerView.isHidden = false
+    }
+    
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        delegate?.removeText(true)
     }
 }

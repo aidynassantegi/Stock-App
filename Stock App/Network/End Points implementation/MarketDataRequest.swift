@@ -27,6 +27,7 @@ struct MarketDataRequest: RequestProtocol {
     var urlParams: [String : String] {
         let today = Date().addingTimeInterval(-(86400))
         let prior = today.addingTimeInterval(-(86400 * numberOfDays))
+       // let prior = today.addingTimeInterval(-(6 * 2629746))
         var params = ["symbol" : symbol, "resolution" : "1", "from" : "\(Int(prior.timeIntervalSince1970))", "to" : "\(Int(today.timeIntervalSince1970))"]
         return params
     }

@@ -31,7 +31,7 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = companyName
+        title = symbol
         
         guard let collectionView = collectionView else { return }
         guard let chartView = chartView else { return }

@@ -14,6 +14,7 @@ protocol ChartViewInput: AnyObject {
 
 protocol ChartViewOutput: AnyObject {
     func didLoadView()
+    func didSelectTimeCell(with timePeriod: Double)
 }
 
 class ChartViewController: UIViewController {
@@ -49,9 +50,8 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         chartView.delegate = self
+        setUpCollectionView()
         chartViewOutput?.didLoadView()
-        collectionView.delegate = timePeriodCollectionDataManager
-        collectionView.dataSource = timePeriodCollectionDataManager
         setUpConstraints()
     }
 
@@ -59,6 +59,15 @@ class ChartViewController: UIViewController {
         super.viewWillAppear(animated)
         let indexPath = IndexPath(item: 1, section: 0)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+    
+    private func setUpCollectionView() {
+        collectionView.delegate = timePeriodCollectionDataManager
+        collectionView.dataSource = timePeriodCollectionDataManager
+        
+        timePeriodCollectionDataManager?.onTimeDidSelect = { [weak self] timePeriod in
+            self?.chartViewOutput?.didSelectTimeCell(with: timePeriod)
+        }
     }
     
     private func setUpConstraints() {
@@ -90,11 +99,16 @@ extension ChartViewController: ChartData {
         let showData = "\(date.converToMonthYearHourFormat())"
         label.text = showData
     }
+    
+    func removeText(_ deselected: Bool) {
+        if deselected {
+            label.text = nil
+        }
+    }
 }
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
-        print(viewModel)
         chartView.configure(with: viewModel)
         //Do not forget chart view delegate
     }
