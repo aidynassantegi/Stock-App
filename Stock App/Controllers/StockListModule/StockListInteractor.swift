@@ -37,7 +37,7 @@ final class StockListInteractor: StockListInteractorInput {
         let group = DispatchGroup()
         for company in companies {
             group.enter()
-            requestManager.perform(MarketDataRequest.init(symbol: company.ticker, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+            requestManager.perform(MarketDataRequest.init(symbol: company.ticker, numberOfDays: 1)) { [weak self] (result: Result<MarketDataResponse, Error>) in
                 defer {
                     group.leave()
                 }

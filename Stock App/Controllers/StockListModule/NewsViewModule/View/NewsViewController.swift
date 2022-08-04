@@ -45,6 +45,8 @@ class NewsViewController: UIViewController {
         table.separatorColor = .label
         table.separatorInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
         table.backgroundColor = .clear
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 70
         return table
     }()
     

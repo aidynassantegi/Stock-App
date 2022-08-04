@@ -11,7 +11,7 @@ import UIKit
 
 struct Timeintervals {
     let stringValue: String
-    let timeValue: Double
+    let timeValue: TimeInterval
 }
 
 final class TimeIntervalCollectionViewDataManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
@@ -19,8 +19,9 @@ final class TimeIntervalCollectionViewDataManager: NSObject, UICollectionViewDel
     
     private var timeIntervals: [Timeintervals] = [.init(stringValue: "1D", timeValue: 1),
                                                   .init(stringValue: "1W", timeValue: 7),
-                                                  .init(stringValue: "3M", timeValue: 91.2501),
-                                                  .init(stringValue: "6M", timeValue: 182.5),
+                                                  .init(stringValue: "1M", timeValue: 31),
+                                                  .init(stringValue: "3M", timeValue: 93),
+                                                  .init(stringValue: "6M", timeValue: 183),
                                                   .init(stringValue: "1Y", timeValue: 365),
                                                   .init(stringValue: "2Y", timeValue: 730)]
     

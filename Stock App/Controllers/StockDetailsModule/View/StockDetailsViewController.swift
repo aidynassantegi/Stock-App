@@ -12,6 +12,9 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     var symbol: String!
     var companyName: String!
     
+    var shortInfoView: ShortInfoViewController?
+    var shortInfoViewPlaceholder = UIView()
+    
     var collectionView: FinancialCollectionViewController?
     var collectionViewPlaceholder = UIView()
 
@@ -31,11 +34,12 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = symbol
         
+        guard let shortInfoView = shortInfoView else { return }
         guard let collectionView = collectionView else { return }
         guard let chartView = chartView else { return }
         
+        add(childVC: shortInfoView, to: shortInfoViewPlaceholder)
         add(childVC: collectionView, to: collectionViewPlaceholder)
         add(childVC: chartView, to: chartViewPlaceholder)
         setViews()
@@ -46,17 +50,23 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     private func setViews() {
         chartViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubviews(chartViewPlaceholder, collectionViewPlaceholder)
-        NSLayoutConstraint.activate([ chartViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                      chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 200),
-                                      
-                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 20),
-                                      collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                      collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                      collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
+        shortInfoViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+       
+        view.addSubviews(shortInfoViewPlaceholder, chartViewPlaceholder, collectionViewPlaceholder)
+        NSLayoutConstraint.activate([shortInfoViewPlaceholder.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -50),
+                                     shortInfoViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                                     shortInfoViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     shortInfoViewPlaceholder.heightAnchor.constraint(equalToConstant: 50),
+                                     
+                                     chartViewPlaceholder.topAnchor.constraint(equalTo: shortInfoViewPlaceholder.bottomAnchor, constant: 10),
+                                     chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                                     chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 250),
+                                     
+                                     collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 20),
+                                     collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                     collectionViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     collectionViewPlaceholder.heightAnchor.constraint(equalToConstant: (view.height * 0.45))])
     }
     
     private func setUpFloatingPanel() {

@@ -68,18 +68,17 @@ class StockChartView: UIView {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
         
-       // chartView.delegate = self
         chartView.rightAxis.enabled = viewModel.showAxis
-        chartView.legend.enabled = viewModel.showLegend
-        
+        //chartView.legend.enabled = viewModel.showLegend
         customMarkerView.chartView = chartView
         chartView.marker = customMarkerView
 
-        let dataSet = LineChartDataSet(entries: entries, label: "7 Days")
+        let dataSet = LineChartDataSet(entries: entries, label: "")
         let colorTop = viewModel.fillColor.cgColor
         let colorBottom = UIColor.systemBackground.cgColor
         let gradientColors = [colorTop, colorBottom] as CFArray // Colors of the gradient
-        let colorLocations:[CGFloat] = [0.9, 0.0] // Positioning of the gradient
+        let colorLocations:[CGFloat] = [0.75, 0.0] // Positioning of the gradient
+        
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(),
                                        colors: gradientColors, locations: colorLocations) // Gradient Object
         dataSet.fill = LinearGradientFill(gradient: gradient!, angle: 90.0) // Set the Gradient

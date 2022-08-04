@@ -33,8 +33,8 @@ extension RequestProtocol {
     func createURL() -> URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = host
-        components.path = APIConstants.path + path
+        components.host = "finnhub.io"
+        components.path = "/api/v1" + path
         
         var query = [URLQueryItem]()
         for (name, value) in urlParams {
@@ -44,7 +44,7 @@ extension RequestProtocol {
         
         components.queryItems = query
         
-        //print(components.url)
+        print(components.url)
         //return components.url!
         
         var urlString = host + path
@@ -57,9 +57,7 @@ extension RequestProtocol {
             queryItems.append(.init(name: "token", value: APIConstants.apiKey))
             urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
         }
-        print(urlString)
-
-        //{"error":"You don't have access to this resource."} -> nil url
+        
 //        return URL(string: urlString)!
         return components.url!
     }

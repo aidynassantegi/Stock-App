@@ -26,6 +26,15 @@
 		02797D40288A5BA90097EADC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */; };
 		02797D43288A6DE10097EADC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 02797D42288A6DE10097EADC /* SDWebImage */; };
 		02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02797D44288A9DFC0097EADC /* StockSymbols.swift */; };
+		027B0ED9289BAE510085617E /* SwiftTickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 027B0ED8289BAE510085617E /* SwiftTickerView */; };
+		027B0EDC289BAE710085617E /* TickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EDB289BAE710085617E /* TickerViewController.swift */; };
+		027B0EDF289BB1880085617E /* TickerViewEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EDE289BB1880085617E /* TickerViewEntity.swift */; };
+		027B0EE1289BBC5A0085617E /* TickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EE0289BBC5A0085617E /* TickerView.swift */; };
+		027B0EE5289BCF1F0085617E /* ShortInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EE4289BCF1F0085617E /* ShortInfoViewController.swift */; };
+		027B0EE8289BD1350085617E /* ShortInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EE7289BD1350085617E /* ShortInfoEntity.swift */; };
+		027B0EEB289BD3800085617E /* ShortInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EEA289BD3800085617E /* ShortInfoInteractor.swift */; };
+		027B0EEF289BD9DC0085617E /* ShortInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EEE289BD9DC0085617E /* ShortInfoAssembly.swift */; };
+		027B0EF1289BDAB50085617E /* ShortViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EF0289BDAB50085617E /* ShortViewPresenter.swift */; };
 		027F7D34289A43CB003B8984 /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F7D33289A43CB003B8984 /* CustomMarkerView.swift */; };
 		028689D228994393008321A2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D128994393008321A2 /* ChartViewController.swift */; };
 		028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */; };
@@ -96,6 +105,14 @@
 		026528542892A3BF00C4159A /* NewsViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewAssembly.swift; sourceTree = "<group>"; };
 		02797D3F288A5BA90097EADC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		02797D44288A9DFC0097EADC /* StockSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbols.swift; sourceTree = "<group>"; };
+		027B0EDB289BAE710085617E /* TickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewController.swift; sourceTree = "<group>"; };
+		027B0EDE289BB1880085617E /* TickerViewEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewEntity.swift; sourceTree = "<group>"; };
+		027B0EE0289BBC5A0085617E /* TickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerView.swift; sourceTree = "<group>"; };
+		027B0EE4289BCF1F0085617E /* ShortInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoViewController.swift; sourceTree = "<group>"; };
+		027B0EE7289BD1350085617E /* ShortInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoEntity.swift; sourceTree = "<group>"; };
+		027B0EEA289BD3800085617E /* ShortInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoInteractor.swift; sourceTree = "<group>"; };
+		027B0EEE289BD9DC0085617E /* ShortInfoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoAssembly.swift; sourceTree = "<group>"; };
+		027B0EF0289BDAB50085617E /* ShortViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortViewPresenter.swift; sourceTree = "<group>"; };
 		027F7D33289A43CB003B8984 /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
 		028689D128994393008321A2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalCollectionViewDataManager.swift; sourceTree = "<group>"; };
@@ -153,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02797D43288A6DE10097EADC /* SDWebImage in Frameworks */,
+				027B0ED9289BAE510085617E /* SwiftTickerView in Frameworks */,
 				64D2E4C22889510100BBF4FF /* Charts in Frameworks */,
 				39D1D8612889A1E400FB2B9E /* FloatingPanel in Frameworks */,
 			);
@@ -164,6 +182,8 @@
 		0221550528939E43000025CA /* StockDetailsModule */ = {
 			isa = PBXGroup;
 			children = (
+				027B0EE2289BCDC30085617E /* ShortInfoModule */,
+				027B0ED6289BADD20085617E /* TickerViewModule */,
 				028689CC289941A9008321A2 /* ChartViewModule */,
 				02BC87272897F78600CB209C /* Assembly */,
 				02BC87162897AB4C00CB209C /* FinancialDataModule */,
@@ -303,6 +323,84 @@
 				026528542892A3BF00C4159A /* NewsViewAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		027B0ED6289BADD20085617E /* TickerViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EDD289BB1790085617E /* Entity */,
+				027B0EDA289BAE600085617E /* View */,
+			);
+			path = TickerViewModule;
+			sourceTree = "<group>";
+		};
+		027B0EDA289BAE600085617E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EDB289BAE710085617E /* TickerViewController.swift */,
+				027B0EE0289BBC5A0085617E /* TickerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		027B0EDD289BB1790085617E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EDE289BB1880085617E /* TickerViewEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		027B0EE2289BCDC30085617E /* ShortInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EED289BD6FB0085617E /* Presenter */,
+				027B0EEC289BD6F40085617E /* Assembly */,
+				027B0EE9289BD36B0085617E /* Interactor */,
+				027B0EE6289BD1220085617E /* Entity */,
+				027B0EE3289BCF0E0085617E /* View */,
+			);
+			path = ShortInfoModule;
+			sourceTree = "<group>";
+		};
+		027B0EE3289BCF0E0085617E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EE4289BCF1F0085617E /* ShortInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		027B0EE6289BD1220085617E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EE7289BD1350085617E /* ShortInfoEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		027B0EE9289BD36B0085617E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EEA289BD3800085617E /* ShortInfoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		027B0EEC289BD6F40085617E /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EEE289BD9DC0085617E /* ShortInfoAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		027B0EED289BD6FB0085617E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				027B0EF0289BDAB50085617E /* ShortViewPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		028689CC289941A9008321A2 /* ChartViewModule */ = {
@@ -558,6 +656,7 @@
 				64D2E4C12889510100BBF4FF /* Charts */,
 				39D1D8602889A1E400FB2B9E /* FloatingPanel */,
 				02797D42288A6DE10097EADC /* SDWebImage */,
+				027B0ED8289BAE510085617E /* SwiftTickerView */,
 			);
 			productName = "Stock App";
 			productReference = 64ABB1D72886CEB800B203F3 /* Stock App.app */;
@@ -591,6 +690,7 @@
 				64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */,
 				39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				02797D41288A6DE10097EADC /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				027B0ED7289BAE510085617E /* XCRemoteSwiftPackageReference "SwiftTickerView" */,
 			);
 			productRefGroup = 64ABB1D82886CEB800B203F3 /* Products */;
 			projectDirPath = "";
@@ -639,13 +739,17 @@
 				39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */,
 				02C42F7528890C04004D0091 /* SearchResponse.swift in Sources */,
 				02233001289102CF00F364E9 /* StockListInteractor.swift in Sources */,
+				027B0EF1289BDAB50085617E /* ShortViewPresenter.swift in Sources */,
 				02797D40288A5BA90097EADC /* NewsTableViewCell.swift in Sources */,
+				027B0EDC289BAE710085617E /* TickerViewController.swift in Sources */,
 				02BC87222897AC7400CB209C /* MetricCollectionViewEntity.swift in Sources */,
+				027B0EE5289BCF1F0085617E /* ShortInfoViewController.swift in Sources */,
 				39DA5318288FFEF20051A566 /* APIConstants.swift in Sources */,
 				022330032891090C00F364E9 /* StockListRouter.swift in Sources */,
 				0265284D2892973800C4159A /* NewsTableDataManager.swift in Sources */,
 				0265285128929EB300C4159A /* NewsViewInteractor.swift in Sources */,
 				64D2E4C52889511D00BBF4FF /* StocksTableVC.swift in Sources */,
+				027B0EDF289BB1880085617E /* TickerViewEntity.swift in Sources */,
 				64ABB1FC2886DCDC00B203F3 /* StockTableViewCell.swift in Sources */,
 				02C42F7F28895B24004D0091 /* StockChartView.swift in Sources */,
 				028BA9AD289262710090B46C /* CalculateStockDynamic.swift in Sources */,
@@ -664,9 +768,12 @@
 				64ABB1F92886D9AF00B203F3 /* Stock.swift in Sources */,
 				02BC87202897ABE500CB209C /* FinancialMetricDataManager.swift in Sources */,
 				64ABB1FE2887C4CB00B203F3 /* StockInfoVC.swift in Sources */,
+				027B0EE8289BD1350085617E /* ShortInfoEntity.swift in Sources */,
 				64ABB1F32886D29700B203F3 /* StockViewController.swift in Sources */,
 				64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */,
+				027B0EE1289BBC5A0085617E /* TickerView.swift in Sources */,
 				0221550C28939E97000025CA /* StockDetailsViewController.swift in Sources */,
+				027B0EEF289BD9DC0085617E /* ShortInfoAssembly.swift in Sources */,
 				022155122893B240000025CA /* MetricCollectionViewCell.swift in Sources */,
 				02797D45288A9DFC0097EADC /* StockSymbols.swift in Sources */,
 				39DA532B28900B210051A566 /* NewsRequest.swift in Sources */,
@@ -680,6 +787,7 @@
 				028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */,
 				028689DA289954B2008321A2 /* ChartViewAssembly.swift in Sources */,
 				39E1918A288A54DE007FAFAE /* NewsTableHeaderView.swift in Sources */,
+				027B0EEB289BD3800085617E /* ShortInfoInteractor.swift in Sources */,
 				028689D828995410008321A2 /* ChartViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -900,6 +1008,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		027B0ED7289BAE510085617E /* XCRemoteSwiftPackageReference "SwiftTickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EMart86/SwiftTickerView.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
@@ -923,6 +1039,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02797D41288A6DE10097EADC /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		027B0ED8289BAE510085617E /* SwiftTickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 027B0ED7289BAE510085617E /* XCRemoteSwiftPackageReference "SwiftTickerView" */;
+			productName = SwiftTickerView;
 		};
 		39D1D8602889A1E400FB2B9E /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;

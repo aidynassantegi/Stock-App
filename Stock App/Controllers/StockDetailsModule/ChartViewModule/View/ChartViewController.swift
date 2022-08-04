@@ -75,16 +75,16 @@ class ChartViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
            // label.heightAnchor.constraint(equalToConstant: 20),
             
             chartView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
             chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            chartView.heightAnchor.constraint(equalToConstant: 150),
+            chartView.heightAnchor.constraint(equalToConstant: 200),
             
-            collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 5),
+            collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 15),
             collectionView.widthAnchor.constraint(equalToConstant: 312),
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 30)
@@ -109,6 +109,7 @@ extension ChartViewController: ChartData {
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
+        print("time stamp count \(viewModel.timeStamp.count)")
         chartView.configure(with: viewModel)
         //Do not forget chart view delegate
     }

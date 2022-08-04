@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ChartViewInteractorInput {
-    func obtainCandles(with stockSymbol: String, numberOfDays: Double)
+    func obtainCandles(with stockSymbol: String, numberOfDays: TimeInterval)
 }
 
 protocol ChartViewInteractorOutput: AnyObject{
@@ -25,7 +25,7 @@ final class ChartViewInteractor: ChartViewInteractorInput {
         self.requestManager = requestManager
     }
     
-    func obtainCandles(with stockSymbol: String, numberOfDays: Double) {
+    func obtainCandles(with stockSymbol: String, numberOfDays: TimeInterval) {
         let group = DispatchGroup()
         
         group.enter()
@@ -50,6 +50,7 @@ final class ChartViewInteractor: ChartViewInteractorInput {
     
     private func createViewModel() {
         let change = CalculateStockDynamic.getChangePercentage(for: candleStickData)
+        print("last element \(candleStickData[candleStickData.count - 1].date)")
         var viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candleStickData.reversed().map{ $0.close},
                                                                            showLegend: true,
                                                                            showAxis: true,
