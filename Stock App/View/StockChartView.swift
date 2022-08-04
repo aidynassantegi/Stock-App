@@ -70,6 +70,7 @@ class StockChartView: UIView {
         
         chartView.rightAxis.enabled = viewModel.showAxis
         //chartView.legend.enabled = viewModel.showLegend
+        
         customMarkerView.chartView = chartView
         chartView.marker = customMarkerView
 
@@ -109,7 +110,12 @@ extension StockChartView: ChartViewDelegate {
 //        customMarkerView.isHidden = false
     }
     
-    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+    
+    func chartViewDidEndPanning(_ chartView: ChartViewBase) {
         delegate?.removeText(true)
     }
+//    
+//    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+//        delegate?.removeText(true)
+//    }
 }

@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class NewsTableViewCell: UITableViewCell {
-
+    
     static let identifier = "NewsTableViewCell"
     static let prefferedHeight: CGFloat = 90
     
@@ -37,7 +37,7 @@ class NewsTableViewCell: UITableViewCell {
     private let headlineLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -89,14 +89,16 @@ class NewsTableViewCell: UITableViewCell {
                                      sourceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
                                      sourceLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: 5),
                                      
-                                     headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
-                                     headlineLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
-                                     headlineLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor),
-                                     
-                                     dateLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: 5),
                                      dateLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
                                      dateLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor),
-                                     dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+                                     dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+                                     dateLabel.heightAnchor.constraint(equalToConstant: 18),
+                                     
+                                     headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
+                                     headlineLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
+                                     headlineLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor, constant: -2),
+                                     headlineLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -2)
+                                     
                                     ])
     }
     

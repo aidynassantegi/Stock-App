@@ -35,8 +35,7 @@ final class NewsTableDataManager: NSObject, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        //NewsTableHeaderView.preferredHeight
-        UITableView.automaticDimension
+        NewsTableHeaderView.preferredHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
