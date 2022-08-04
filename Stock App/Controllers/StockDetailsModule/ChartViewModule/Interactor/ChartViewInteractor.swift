@@ -29,12 +29,8 @@ final class ChartViewInteractor: ChartViewInteractorInput {
         let group = DispatchGroup()
         var resolution: String!
         group.enter()
-        if numberOfDays < 31 {
-            resolution = "1"
-        } else {
-            resolution = "D"
-        }
-        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays, resolution: resolution)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+        
+        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays)) { [weak self] (result: Result<MarketDataResponse, Error>) in
             defer {
                 group.leave()
             }

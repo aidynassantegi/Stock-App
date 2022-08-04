@@ -10,12 +10,17 @@ import Foundation
 struct MarketDataRequest: RequestProtocol {
     var symbol: String
     var numberOfDays: TimeInterval
-    var resolutioon: String
+    var resolution: String
     
-    init(symbol: String, numberOfDays: TimeInterval, resolution: String = "1") {
+    init(symbol: String, numberOfDays: TimeInterval) {
         self.symbol = symbol
         self.numberOfDays = numberOfDays
-        self.resolutioon = resolution
+        
+        if self.numberOfDays < 31 {
+            resolution = "1"
+        } else {
+            resolution = "D"
+        }
     }
     
     var path: String {
@@ -30,7 +35,7 @@ struct MarketDataRequest: RequestProtocol {
         let today = Date().addingTimeInterval(-(86400))
         let prior = today.addingTimeInterval(-(86400 * numberOfDays))
        // let prior = today.addingTimeInterval(-(6 * 2629746))
-        var params = ["symbol" : symbol, "resolution" : resolutioon, "from" : "\(Int(prior.timeIntervalSince1970))", "to" : "\(Int(today.timeIntervalSince1970))"]
+        var params = ["symbol" : symbol, "resolution" : resolution, "from" : "\(Int(prior.timeIntervalSince1970))", "to" : "\(Int(today.timeIntervalSince1970))"]
         return params
     }
 }
