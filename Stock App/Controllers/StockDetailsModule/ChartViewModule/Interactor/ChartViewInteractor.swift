@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ChartViewInteractorInput {
-    func obtainCandles(with stockSymbol: String)
+    func obtainCandles(with stockSymbol: String, numberOfDays: Double)
 }
 
 protocol ChartViewInteractorOutput: AnyObject{
@@ -25,11 +25,11 @@ final class ChartViewInteractor: ChartViewInteractorInput {
         self.requestManager = requestManager
     }
     
-    func obtainCandles(with stockSymbol: String) {
+    func obtainCandles(with stockSymbol: String, numberOfDays: Double) {
         let group = DispatchGroup()
         
         group.enter()
-        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays)) { [weak self] (result: Result<MarketDataResponse, Error>) in
             defer {
                 group.leave()
             }

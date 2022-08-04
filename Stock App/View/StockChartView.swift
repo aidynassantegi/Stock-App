@@ -61,6 +61,8 @@ class StockChartView: UIView {
     }
     
     func configure(with viewModel: ViewModel) {
+        chartView.notifyDataSetChanged()
+        
         var entries = [ChartDataEntry]()
                 
         for index in 0...viewModel.data.count - 1 {

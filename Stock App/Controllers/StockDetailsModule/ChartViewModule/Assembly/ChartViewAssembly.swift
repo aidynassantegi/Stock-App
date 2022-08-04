@@ -27,6 +27,7 @@ final class ChartViewAssembly {
         let interactor = ChartViewInteractor(requestManager: requestManager)
         
         vc.chartViewOutput = presenter
+        
         presenter.chartView = vc
         presenter.chartViewInteractor = interactor
         interactor.chartViewInteractorOutput = presenter
