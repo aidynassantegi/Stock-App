@@ -68,7 +68,6 @@ class StockChartView: UIView {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
         
-      //  chartView.rightAxis.enabled = viewModel.showAxis
         chartView.leftAxis.enabled = viewModel.showAxis
         chartView.xAxis.enabled = viewModel.showAxis
         chartView.xAxis.labelPosition = .bottom

@@ -33,8 +33,23 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigationController()
         view.backgroundColor = .systemBackground
         
+        setViews()
+        
+        setUpFloatingPanel()
+    }
+    
+    private func setUpNavigationController() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(saveTapped))
+    }
+    
+    @objc func saveTapped() {
+        
+    }
+    
+    private func setViews() {
         guard let shortInfoView = shortInfoView else { return }
         guard let collectionView = collectionView else { return }
         guard let chartView = chartView else { return }
@@ -42,12 +57,7 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
         add(childVC: shortInfoView, to: shortInfoViewPlaceholder)
         add(childVC: collectionView, to: collectionViewPlaceholder)
         add(childVC: chartView, to: chartViewPlaceholder)
-        setViews()
         
-        setUpFloatingPanel()
-    }
-    
-    private func setViews() {
         chartViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         collectionViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
         shortInfoViewPlaceholder.translatesAutoresizingMaskIntoConstraints = false
