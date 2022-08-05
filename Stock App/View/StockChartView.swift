@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 
+
 protocol ChartData: AnyObject {
     func showValue(x: Double, y: Double)
     func removeText(_ deselected: Bool)
@@ -67,9 +68,11 @@ class StockChartView: UIView {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
         
-        chartView.rightAxis.enabled = viewModel.showAxis
-        
-        //chartView.legend.enabled = viewModel.showLegend
+      //  chartView.rightAxis.enabled = viewModel.showAxis
+        chartView.leftAxis.enabled = viewModel.showAxis
+        chartView.xAxis.enabled = viewModel.showAxis
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.valueFormatter = CustomAxis()
         
         customMarkerView.chartView = chartView
         chartView.marker = customMarkerView
@@ -88,14 +91,28 @@ class StockChartView: UIView {
         dataSet.drawIconsEnabled = false
         dataSet.drawValuesEnabled = false
         dataSet.drawCirclesEnabled = false
+        
         dataSet.setColor(viewModel.fillColor)
         dataSet.drawHorizontalHighlightIndicatorEnabled = false
         dataSet.highlightColor = viewModel.fillColor
-        dataSet.highlightLineWidth = 2.5
+        dataSet.highlightLineWidth = 1.5
         
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
         
+    }
+}
+
+final class CustomAxis: AxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
+        dateFormatter.locale = .current
+        
+        let date = Date(timeIntervalSince1970: value)
+        
+        return dateFormatter.string(from: date)
     }
 }
 
@@ -112,7 +129,6 @@ extension StockChartView: ChartViewDelegate {
     
     
     func chartViewDidEndPanning(_ chartView: ChartViewBase) {
-        customMarkerView.label.text = nil
         delegate?.removeText(true)
     }
 //    
