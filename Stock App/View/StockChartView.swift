@@ -103,36 +103,14 @@ class StockChartView: UIView {
     }
 }
 
-final class CustomAxis: AxisValueFormatter {
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
-        dateFormatter.locale = .current
-        
-        let date = Date(timeIntervalSince1970: value)
-        
-        return dateFormatter.string(from: date)
-    }
-}
-
 extension StockChartView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         delegate?.showValue(x: entry.x, y: entry.y)
-        
-        let graphPoint = chartView.getMarkerPosition(highlight: highlight)
-        
-        //customMarkerView.label.text = "\(date.converToMonthYearHourFormat()) \(entry.y) USD"
-//        customMarkerView.center = CGPoint(x: graphPoint.x, y: customMarkerView.center.y)
-//        customMarkerView.isHidden = false
     }
-    
     
     func chartViewDidEndPanning(_ chartView: ChartViewBase) {
         delegate?.removeText(true)
+        chartView.highlightValue(nil, callDelegate: false)
     }
-//    
-//    func chartValueNothingSelected(_ chartView: ChartViewBase) {
-//        delegate?.removeText(true)
-//    }
+
 }

@@ -36,6 +36,7 @@
 		027B0EEF289BD9DC0085617E /* ShortInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EEE289BD9DC0085617E /* ShortInfoAssembly.swift */; };
 		027B0EF1289BDAB50085617E /* ShortViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B0EF0289BDAB50085617E /* ShortViewPresenter.swift */; };
 		027F7D34289A43CB003B8984 /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F7D33289A43CB003B8984 /* CustomMarkerView.swift */; };
+		02835D24289CD41E00DDBE67 /* CustomAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02835D23289CD41E00DDBE67 /* CustomAxis.swift */; };
 		028689D228994393008321A2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D128994393008321A2 /* ChartViewController.swift */; };
 		028689D42899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */; };
 		028689D628994F98008321A2 /* ChartViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028689D528994F98008321A2 /* ChartViewInteractor.swift */; };
@@ -114,6 +115,7 @@
 		027B0EEE289BD9DC0085617E /* ShortInfoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoAssembly.swift; sourceTree = "<group>"; };
 		027B0EF0289BDAB50085617E /* ShortViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortViewPresenter.swift; sourceTree = "<group>"; };
 		027F7D33289A43CB003B8984 /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
+		02835D23289CD41E00DDBE67 /* CustomAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAxis.swift; sourceTree = "<group>"; };
 		028689D128994393008321A2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		028689D32899479D008321A2 /* TimeIntervalCollectionViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalCollectionViewDataManager.swift; sourceTree = "<group>"; };
 		028689D528994F98008321A2 /* ChartViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewInteractor.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			children = (
 				02C42F7828890E5D004D0091 /* Extensions.swift */,
 				028BA9AC289262710090B46C /* CalculateStockDynamic.swift */,
+				02835D23289CD41E00DDBE67 /* CustomAxis.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				39DA5314288E54110051A566 /* DataParserProtocol.swift in Sources */,
 				39DA531C288FFF230051A566 /* APIError.swift in Sources */,
 				39D1D8632889A49A00FB2B9E /* NewsViewController.swift in Sources */,
+				02835D24289CD41E00DDBE67 /* CustomAxis.swift in Sources */,
 				02C42F7528890C04004D0091 /* SearchResponse.swift in Sources */,
 				02233001289102CF00F364E9 /* StockListInteractor.swift in Sources */,
 				027B0EF1289BDAB50085617E /* ShortViewPresenter.swift in Sources */,
