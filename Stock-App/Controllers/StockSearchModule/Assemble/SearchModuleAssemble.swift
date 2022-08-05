@@ -26,6 +26,7 @@ final class SearchModuleAssemble {
         interactor.output = presenter
         
         router.viewController = view
+        router.lastSearched = LastSearchAssembler().assemble()
         
         return view
     }

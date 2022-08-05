@@ -17,7 +17,7 @@ protocol SearchInteractorOutput: AnyObject {
     func setSearchResults(with stocks: [TableViewModel])
 }
 
-final class SearchPresenter: SearchViewOutput, SearchInteractorOutput, SearchRouterOutput {
+final class SearchPresenter: SearchViewOutput, SearchInteractorOutput {
     // MARK: - Interactor
     var interactor: SearchInteractorInput?
     func searchFor(query: String) {
@@ -37,10 +37,7 @@ final class SearchPresenter: SearchViewOutput, SearchInteractorOutput, SearchRou
     weak var searchedColection: LastSearchedViewController?
     
     func searchedStocks() -> LastSearchedViewController? {
-        return LastSearchAssembler().assemble()
-    }
-    func searchedStocks(vc: LastSearchedViewController) {
-        searchedColection = vc
+        router?.searchedCollection()
     }
     
     func showDetails(of stock: String, and companyName: String) {

@@ -16,8 +16,15 @@ final class SearchInteractor: SearchInteractorInput {
     
     weak var output: SearchInteractorOutput?
     
+    private var requestManager = APIManager()
+    private var companies: [CompanyProfile] = []
+    private var stockSymbols: [StockSymbols] = []
+    
+    private var companiesMap: [CompanyProfile: [CandleStick]] = [:]
+    var viewModel = [TableViewModel]()
     
     func searchStock(with query: String) {
+        viewModel = []
         requestManager.perform(SearchSymbolsRequest(query: query))
         { [weak self] (result: Result<SearchResponse, Error>) in
             switch result {
@@ -34,38 +41,51 @@ final class SearchInteractor: SearchInteractorInput {
     }
 
     private func save(name: String) {
-      
-      guard let appDelegate =
-        UIApplication.shared.delegate as? AppDelegate else {
-        return
-      }
-      
-      let managedContext =
+        let searched = fetchFromCoreData()
+        guard !searched.contains(name) else { return }
+        guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
         appDelegate.persistentContainer.viewContext
-      
-      let entity =
+        
+        let entity =
         NSEntityDescription.entity(forEntityName: "LastSearchedStocks",
                                    in: managedContext)!
-      
-      let person = NSManagedObject(entity: entity,
-                                   insertInto: managedContext)
-      
-      person.setValue(name, forKeyPath: "symbol")
-      
-      do {
-        try managedContext.save()
-      } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
-      }
+        
+        let searches = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        searches.setValue(name, forKeyPath: "symbol")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    private func fetchFromCoreData() -> [String] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LastSearchedStocks")
+        var lastSearchedStocks = [NSManagedObject]()
+        do {
+            lastSearchedStocks = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        let stockSymbols = lastSearchedStocks.map { symbol in
+            symbol.value(forKey: "symbol") as! String
+        }
+        return stockSymbols
     }
     
     
-    private var requestManager = APIManager()
-    private var companies: [CompanyProfile] = []
-    private var stockSymbols: [StockSymbols] = []
-    
-    private var companiesMap: [CompanyProfile: [CandleStick]] = [:]
-    var viewModel = [TableViewModel]()
     
     required init(requestManager: APIManager){
         self.requestManager = requestManager
