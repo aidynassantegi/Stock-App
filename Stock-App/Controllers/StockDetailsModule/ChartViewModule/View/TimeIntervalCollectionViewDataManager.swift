@@ -42,7 +42,7 @@ final class TimeIntervalCollectionViewDataManager: NSObject, UICollectionViewDel
         onTimeDidSelect?(timeIntervals[indexPath.row].timeValue)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 42, height: 28) // collectionView height / 3
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        CGSize(width: 42, height: 28) // collectionView height / 3
+//    }
 }

@@ -39,7 +39,8 @@ class ChartViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+        layout.itemSize = CGSize(width: 46, height: 40)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TimePeriodCollectionViewCell.self, forCellWithReuseIdentifier: TimePeriodCollectionViewCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,13 +86,12 @@ class ChartViewController: UIViewController {
             chartView.heightAnchor.constraint(equalToConstant: 200),
             
             collectionView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 15),
-            collectionView.widthAnchor.constraint(equalToConstant: 312),
-            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 30)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            collectionView.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 }
-
 
 extension ChartViewController: ChartData {
     func showValue(x: Double, y: Double) {
@@ -109,8 +109,6 @@ extension ChartViewController: ChartData {
 
 extension ChartViewController: ChartViewInput {
     func handleObtainedChartViewModel(_ viewModel: StockChartView.ViewModel) {
-        print("time stamp count \(viewModel.timeStamp.count)")
         chartView.configure(with: viewModel)
-        //Do not forget chart view delegate
     }
 }
