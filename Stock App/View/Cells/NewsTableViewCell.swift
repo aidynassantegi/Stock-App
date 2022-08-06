@@ -79,6 +79,8 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     func configureUI() {
+        contentView.isSkeletonable = true
+        isSkeletonable = true
         addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
         
         let imageSize: CGFloat = contentView.height - 15

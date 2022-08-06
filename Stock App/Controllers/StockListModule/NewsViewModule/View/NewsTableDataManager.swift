@@ -19,7 +19,10 @@ final class NewsTableDataManager: NSObject, UITableViewDelegate, SkeletonTableVi
         NewsTableViewCell.identifier
     }
     
-    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        news.count
+    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         news.count
     }
@@ -27,6 +30,7 @@ final class NewsTableDataManager: NSObject, UITableViewDelegate, SkeletonTableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else { fatalError() }
         cell.configure(with: .init(model: news[indexPath.row]))
+        cell.isSkeletonable = true
         return cell
     }
     

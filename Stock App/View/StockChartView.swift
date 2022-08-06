@@ -67,6 +67,7 @@ class StockChartView: UIView {
         for index in 0...viewModel.data.count - 1 {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
+        chartView.isUserInteractionEnabled = viewModel.showAxis
         
         chartView.leftAxis.enabled = viewModel.showAxis
         chartView.xAxis.enabled = viewModel.showAxis

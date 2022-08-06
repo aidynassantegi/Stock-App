@@ -23,6 +23,8 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     
     var newsController: NewsViewController?
     
+    private var count = 0
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsTableHeaderView.identifier)
@@ -46,7 +48,13 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     }
     
     @objc func saveTapped() {
+        count += 1
         
+        if count % 2 == 0 {
+            navigationItem.rightBarButtonItem?.tintColor = .link
+        } else {
+            navigationItem.rightBarButtonItem?.tintColor = .systemYellow
+        }
     }
     
     private func setViews() {
@@ -71,7 +79,7 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
                                      chartViewPlaceholder.topAnchor.constraint(equalTo: shortInfoViewPlaceholder.bottomAnchor, constant: 10),
                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 250),
+                                     chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 270),
                                      
                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 20),
                                      collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -88,6 +96,4 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
         panel.addPanel(toParent: self)
         panel.track(scrollView: vc.newsTableView)
     }
-    
 }
-    

@@ -64,13 +64,14 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         output?.didLoadView()
         setUpTable()
+        newsTableView.showGradientSkeleton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        newsTableView.showSkeleton(usingColor: .darkGray, transition: .crossDissolve(0.25))
-    }
-//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        newsTableView.showSkeleton(usingColor: .lightGray, transition: .crossDissolve(0.25))
+//    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         newsTableView.frame = view.bounds

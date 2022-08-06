@@ -22,18 +22,11 @@ class StockTableViewCell: UITableViewCell {
         let changePercentage: String
     }
     
-	let stockImageView: UIImageView = {
-		let imageView = UIImageView()
-		imageView.layer.masksToBounds = true
-		imageView.layer.cornerRadius = 10
-		imageView.translatesAutoresizingMaskIntoConstraints = false
-		return imageView
-	}()
-
 	let symbolLabel: UILabel = {
 		let label = UILabel()
 		label.font = .boldSystemFont(ofSize: 18)
 		label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
 		return label
 	}()
 	
@@ -50,6 +43,7 @@ class StockTableViewCell: UITableViewCell {
 		label.font = .systemFont(ofSize: 12)
 		label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.isSkeletonable = true
 		return label
 	}()
 	
@@ -57,6 +51,7 @@ class StockTableViewCell: UITableViewCell {
 		let label = UILabel()
 		label.font = .boldSystemFont(ofSize: 18)
 		label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
 		return label
 	}()
 	
@@ -67,6 +62,7 @@ class StockTableViewCell: UITableViewCell {
 		label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
+        label.isSkeletonable = true
 		return label
 	}()
     
@@ -74,6 +70,7 @@ class StockTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isSkeletonable = true
         return stackView
     }()
     
@@ -82,18 +79,21 @@ class StockTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 12)
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
         return label
     }()
     
     private let miniChartView: StockChartView = {
         let chartView = StockChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.isSkeletonable = true
         return chartView
     }()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        isSkeletonable = true
+        contentView.isSkeletonable = true
 		configureUI()
 	}
 	
@@ -102,12 +102,8 @@ class StockTableViewCell: UITableViewCell {
 	}
 
     func configure(with viewModel: TableViewModel, index: Int) {
-        
-//        if viewModel.logo == "" {
-//            stockImageView.image = UIImage(named: "local-file-not-found")
-//        }else {
-//            stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
-//        }
+        isSkeletonable = true
+        contentView.isSkeletonable = true
         symbolLabel.text = viewModel.symbol
         companyNameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
@@ -121,6 +117,7 @@ class StockTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
     }
     
     override func prepareForReuse() {
@@ -133,6 +130,7 @@ class StockTableViewCell: UITableViewCell {
     }
     
 	private func configureUI() {
+       
 		layer.masksToBounds = true
 		layer.cornerRadius = 16
 		
