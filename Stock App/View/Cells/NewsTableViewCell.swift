@@ -31,6 +31,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
         return label
     }()
     
@@ -39,6 +40,7 @@ class NewsTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
         return label
     }()
     
@@ -46,6 +48,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .light)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isSkeletonable = true
         return label
     }()
     
@@ -57,6 +60,7 @@ class NewsTableViewCell: UITableViewCell {
         imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isSkeletonable = true
         return imageView
     }()
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import SkeletonView
 
 enum NewsType {
     case topNews
@@ -46,8 +47,7 @@ class NewsViewController: UIViewController {
         table.separatorInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
         table.backgroundColor = .clear
         table.rowHeight = 50
-//        table.rowHeight = UITableView.automaticDimension
-//        table.estimatedRowHeight = 70
+        table.isSkeletonable = true
         return table
     }()
     
@@ -66,6 +66,11 @@ class NewsViewController: UIViewController {
         setUpTable()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        newsTableView.showSkeleton(usingColor: .darkGray, transition: .crossDissolve(0.25))
+    }
+//
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         newsTableView.frame = view.bounds
@@ -95,6 +100,8 @@ class NewsViewController: UIViewController {
 extension NewsViewController: NewsViewInput {
     func handleObtainedNews(_ news: [News]) {
         newsTableDataManager.news = news
+        newsTableView.stopSkeletonAnimation()
+        newsTableView.hideSkeleton()
         newsTableView.reloadData()
     }
 }

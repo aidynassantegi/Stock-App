@@ -7,12 +7,18 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
-final class NewsTableDataManager: NSObject, UITableViewDelegate, UITableViewDataSource {
+final class NewsTableDataManager: NSObject, UITableViewDelegate, SkeletonTableViewDataSource {
     
     var news: [News] = []
     var onNewDidSelect: ((String) -> Void)?
     var newType: NewsType = NewsType.topNews
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        NewsTableViewCell.identifier
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         news.count

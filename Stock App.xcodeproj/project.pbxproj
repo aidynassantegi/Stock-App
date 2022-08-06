@@ -73,6 +73,7 @@
 		39DA532F28900FBF0051A566 /* FinancialMetricsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA532E28900FBF0051A566 /* FinancialMetricsRequest.swift */; };
 		39DA5331289014EE0051A566 /* MarketDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA5330289014EE0051A566 /* MarketDataRequest.swift */; };
 		39E1918A288A54DE007FAFAE /* NewsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E19189288A54DE007FAFAE /* NewsTableHeaderView.swift */; };
+		39F1353D289D5279001533E6 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 39F1353C289D5279001533E6 /* SkeletonView */; };
 		64ABB1DB2886CEB800B203F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DA2886CEB800B203F3 /* AppDelegate.swift */; };
 		64ABB1DD2886CEB800B203F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DC2886CEB800B203F3 /* SceneDelegate.swift */; };
 		64ABB1DF2886CEB800B203F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB1DE2886CEB800B203F3 /* ViewController.swift */; };
@@ -175,6 +176,7 @@
 				027B0ED9289BAE510085617E /* SwiftTickerView in Frameworks */,
 				64D2E4C22889510100BBF4FF /* Charts in Frameworks */,
 				39D1D8612889A1E400FB2B9E /* FloatingPanel in Frameworks */,
+				39F1353D289D5279001533E6 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +662,7 @@
 				39D1D8602889A1E400FB2B9E /* FloatingPanel */,
 				02797D42288A6DE10097EADC /* SDWebImage */,
 				027B0ED8289BAE510085617E /* SwiftTickerView */,
+				39F1353C289D5279001533E6 /* SkeletonView */,
 			);
 			productName = "Stock App";
 			productReference = 64ABB1D72886CEB800B203F3 /* Stock App.app */;
@@ -694,6 +697,7 @@
 				39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				02797D41288A6DE10097EADC /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				027B0ED7289BAE510085617E /* XCRemoteSwiftPackageReference "SwiftTickerView" */,
+				39F1353B289D5279001533E6 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 64ABB1D82886CEB800B203F3 /* Products */;
 			projectDirPath = "";
@@ -1028,6 +1032,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		39F1353B289D5279001533E6 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		64D2E4C02889510100BBF4FF /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
@@ -1053,6 +1065,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 39D1D85F2889A1E400FB2B9E /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		39F1353C289D5279001533E6 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39F1353B289D5279001533E6 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		64D2E4C12889510100BBF4FF /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
