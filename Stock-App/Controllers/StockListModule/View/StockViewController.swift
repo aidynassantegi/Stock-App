@@ -7,11 +7,15 @@
 
 import UIKit
 import FloatingPanel
+import SkeletonView
 
 protocol StockListViewInput: AnyObject {
     func handleObtainedSymbols(_ symbols: [StockSymbols])
     func handleObtainedCompanyProfiles(_ companies: [CompanyProfile])
     func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel])
+    
+    func showSkeleton()
+    func hideSkeleton()
 }
 
 protocol StockListViewOutput: AnyObject {
@@ -39,6 +43,7 @@ class StockViewController: UIViewController, FloatingPanelControllerDelegate {
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
         configureTable()
 		configureUI()
         setUpChild()
@@ -66,7 +71,7 @@ class StockViewController: UIViewController, FloatingPanelControllerDelegate {
 			tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
 		])
 	}
     
@@ -84,6 +89,19 @@ class StockViewController: UIViewController, FloatingPanelControllerDelegate {
 }
 
 extension StockViewController: StockListViewInput {
+    func hideSkeleton() {
+        tableView.stopSkeletonAnimation()
+        view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+    }
+    
+    func showSkeleton() {
+        tableView.isSkeletonable = true
+        let gradient = SkeletonGradient(baseColor: .concrete)
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+//        tableView.showGradientSkeleton()
+        tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
+    }
+    
     func handleObtainedSymbols(_ symbols: [StockSymbols]) {
       //  self.symbols = symbols
         print(symbols.count)
@@ -96,6 +114,7 @@ extension StockViewController: StockListViewInput {
     
     func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel]) {
         tableDataManager?.viewModel = tableViewModel
+        
         tableView.reloadData()
         print(tableViewModel)
     }

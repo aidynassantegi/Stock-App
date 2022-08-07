@@ -7,13 +7,22 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
-final class NewsTableDataManager: NSObject, UITableViewDelegate, UITableViewDataSource {
+final class NewsTableDataManager: NSObject, UITableViewDelegate, SkeletonTableViewDataSource {
     
     var news: [News] = []
     var onNewDidSelect: ((String) -> Void)?
     var newType: NewsType = NewsType.topNews
     
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        NewsTableViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        news.count
+    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         news.count
     }
@@ -21,6 +30,7 @@ final class NewsTableDataManager: NSObject, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else { fatalError() }
         cell.configure(with: .init(model: news[indexPath.row]))
+        cell.isSkeletonable = true
         return cell
     }
     

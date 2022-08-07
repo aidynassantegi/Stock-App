@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
-final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDelegate {
+final class TableViewDataManager: NSObject, SkeletonTableViewDataSource, UITableViewDelegate {
     var companies: [CompanyProfile] = []
     
     var viewModel: [TableViewModel] = []
@@ -29,4 +30,14 @@ final class TableViewDataManager: NSObject, UITableViewDataSource, UITableViewDe
         onStockDidSelect?(viewModel[indexPath.row].symbol, viewModel[indexPath.row].companyName)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        StockTableViewCell.reuseId
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        UITableView.automaticNumberOfSkeletonRows
+    }
+    
+    
 }

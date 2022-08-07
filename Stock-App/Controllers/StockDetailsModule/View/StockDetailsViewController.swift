@@ -7,7 +7,6 @@
 
 import UIKit
 import FloatingPanel
-import CoreData
 
 class StockDetailsViewController: UIViewController, FloatingPanelControllerDelegate {
     var symbol: String!
@@ -23,6 +22,8 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     var chartViewPlaceholder = UIView()
     
     var newsController: NewsViewController?
+    
+    private var count = 0
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -43,60 +44,18 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     }
     
     private func setUpNavigationController() {
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(saveTapped))
     }
     
     @objc func saveTapped() {
-        save(name: symbol)
-    }
-    
-    
-    private func save(name: String) {
-        let searched = fetchFromCoreData()
-        guard !searched.contains(name) else { return }
-        guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+        count += 1
         
-        let managedContext =
-        appDelegate.persistentContainer.viewContext
-        
-        let entity =
-        NSEntityDescription.entity(forEntityName: "FavoriteStocks",
-                                   in: managedContext)!
-        
-        let searches = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        searches.setValue(name, forKeyPath: "symbol")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        if count % 2 == 0 {
+            navigationItem.rightBarButtonItem?.tintColor = .link
+        } else {
+            navigationItem.rightBarButtonItem?.tintColor = .systemYellow
         }
     }
-    
-    private func fetchFromCoreData() -> [String] {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteStocks")
-        var lastSearchedStocks = [NSManagedObject]()
-        do {
-            lastSearchedStocks = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        let stockSymbols = lastSearchedStocks.map { symbol in
-            symbol.value(forKey: "symbol") as! String
-        }
-        return stockSymbols
-    }
-    
     
     private func setViews() {
         guard let shortInfoView = shortInfoView else { return }
@@ -120,7 +79,7 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
                                      chartViewPlaceholder.topAnchor.constraint(equalTo: shortInfoViewPlaceholder.bottomAnchor, constant: 10),
                                      chartViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                                      chartViewPlaceholder.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 250),
+                                     chartViewPlaceholder.heightAnchor.constraint(equalToConstant: 270),
                                      
                                      collectionViewPlaceholder.topAnchor.constraint(equalTo: chartViewPlaceholder.bottomAnchor, constant: 20),
                                      collectionViewPlaceholder.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -137,6 +96,4 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
         panel.addPanel(toParent: self)
         panel.track(scrollView: vc.newsTableView)
     }
-    
 }
-    

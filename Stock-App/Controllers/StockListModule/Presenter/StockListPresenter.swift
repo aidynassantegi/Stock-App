@@ -25,6 +25,7 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
     
     func didLoadCandleSticks(_ tableViewModel: [TableViewModel]) {
         view.handleObtainedTableViewModel(tableViewModel)
+        view.hideSkeleton()
     }
     
 //    func didLoadCandleSticks(_ companiesMap: [CompanyProfile : [CandleStick]]) {
@@ -33,6 +34,7 @@ final class StockListPresenter: StockListInteractorOutput, StockListViewOutput {
 //    }
     
     func didLoadView() {
+        view.showSkeleton()
         interactor.obtainStockSymbols()
     }
     
