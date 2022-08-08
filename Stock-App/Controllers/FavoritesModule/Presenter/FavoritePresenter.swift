@@ -28,4 +28,8 @@ final class FavoritePresenter: FavoriteViewOutput,  FavoriteInteractorOutput {
 	func deleteItem(at index: Int) {
 		interactor?.deleteItem(at: index)
 	}
+	
+	func goToSearchView() {
+		router?.goToSearchView()
+	}
 }

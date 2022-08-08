@@ -17,6 +17,7 @@ protocol FavoriteViewOutput: AnyObject {
     func viewDidAppear()
 	func showDetails(of symbol: String, and companyName: String)
 	func deleteItem(at index: Int)
+	func goToSearchView()
 }
 
 class FavoriteViewController: UIViewController, FavoriteViewInput {
@@ -53,12 +54,18 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupTableView()
+		
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(gotoSearch))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output?.viewDidAppear()
     }
+	
+	@objc func gotoSearch() {
+		output?.goToSearchView()
+	}
     
     
     private func setupTableView() {
