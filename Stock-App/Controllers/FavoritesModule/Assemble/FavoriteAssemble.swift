@@ -13,15 +13,19 @@ final class FavoriteAssemble {
         let view = FavoriteViewController()
         let presenter = FavoritePresenter()
         let interactor = FavoriteInteractor(requestManager: apiManager)
-        
+		let router = FavoriteRouter()
+		
         view.output = presenter
         presenter.view = view
         presenter.interactor = interactor
-        interactor.output = presenter
+		presenter.router = router
+		interactor.output = presenter
         
-        var tableManager = FavoriteManager()
+        let tableManager = FavoriteManager()
         view.favoriteManager = tableManager
-        
+		
+		router.viewController = view
+		
         return view
     }
 }

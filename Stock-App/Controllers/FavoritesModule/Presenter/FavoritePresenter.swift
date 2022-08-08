@@ -10,7 +10,8 @@ import Foundation
 final class FavoritePresenter: FavoriteViewOutput,  FavoriteInteractorOutput {
     
     var interactor: FavoriteInteractorInput?
-    weak var view: FavoriteViewInput?
+	weak var view: FavoriteViewInput?
+	var router: FavoriteRouterInput?
     
     func viewDidAppear() {
         interactor?.fetchFromCoreData()
@@ -20,5 +21,7 @@ final class FavoritePresenter: FavoriteViewOutput,  FavoriteInteractorOutput {
         view?.setWithStocksTable(stocks: stocks)
     }
     
-    
+	func showDetails(of symbol: String, and companyName: String) {
+		router?.openChart(with: symbol, and: companyName)
+	}
 }

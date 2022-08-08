@@ -26,6 +26,7 @@ class FavoriteManager: NSObject, UITableViewDataSource, UITableViewDelegate {
         if let stock = setCellWithStock?(indexPath.row) {
             cell.configure(with: stock, index: indexPath.row)
         }
+		cell.selectionStyle = .none
         return cell
     }
     
