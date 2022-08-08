@@ -14,6 +14,7 @@ class FavoriteManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     var searchResultCount: (() -> Int)?
     var setCellWithStock: ((Int) -> TableViewModel?)?
     var didSelectStock: ((Int) -> Void)?
+	var deleteItem: ((Int) -> Void)?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchResultCount?() ?? 0
@@ -34,5 +35,16 @@ class FavoriteManager: NSObject, UITableViewDataSource, UITableViewDelegate {
         didSelectStock?(indexPath.row)
     }
     
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+			-> UISwipeActionsConfiguration? {
+			let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+				self.deleteItem?(indexPath.row)
+				completionHandler(true)
+			}
+			deleteAction.image = UIImage(systemName: "trash")
+			deleteAction.backgroundColor = .systemRed
+			let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+			return configuration
+	}
     
 }

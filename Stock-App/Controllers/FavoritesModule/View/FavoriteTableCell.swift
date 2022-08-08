@@ -136,7 +136,6 @@ class FavoriteTableCell: UITableViewCell {
 		
 		addSubviews(symbolLabel, currencyLabel ,companyNameLabel, miniChartView, stackView)
 		
-		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([
 			
 			symbolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
@@ -149,7 +148,6 @@ class FavoriteTableCell: UITableViewCell {
 			
 			stackView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
 			stackView.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-//            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
 			stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
 			
 			miniChartView.topAnchor.constraint(equalTo: topAnchor, constant: 14),

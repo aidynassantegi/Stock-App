@@ -16,6 +16,7 @@ protocol FavoriteViewInput: AnyObject {
 protocol FavoriteViewOutput: AnyObject {
     func viewDidAppear()
 	func showDetails(of symbol: String, and companyName: String)
+	func deleteItem(at index: Int)
 }
 
 class FavoriteViewController: UIViewController, FavoriteViewInput {
@@ -73,6 +74,11 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
             guard let companyName = self?.favoriteStocks[index].companyName else { return }
             self?.output?.showDetails(of: symbol, and: companyName)
         }
+		favoriteManager.deleteItem = { [weak self] index in
+			self?.favoriteStocks.remove(at: index)
+			self?.output?.deleteItem(at: index)
+			self?.tableView.reloadData()
+		}
         tableView.delegate = favoriteManager
         tableView.dataSource = favoriteManager
         view.addSubview(tableView)

@@ -24,4 +24,8 @@ final class FavoritePresenter: FavoriteViewOutput,  FavoriteInteractorOutput {
 	func showDetails(of symbol: String, and companyName: String) {
 		router?.openChart(with: symbol, and: companyName)
 	}
+	
+	func deleteItem(at index: Int) {
+		interactor?.deleteItem(at: index)
+	}
 }

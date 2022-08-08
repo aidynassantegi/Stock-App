@@ -43,12 +43,17 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     }
     
     private func setUpNavigationController() {
-        
+		
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(saveTapped))
     }
-    
+    var isFavorite = false
     @objc func saveTapped() {
-        save(name: symbol)
+		if !isFavorite{
+			save(name: symbol)
+			navigationItem.rightBarButtonItem?.tintColor = .systemYellow
+			navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+			isFavorite = true
+		}
     }
     
     
@@ -71,7 +76,8 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
                                      insertInto: managedContext)
         
         searches.setValue(name, forKeyPath: "symbol")
-        
+		searches.setValue(companyName, forKey: "companyName")
+		
         do {
             try managedContext.save()
         } catch let error as NSError {

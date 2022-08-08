@@ -14,6 +14,8 @@ protocol FavoriteInteractorOutput: AnyObject {
 
 protocol FavoriteInteractorInput: AnyObject {
     func fetchFromCoreData()
+	func deleteItem(at index: Int)
+
 }
 
 final class FavoriteInteractor: FavoriteInteractorInput {
@@ -22,46 +24,31 @@ final class FavoriteInteractor: FavoriteInteractorInput {
     
     private var requestManager = APIManager()
     private var companiesMap: [CompanyProfile: [CandleStick]] = [:]
-    private var viewModel = [TableViewModel]()
+	private var viewModel = [TableViewModel]()
     
+	var stocksCore = [NSManagedObject]()
+	
     required init(requestManager: APIManager){
         self.requestManager = requestManager
     }
     
-    private func searchStock(with query: String) {
-        
-        requestManager.perform(SearchSymbolsRequest(query: query))
-        { [weak self] (result: Result<SearchResponse, Error>) in
-            switch result {
-            case .success(let data):
-                let company = data.result.map { searchResult in
-                    CompanyProfile.init(currency: "USD", name: searchResult.description,
-                                        ticker: searchResult.symbol, logo: "no logo")
-                }
-                self?.obtainCandleSticks(with: company)
-            case .failure(let error): print(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func obtainCandleSticks(with companies: [CompanyProfile]) {
+    private func obtainCandleSticks(with company: CompanyProfile) {
         let group = DispatchGroup()
-        for company in companies {
-            group.enter()
-            requestManager.perform(MarketDataRequest.init(symbol: company.ticker, numberOfDays: 7))
-            { [weak self] (result: Result<MarketDataResponse, Error>) in
-                defer {
-                    group.leave()
-                }
-                switch result {
-                case .success(let data):
-                    self?.companiesMap[company] = data.candleSticks
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
         
+		group.enter()
+		requestManager.perform(MarketDataRequest.init(symbol: company.ticker, numberOfDays: 7))
+		{ [weak self] (result: Result<MarketDataResponse, Error>) in
+			defer {
+				group.leave()
+			}
+			switch result {
+			case .success(let data):
+				self?.companiesMap[company] = data.candleSticks
+			case .failure(let error):
+				print(error)
+			}
+		}
+		
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
             self.createViewModels()
@@ -89,23 +76,63 @@ final class FavoriteInteractor: FavoriteInteractorInput {
     }
     
     func fetchFromCoreData() {
-        viewModel = []
+		
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteStocks")
-        var lastSearchedStocks = [NSManagedObject]()
+        
         do {
-            lastSearchedStocks = try managedContext.fetch(fetchRequest)
+			stocksCore = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        let stockSymbols = lastSearchedStocks.map { symbol in
-            symbol.value(forKey: "symbol") as! String
+		var stockSymbols: [CompanyProfile] = []
+		stocksCore.forEach { symbol in
+            let sym = symbol.value(forKey: "symbol") as! String
+			let com = symbol.value(forKey: "companyName") as! String
+			stockSymbols.append(CompanyProfile.init(currency: "USD", name: com, ticker: sym, logo: "logo"))
         }
-        let number = stockSymbols.count
-        stockSymbols.forEach{ searchStock(with: $0) }
-//        return stockSymbols
+        stockSymbols.forEach{ obtainCandleSticks(with: $0) }
     }
+	
+	func deleteItem(at index: Int) {
+		var deleteObject: NSManagedObject?
+		for (i,object) in stocksCore.enumerated() {
+			if object.value(forKey: "symbol") as? String == viewModel[index].symbol {
+				deleteObject = object
+				let _ = stocksCore.dropFirst(i)
+				break
+			}
+		}
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+		
+		let managedContext = appDelegate.persistentContainer.viewContext
+		
+		guard let deleteObject = deleteObject else {
+			return
+		}
+//		let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteStocks" )
+//		let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+		do {
+			viewModel.remove(at: index)
+			managedContext.delete(deleteObject)
+			try managedContext.save()
+		} catch let error as NSError {
+			print(error.localizedDescription)
+		}
+		
+		companiesMap = [:]
+		
+//		do {
+//			managedContext. (stocksCore[index])
+//			try managedContext.save()
+//		} catch {
+//			print("Error occured")
+//		}
+	}
+
 }
