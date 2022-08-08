@@ -29,7 +29,7 @@ final class FavoriteInteractor: FavoriteInteractorInput {
     }
     
     private func searchStock(with query: String) {
-        viewModel = []
+        
         requestManager.perform(SearchSymbolsRequest(query: query))
         { [weak self] (result: Result<SearchResponse, Error>) in
             switch result {
@@ -69,6 +69,7 @@ final class FavoriteInteractor: FavoriteInteractorInput {
     }
     
     private func createViewModels() {
+        viewModel = []
         for (company, candleStick) in companiesMap {
             let changePercentage = CalculateStockDynamic.getChangePercentage(for: candleStick)
             viewModel.append(.init(symbol: company.ticker,
@@ -103,6 +104,7 @@ final class FavoriteInteractor: FavoriteInteractorInput {
         let stockSymbols = lastSearchedStocks.map { symbol in
             symbol.value(forKey: "symbol") as! String
         }
+        let number = stockSymbols.count
         stockSymbols.forEach{ searchStock(with: $0) }
 //        return stockSymbols
     }

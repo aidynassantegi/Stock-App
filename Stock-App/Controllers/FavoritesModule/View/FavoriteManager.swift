@@ -32,4 +32,6 @@ class FavoriteManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectStock?(indexPath.row)
     }
+    
+    
 }

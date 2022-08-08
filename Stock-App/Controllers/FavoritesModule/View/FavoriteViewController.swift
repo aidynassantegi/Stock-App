@@ -56,7 +56,6 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output?.viewDidAppear()
-        
     }
     
     
@@ -65,7 +64,8 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
             self?.favoriteStocks[index]
         }
         favoriteManager.searchResultCount = { [ weak self ] in
-            self?.favoriteStocks.count ?? 0
+            
+            return self?.favoriteStocks.count ?? 0
         }
 //        favoriteManager.didSelectStock = { [weak self] index in
 //            guard let symbol = self?.favoriteStocks[index].symbol else { return }
