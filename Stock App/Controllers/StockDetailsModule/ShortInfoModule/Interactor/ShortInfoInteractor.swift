@@ -35,7 +35,7 @@ final class ShortInfoInteractor: ShortInfoViewInteractorInput {
         self.name = name
         
         group.enter()
-        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: 1)) { [weak self] (result: Result<MarketDataResponse, Error>) in
+        requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: 7)) { [weak self] (result: Result<MarketDataResponse, Error>) in
             defer {
                 group.leave()
             }
