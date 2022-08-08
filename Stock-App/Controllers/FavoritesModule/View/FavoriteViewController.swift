@@ -26,13 +26,37 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
     
     var favoriteManager: FavoriteManager!
     
-    var favoriteStocks: [TableViewModel] = []
+	var favoriteStocks: [TableViewModel] = [] {
+		didSet {
+			if favoriteStocks.isEmpty {
+				noFavsLabel.isHidden = false
+			}else {
+				noFavsLabel.isHidden = true
+			}
+		}
+	}
     
     func setWithStocksTable(stocks: [TableViewModel]) {
         favoriteStocks = stocks
         tableView.reloadData()
     }
     
+	let noFavsLabel: UILabel = {
+		let label = UILabel()
+		label.text = "No Favorites Yet"
+		label.font = .boldSystemFont(ofSize: 34)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+	
+	private func setLabelUI() {
+		view.addSubviews(noFavsLabel)
+		NSLayoutConstraint.activate([
+			noFavsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			noFavsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+		])
+	}
+	
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -54,7 +78,7 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupTableView()
-		
+		setLabelUI()
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(gotoSearch))
     }
     
@@ -98,6 +122,4 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
         ])
     }
 
-    
-    
 }
