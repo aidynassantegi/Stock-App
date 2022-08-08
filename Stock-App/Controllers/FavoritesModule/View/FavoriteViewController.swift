@@ -34,8 +34,8 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
-        tableView.register(StockTableViewCell.self,
-                           forCellReuseIdentifier: StockTableViewCell.reuseId)
+        tableView.register(FavoriteTableCell.self,
+                           forCellReuseIdentifier: FavoriteTableCell.reuseId)
         return tableView
     }()
     

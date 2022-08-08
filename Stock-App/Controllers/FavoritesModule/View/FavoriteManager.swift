@@ -21,8 +21,8 @@ class FavoriteManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: StockTableViewCell.reuseId,
-            for: indexPath) as! StockTableViewCell
+            withIdentifier: FavoriteTableCell.reuseId,
+            for: indexPath) as! FavoriteTableCell
         if let stock = setCellWithStock?(indexPath.row) {
             cell.configure(with: stock, index: indexPath.row)
         }

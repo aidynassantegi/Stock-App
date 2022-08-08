@@ -101,6 +101,7 @@
 		64810A4E28A0F4620062834F /* TableViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64810A3F28A0F4620062834F /* TableViewDataManager.swift */; };
 		64810A4F28A0F4620062834F /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64810A4028A0F4620062834F /* StockViewController.swift */; };
 		64810A5028A0F4620062834F /* StockListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64810A4228A0F4620062834F /* StockListRouter.swift */; };
+		64810A5228A0F9EC0062834F /* FavoriteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64810A5128A0F9EC0062834F /* FavoriteTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +196,7 @@
 		64810A3F28A0F4620062834F /* TableViewDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataManager.swift; sourceTree = "<group>"; };
 		64810A4028A0F4620062834F /* StockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		64810A4228A0F4620062834F /* StockListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockListRouter.swift; sourceTree = "<group>"; };
+		64810A5128A0F9EC0062834F /* FavoriteTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,6 +444,7 @@
 			children = (
 				5996A6282897DBA7004A15BB /* FavoriteViewController.swift */,
 				59239020289E652400D84F5E /* FavoriteManager.swift */,
+				64810A5128A0F9EC0062834F /* FavoriteTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -972,6 +975,7 @@
 				598F5C42289BE0F900CFA870 /* LastSearchInteractor.swift in Sources */,
 				59834EB9289CE2C600690D1B /* Extensions.swift in Sources */,
 				59834EAB289CE2AC00690D1B /* NewsRequest.swift in Sources */,
+				64810A5228A0F9EC0062834F /* FavoriteTableCell.swift in Sources */,
 				59239014289E5D4D00D84F5E /* FinancialDataInteractor.swift in Sources */,
 				5996A65D2897DFE8004A15BB /* SearchedCVCell.swift in Sources */,
 				5996A6562897DE78004A15BB /* SearchInteractor.swift in Sources */,
