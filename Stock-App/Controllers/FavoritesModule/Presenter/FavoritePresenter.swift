@@ -7,6 +7,18 @@
 
 import Foundation
 
-final class FavoritePresenter {
+final class FavoritePresenter: FavoriteViewOutput,  FavoriteInteractorOutput {
+    
+    var interactor: FavoriteInteractorInput?
+    weak var view: FavoriteViewInput?
+    
+    func viewDidAppear() {
+        interactor?.fetchFromCoreData()
+    }
+    
+    func fetchWithFavoritesPresenter(stocks: [TableViewModel]) {
+        view?.setWithStocksTable(stocks: stocks)
+    }
+    
     
 }

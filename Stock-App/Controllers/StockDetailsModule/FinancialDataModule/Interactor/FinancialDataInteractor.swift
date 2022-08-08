@@ -70,19 +70,19 @@ final class FinancialDataInteractor: FinancailDataInteractorInput {
     private func createEntity() {
         if let metrics = metrics{
             
-            if candles[0].open != nil {
+            if candles[3].open != nil {
                 entity.append(.init(name: "Open", value: "\(candles[0].open)"))
             } else {
                 entity.append(.init(name: "Open", value: "-"))
             }
             
-            if candles[0].high != nil {
+            if candles[3].high != nil {
                 entity.append(.init(name: "High", value: "\(candles[0].high)"))
             } else {
                 entity.append(.init(name: "High", value: "-"))
             }
                               
-            if candles[0].low != nil {
+            if candles[3].low != nil {
                 entity.append(.init(name: "Low", value: "\(candles[0].low)"))
             }else {
                 entity.append(.init(name: "Low", value: "-"))

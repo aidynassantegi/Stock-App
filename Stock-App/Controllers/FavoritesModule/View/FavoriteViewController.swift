@@ -8,12 +8,13 @@
 import UIKit
 
 protocol FavoriteViewInput: AnyObject {
+    func setWithStocksTable(stocks: [TableViewModel])
     
 }
 
 
 protocol FavoriteViewOutput: AnyObject {
-    
+    func viewDidAppear()
 }
 
 class FavoriteViewController: UIViewController, FavoriteViewInput {
@@ -23,6 +24,11 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
     var favoriteManager: FavoriteManager!
     
     var favoriteStocks: [TableViewModel] = []
+    
+    func setWithStocksTable(stocks: [TableViewModel]) {
+        favoriteStocks = stocks
+        tableView.reloadData()
+    }
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -45,6 +51,12 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output?.viewDidAppear()
+        
     }
     
     

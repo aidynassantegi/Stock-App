@@ -15,6 +15,7 @@ struct CalculateStockDynamic {
     }
     
     static func getChangePercentage(for data: [CandleStick]) -> Double {
+        guard !data.isEmpty else { return 0 }
         let latesDate = data[0].date
         guard let latestClose = data.first?.close, let priorClose = data.first(where: {
             !Calendar.current.isDate($0.date, inSameDayAs: latesDate)
