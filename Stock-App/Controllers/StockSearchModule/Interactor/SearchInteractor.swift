@@ -24,7 +24,7 @@ final class SearchInteractor: SearchInteractorInput {
     var viewModel = [TableViewModel]()
     
     func searchStock(with query: String) {
-        viewModel = []
+        
         requestManager.perform(SearchSymbolsRequest(query: query))
         { [weak self] (result: Result<SearchResponse, Error>) in
             switch result {
@@ -117,6 +117,7 @@ final class SearchInteractor: SearchInteractorInput {
     }
     
     func createViewModels() {
+        viewModel = []
         for (company, candleStick) in companiesMap {
             let changePercentage = CalculateStockDynamic.getChangePercentage(for: candleStick)
             viewModel.append(.init(symbol: company.ticker,
