@@ -135,7 +135,6 @@ class StockTableViewCell: UITableViewCell {
         
         addSubviews(symbolLabel, currencyLabel ,companyNameLabel, miniChartView, stackView)
 		
-		let padding: CGFloat = 8
 		NSLayoutConstraint.activate([
 			
 			symbolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),

@@ -16,7 +16,7 @@ struct MarketDataRequest: RequestProtocol {
         self.symbol = symbol
         self.numberOfDays = numberOfDays
         
-        if self.numberOfDays < 31 {
+        if self.numberOfDays < 30 {
             resolution = "1"
         } else {
             resolution = "D"
@@ -35,7 +35,7 @@ struct MarketDataRequest: RequestProtocol {
         let today = Date().addingTimeInterval(-(86400))
         let prior = today.addingTimeInterval(-(86400 * numberOfDays))
        // let prior = today.addingTimeInterval(-(6 * 2629746))
-        var params = ["symbol" : symbol, "resolution" : resolution, "from" : "\(Int(prior.timeIntervalSince1970))", "to" : "\(Int(today.timeIntervalSince1970))"]
+        let params = ["symbol" : symbol, "resolution" : resolution, "from" : "\(Int(prior.timeIntervalSince1970))", "to" : "\(Int(today.timeIntervalSince1970))"]
         return params
     }
 }

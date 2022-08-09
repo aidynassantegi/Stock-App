@@ -44,21 +44,6 @@ extension RequestProtocol {
         
         components.queryItems = query
         
-        print(components.url)
-        //return components.url!
-        
-        var urlString = host + path
-        if !urlParams.isEmpty {
-            var queryItems = [URLQueryItem]()
-            for (name, value) in urlParams {
-                queryItems.append(.init(name: name, value: value))
-            }
-
-            queryItems.append(.init(name: "token", value: APIConstants.apiKey))
-            urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
-        }
-        
-//        return URL(string: urlString)!
         return components.url!
     }
 }

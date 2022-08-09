@@ -27,7 +27,6 @@ final class ChartViewInteractor: ChartViewInteractorInput {
     
     func obtainCandles(with stockSymbol: String, numberOfDays: TimeInterval) {
         let group = DispatchGroup()
-        var resolution: String!
         group.enter()
         
         requestManager.perform(MarketDataRequest.init(symbol: stockSymbol, numberOfDays: numberOfDays)) { [weak self] (result: Result<MarketDataResponse, Error>) in
@@ -51,7 +50,7 @@ final class ChartViewInteractor: ChartViewInteractorInput {
     
     private func createViewModel() {
         let change = CalculateStockDynamic.getChangePercentage(for: candleStickData)
-        var viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candleStickData.reversed().map{ $0.close},
+        let viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candleStickData.reversed().map{ $0.close},
                                                                            showLegend: true,
                                                                            showAxis: true,
                                                                            fillColor: change < 0 ? .systemRed : .systemGreen,

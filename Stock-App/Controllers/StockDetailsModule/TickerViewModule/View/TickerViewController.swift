@@ -29,7 +29,7 @@ class TickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tickerView.registerNodeView(TickerView.self, for: identifier)
-        tickerView.contentProvider = entities.self as! SwiftTickerProviderProtocol
+        tickerView.contentProvider = entities.self as? SwiftTickerProviderProtocol
         tickerView.separator = " "
         tickerView.render = Renderer.leftToRight
         tickerView.reloadData()

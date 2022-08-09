@@ -23,7 +23,7 @@ struct FinancialMetricsRequest: RequestProtocol{
     }
     
     var urlParams: [String : String] {
-        var params = ["symbol" : symbol,
+        let params = ["symbol" : symbol,
                       "metric" : "all"]
         return params
     }

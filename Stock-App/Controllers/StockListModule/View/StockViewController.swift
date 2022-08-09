@@ -97,7 +97,6 @@ extension StockViewController: StockListViewInput {
     func showSkeleton() {
         tableView.isSkeletonable = true
         let gradient = SkeletonGradient(baseColor: .concrete)
-        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
 //        tableView.showGradientSkeleton()
         tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
     }
