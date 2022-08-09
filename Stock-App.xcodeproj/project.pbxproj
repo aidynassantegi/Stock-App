@@ -65,6 +65,8 @@
 		59834EB8289CE2C600690D1B /* CustomAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB5289CE2C600690D1B /* CustomAxis.swift */; };
 		59834EB9289CE2C600690D1B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB6289CE2C600690D1B /* Extensions.swift */; };
 		59834EBA289CE2C600690D1B /* CalculateStockDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */; };
+		598A684D28A232C7009BA517 /* StockDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A684C28A232C7009BA517 /* StockDetailPresenter.swift */; };
+		598A684F28A232E3009BA517 /* StockDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A684E28A232E3009BA517 /* StockDetailInteractor.swift */; };
 		598F5C37289BD73A00CFA870 /* Stock-App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598F5C35289BD73A00CFA870 /* Stock-App.xcdatamodeld */; };
 		598F5C42289BE0F900CFA870 /* LastSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F5C41289BE0F900CFA870 /* LastSearchInteractor.swift */; };
 		598F5C44289BE90500CFA870 /* LastSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F5C43289BE90500CFA870 /* LastSearchPresenter.swift */; };
@@ -161,6 +163,8 @@
 		59834EB5289CE2C600690D1B /* CustomAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAxis.swift; sourceTree = "<group>"; };
 		59834EB6289CE2C600690D1B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateStockDynamic.swift; sourceTree = "<group>"; };
+		598A684C28A232C7009BA517 /* StockDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailPresenter.swift; sourceTree = "<group>"; };
+		598A684E28A232E3009BA517 /* StockDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailInteractor.swift; sourceTree = "<group>"; };
 		598F5C36289BD73A00CFA870 /* Stock-App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stock-App.xcdatamodel"; sourceTree = "<group>"; };
 		598F5C41289BE0F900CFA870 /* LastSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSearchInteractor.swift; sourceTree = "<group>"; };
 		598F5C43289BE90500CFA870 /* LastSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSearchPresenter.swift; sourceTree = "<group>"; };
@@ -220,9 +224,11 @@
 			children = (
 				59238FDF289E5D4D00D84F5E /* ChartViewModule */,
 				59238FE9289E5D4D00D84F5E /* FinancialDataModule */,
+				59238FFD289E5D4D00D84F5E /* ShortInfoModule */,
 				59238FF5289E5D4D00D84F5E /* TickerViewModule */,
 				59238FFB289E5D4D00D84F5E /* Assembly */,
-				59238FFD289E5D4D00D84F5E /* ShortInfoModule */,
+				598A684A28A23250009BA517 /* Presenter */,
+				598A684B28A2325C009BA517 /* Interactor */,
 				59239008289E5D4D00D84F5E /* View */,
 			);
 			path = StockDetailsModule;
@@ -554,6 +560,22 @@
 				59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		598A684A28A23250009BA517 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				598A684C28A232C7009BA517 /* StockDetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		598A684B28A2325C009BA517 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				598A684E28A232E3009BA517 /* StockDetailInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		598F5C38289BDEF100CFA870 /* LastSearchedStocks */ = {
@@ -909,6 +931,7 @@
 				59834EB2289CE2AC00690D1B /* DataParserProtocol.swift in Sources */,
 				5923900E289E5D4D00D84F5E /* ChartViewInteractor.swift in Sources */,
 				5996A63B2897DBA7004A15BB /* SearchViewController.swift in Sources */,
+				598A684F28A232E3009BA517 /* StockDetailInteractor.swift in Sources */,
 				5996A6602897E01D004A15BB /* SearchPresenter.swift in Sources */,
 				59834EB3289CE2AC00690D1B /* RequestType.swift in Sources */,
 				59834EA9289CE2AC00690D1B /* SymbolsRequest.swift in Sources */,
@@ -958,6 +981,7 @@
 				5996A5B92897BAEB004A15BB /* SceneDelegate.swift in Sources */,
 				5970B761289A493000AAC039 /* MarketDataResponse.swift in Sources */,
 				59834E91289CE26200690D1B /* MetricCollectionViewCell.swift in Sources */,
+				598A684D28A232C7009BA517 /* StockDetailPresenter.swift in Sources */,
 				5996A6632897E093004A15BB /* SearchModuleAssemble.swift in Sources */,
 				598F5C46289BF0B400CFA870 /* LastSearchAssembler.swift in Sources */,
 				64810A4D28A0F4620062834F /* StocksTableVC.swift in Sources */,

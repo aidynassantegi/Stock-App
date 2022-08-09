@@ -9,7 +9,19 @@ import UIKit
 import FloatingPanel
 import CoreData
 
-class StockDetailsViewController: UIViewController, FloatingPanelControllerDelegate {
+protocol StockDetailViewInput: AnyObject {
+    func fillStar()
+    func setUpNavigationController(isFavorite: Bool)
+}
+
+protocol StockDetailViewOutput: AnyObject {
+    func save(name: String, companyName: String)
+    func viewDidAppear(with symbol: String)
+}
+
+class StockDetailsViewController: UIViewController, FloatingPanelControllerDelegate, StockDetailViewInput {
+    var output: StockDetailViewOutput?
+    
     var symbol: String!
     var companyName: String!
     
@@ -32,6 +44,11 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
         return table
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output?.viewDidAppear(with: symbol)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -39,27 +56,24 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
         setViews()
         
         setUpFloatingPanel()
-		
-		isFavorite = fetchFromCoreData().contains(symbol)
-		setUpNavigationController()
     }
     
-    private func setUpNavigationController() {
-		
+    func setUpNavigationController(isFavorite: Bool) {
+        self.isFavorite = isFavorite
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(saveTapped))
 		if isFavorite {
 			fillStar()
 		}
     }
 	
-	private func fillStar() {
+	func fillStar() {
 		navigationItem.rightBarButtonItem?.tintColor = .systemYellow
 		navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
 	}
-    var isFavorite = false
+    private var isFavorite = false
     @objc func saveTapped() {
 		if !isFavorite{
-			save(name: symbol)
+            output?.save(name: symbol, companyName: companyName)
 			fillStar()
 		}
     }
@@ -67,51 +81,51 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
 	
     
     
-    private func save(name: String) {
-        let searched = fetchFromCoreData()
-        guard !searched.contains(name) else { return }
-        guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext =
-        appDelegate.persistentContainer.viewContext
-        
-        let entity =
-        NSEntityDescription.entity(forEntityName: "FavoriteStocks",
-                                   in: managedContext)!
-        
-        let searches = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        searches.setValue(name, forKeyPath: "symbol")
-		searches.setValue(companyName, forKey: "companyName")
-		
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    private func fetchFromCoreData() -> [String] {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteStocks")
-        var lastSearchedStocks = [NSManagedObject]()
-        do {
-            lastSearchedStocks = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        let stockSymbols = lastSearchedStocks.map { symbol in
-            symbol.value(forKey: "symbol") as! String
-        }
-        return stockSymbols
-    }
+//    private func save(name: String) {
+//        let searched = fetchFromCoreData()
+//        guard !searched.contains(name) else { return }
+//        guard let appDelegate =
+//                UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//
+//        let managedContext =
+//        appDelegate.persistentContainer.viewContext
+//
+//        let entity =
+//        NSEntityDescription.entity(forEntityName: "FavoriteStocks",
+//                                   in: managedContext)!
+//
+//        let searches = NSManagedObject(entity: entity,
+//                                     insertInto: managedContext)
+//
+//        searches.setValue(name, forKeyPath: "symbol")
+//		searches.setValue(companyName, forKey: "companyName")
+//
+//        do {
+//            try managedContext.save()
+//        } catch let error as NSError {
+//            print("Could not save. \(error), \(error.userInfo)")
+//        }
+//    }
+//
+//    private func fetchFromCoreData() -> [String] {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
+//
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteStocks")
+//        var lastSearchedStocks = [NSManagedObject]()
+//        do {
+//            lastSearchedStocks = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//        let stockSymbols = lastSearchedStocks.map { symbol in
+//            symbol.value(forKey: "symbol") as! String
+//        }
+//        return stockSymbols
+//    }
     
     
     private func setViews() {

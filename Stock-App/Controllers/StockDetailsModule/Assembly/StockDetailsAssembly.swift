@@ -18,7 +18,15 @@ final class StockDetailsAssembly{
     
     func assemble(_ stockSymbol: String, _ companyName: String) -> StockDetailsViewController {
     
+        let presenter = StockDetailPresenter()
+        let interactor = StockDetailInteractor()
+        
         let vc = StockDetailsViewController()
+        
+        vc.output = presenter
+        presenter.interactor = interactor
+        presenter.view = vc
+        interactor.output = presenter
         
         let shortInfoView = ShortInfoAssembly().assemble { input in
             input.configure(with: stockSymbol, and: companyName)
