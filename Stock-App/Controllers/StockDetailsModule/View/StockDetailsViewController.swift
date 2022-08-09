@@ -34,27 +34,37 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavigationController()
         view.backgroundColor = .systemBackground
         
         setViews()
         
         setUpFloatingPanel()
+		
+		isFavorite = fetchFromCoreData().contains(symbol)
+		setUpNavigationController()
     }
     
     private func setUpNavigationController() {
 		
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(saveTapped))
+		if isFavorite {
+			fillStar()
+		}
     }
+	
+	private func fillStar() {
+		navigationItem.rightBarButtonItem?.tintColor = .systemYellow
+		navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+	}
     var isFavorite = false
     @objc func saveTapped() {
 		if !isFavorite{
 			save(name: symbol)
-			navigationItem.rightBarButtonItem?.tintColor = .systemYellow
-			navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
-			isFavorite = true
+			fillStar()
 		}
     }
+	
+	
     
     
     private func save(name: String) {
