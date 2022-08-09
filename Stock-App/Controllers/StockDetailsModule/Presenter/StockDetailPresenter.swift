@@ -8,11 +8,17 @@
 import Foundation
 
 final class StockDetailPresenter: StockDetailInteractorOutput, StockDetailViewOutput {
+    
+    
     var interactor: StockDetailInteractorInput?
     weak var view: StockDetailViewInput?
     
     func save(name: String, companyName: String) {
         interactor?.save(name: name, companyName: companyName)
+    }
+    
+    func delete(name: String, companyName: String) {
+        interactor?.delete(name: name, companyName: companyName)
     }
     
     func viewDidAppear(with symbol: String) {

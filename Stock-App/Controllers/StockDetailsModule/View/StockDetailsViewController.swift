@@ -16,6 +16,7 @@ protocol StockDetailViewInput: AnyObject {
 
 protocol StockDetailViewOutput: AnyObject {
     func save(name: String, companyName: String)
+    func delete(name: String, companyName: String)
     func viewDidAppear(with symbol: String)
 }
 
@@ -70,63 +71,20 @@ class StockDetailsViewController: UIViewController, FloatingPanelControllerDeleg
 		navigationItem.rightBarButtonItem?.tintColor = .systemYellow
 		navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
 	}
+    func unFillStar() {
+        navigationItem.rightBarButtonItem?.tintColor = .systemBlue
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star")
+    }
     private var isFavorite = false
     @objc func saveTapped() {
 		if !isFavorite{
             output?.save(name: symbol, companyName: companyName)
 			fillStar()
-		}
+        }else {
+            output?.delete(name: symbol, companyName: companyName)
+            unFillStar()
+        }
     }
-	
-	
-    
-    
-//    private func save(name: String) {
-//        let searched = fetchFromCoreData()
-//        guard !searched.contains(name) else { return }
-//        guard let appDelegate =
-//                UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//
-//        let managedContext =
-//        appDelegate.persistentContainer.viewContext
-//
-//        let entity =
-//        NSEntityDescription.entity(forEntityName: "FavoriteStocks",
-//                                   in: managedContext)!
-//
-//        let searches = NSManagedObject(entity: entity,
-//                                     insertInto: managedContext)
-//
-//        searches.setValue(name, forKeyPath: "symbol")
-//		searches.setValue(companyName, forKey: "companyName")
-//
-//        do {
-//            try managedContext.save()
-//        } catch let error as NSError {
-//            print("Could not save. \(error), \(error.userInfo)")
-//        }
-//    }
-//
-//    private func fetchFromCoreData() -> [String] {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
-//
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//
-//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteStocks")
-//        var lastSearchedStocks = [NSManagedObject]()
-//        do {
-//            lastSearchedStocks = try managedContext.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//        let stockSymbols = lastSearchedStocks.map { symbol in
-//            symbol.value(forKey: "symbol") as! String
-//        }
-//        return stockSymbols
-//    }
-    
     
     private func setViews() {
         guard let shortInfoView = shortInfoView else { return }

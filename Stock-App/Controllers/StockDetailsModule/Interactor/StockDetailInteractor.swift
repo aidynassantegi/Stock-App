@@ -11,6 +11,7 @@ import CoreData
 protocol StockDetailInteractorInput: AnyObject  {
     func save(name: String, companyName: String)
     func checkIsFavorite(symbol: String)
+    func delete(name: String, companyName: String)
 }
 
 protocol StockDetailInteractorOutput: AnyObject {
@@ -18,6 +19,8 @@ protocol StockDetailInteractorOutput: AnyObject {
 }
 
 final class StockDetailInteractor: StockDetailInteractorInput {
+    
+    
     
     weak var output: StockDetailInteractorOutput?
     
@@ -49,7 +52,38 @@ final class StockDetailInteractor: StockDetailInteractorInput {
         }
     }
     
+    
+    
+    func delete(name: String, companyName: String) {
+        guard let data = fetchObjects() else { return }
+        var deleteObject: NSManagedObject?
+        for object in data {
+            if object.value(forKey: "symbol") as? String == name {
+                deleteObject = object
+            }
+        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let deleteObject = deleteObject else { return }
+        
+        do {
+            managedContext.delete(deleteObject)
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
     private func fetchFromCoreData() -> [String] {
+        guard let lastSearchedStocks = fetchObjects() else { return [] }
+        let stockSymbols = lastSearchedStocks.map { symbol in
+            symbol.value(forKey: "symbol") as! String
+        }
+        return stockSymbols
+    }
+    
+    private func fetchObjects() -> [NSManagedObject]? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -58,13 +92,11 @@ final class StockDetailInteractor: StockDetailInteractorInput {
         var lastSearchedStocks = [NSManagedObject]()
         do {
             lastSearchedStocks = try managedContext.fetch(fetchRequest)
+            return lastSearchedStocks
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        let stockSymbols = lastSearchedStocks.map { symbol in
-            symbol.value(forKey: "symbol") as! String
-        }
-        return stockSymbols
+        return nil
     }
     
     func checkIsFavorite(symbol: String) {

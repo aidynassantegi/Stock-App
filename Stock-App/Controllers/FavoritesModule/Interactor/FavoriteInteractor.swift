@@ -76,7 +76,7 @@ final class FavoriteInteractor: FavoriteInteractorInput {
     }
     
     func fetchFromCoreData() {
-		
+        companiesMap = [:]
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -114,8 +114,6 @@ final class FavoriteInteractor: FavoriteInteractorInput {
 		guard let deleteObject = deleteObject else {
 			return
 		}
-//		let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteStocks" )
-//		let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
 		do {
 			viewModel.remove(at: index)
@@ -127,12 +125,6 @@ final class FavoriteInteractor: FavoriteInteractorInput {
 		
 		companiesMap = [:]
 		
-//		do {
-//			managedContext. (stocksCore[index])
-//			try managedContext.save()
-//		} catch {
-//			print("Error occured")
-//		}
 	}
 
 }

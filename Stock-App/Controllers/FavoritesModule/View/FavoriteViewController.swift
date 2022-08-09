@@ -82,7 +82,7 @@ class FavoriteViewController: UIViewController, FavoriteViewInput {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(gotoSearch))
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output?.viewDidAppear()
     }
