@@ -102,12 +102,6 @@ class StockTableViewCell: UITableViewCell {
 	}
 
     func configure(with viewModel: TableViewModel, index: Int) {
-        
-//        if viewModel.logo == "" {
-//            stockImageView.image = UIImage(named: "local-file-not-found")
-//        }else {
-//            stockImageView.sd_setImage(with: URL(string: viewModel.logo), completed: nil)
-//        }
         symbolLabel.text = viewModel.symbol
         companyNameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
@@ -153,8 +147,7 @@ class StockTableViewCell: UITableViewCell {
             currencyLabel.heightAnchor.constraint(equalToConstant: 16),
             
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 320),
-//            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17),
+            stackView.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -width/4),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             
             miniChartView.topAnchor.constraint(equalTo: topAnchor, constant: 14),

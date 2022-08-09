@@ -80,26 +80,26 @@ class NewsTableViewCell: UITableViewCell {
         let imageSize: CGFloat = contentView.height - 15
         headlineLabel.sizeToFit()
         
-        NSLayoutConstraint.activate([storyImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
-                                     storyImageView.widthAnchor.constraint(equalToConstant: imageSize),
-                                     storyImageView.heightAnchor.constraint(equalToConstant: imageSize),
-                                     storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
-                                     
-                                     sourceLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
-                                     sourceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-                                     sourceLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: 5),
-                                     
-                                     dateLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
-                                     dateLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor),
-                                     dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-                                     dateLabel.heightAnchor.constraint(equalToConstant: 18),
-                                     
-                                     headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
-                                     headlineLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
-                                     headlineLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: -5),
-                                     headlineLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -2)
-                                     
-                                    ])
+        NSLayoutConstraint.activate([
+            storyImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
+            storyImageView.widthAnchor.constraint(equalToConstant: imageSize),
+            storyImageView.heightAnchor.constraint(equalToConstant: imageSize),
+            storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
+            
+            sourceLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2),
+            sourceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            sourceLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: 5),
+            
+            dateLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: sourceLabel.trailingAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18),
+            
+            headlineLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
+            headlineLabel.leadingAnchor.constraint(equalTo: sourceLabel.leadingAnchor),
+            headlineLabel.trailingAnchor.constraint(equalTo: storyImageView.leadingAnchor, constant: -5),
+            headlineLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -2)
+        ])
     }
     
     override func prepareForReuse() {
