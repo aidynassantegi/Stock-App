@@ -10,7 +10,7 @@ import UIKit
 
 protocol FinancialDataViewInput: AnyObject {
     func handleObtainedMetrics(_ metrics: Metrics)
-    func handleObtainedEntity(_ entity: [MetricCollectionViewEntity])
+    func handleObtainedEntity(_ entity: [MetricCollectionViewModel])
 }
 
 protocol FinancialDataViewOutput: AnyObject {
@@ -59,7 +59,7 @@ class FinancialCollectionViewController: UIViewController {
 }
     
 extension FinancialCollectionViewController: FinancialDataViewInput {
-    func handleObtainedEntity(_ entity: [MetricCollectionViewEntity]) {
+    func handleObtainedEntity(_ entity: [MetricCollectionViewModel]) {
         if financialMetricDataManager != nil {
             financialMetricDataManager?.metricViewModels = entity
         }

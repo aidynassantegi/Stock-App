@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class FinancialMetricDataManager: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    var metricViewModels: [MetricCollectionViewEntity] = []
+    var metricViewModels: [MetricCollectionViewModel] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         metricViewModels.count

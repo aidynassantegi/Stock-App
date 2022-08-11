@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MetricCollectionViewEntity {
+struct MetricCollectionViewModel {
     let name: String
     let value: String
 }

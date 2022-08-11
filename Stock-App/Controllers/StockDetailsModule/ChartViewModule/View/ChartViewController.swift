@@ -78,7 +78,6 @@ class ChartViewController: UIViewController {
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-           // label.heightAnchor.constraint(equalToConstant: 20),
             
             chartView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
             chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

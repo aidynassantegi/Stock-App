@@ -12,7 +12,7 @@ protocol ChartViewInteractorInput {
 }
 
 protocol ChartViewInteractorOutput: AnyObject{
-    func didLoadChartViewModel(_ viewModel: StockChartView.ViewModel)
+    func didLoadCandles(_ candles: [CandleStick])
 }
 
 final class ChartViewInteractor: ChartViewInteractorInput {
@@ -44,17 +44,8 @@ final class ChartViewInteractor: ChartViewInteractorInput {
         }
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
-            self.createViewModel()
+            self.chartViewInteractorOutput.didLoadCandles(self.candleStickData)
         }
     }
     
-    private func createViewModel() {
-        let change = CalculateStockPriceDynamic.getChangePercentage(for: candleStickData)
-        let viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candleStickData.reversed().map{ $0.close},
-                                                                           showLegend: true,
-                                                                           showAxis: true,
-                                                                           fillColor: change < 0 ? .systemRed : .systemGreen,
-                                                                           timeStamp: candleStickData.reversed().map { $0.date.timeIntervalSince1970})
-        chartViewInteractorOutput.didLoadChartViewModel(viewModel)
-    }
 }

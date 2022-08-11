@@ -10,12 +10,7 @@ import FloatingPanel
 import SkeletonView
 
 protocol StockListViewInput: AnyObject {
-    func handleObtainedSymbols(_ symbols: [StockSymbols])
-    func handleObtainedCompanyProfiles(_ companies: [CompanyProfile])
     func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel])
-    
-    func showSkeleton()
-    func hideSkeleton()
 }
 
 protocol StockListViewOutput: AnyObject {
@@ -89,28 +84,6 @@ class StockViewController: UIViewController, FloatingPanelControllerDelegate {
 }
 
 extension StockViewController: StockListViewInput {
-    func hideSkeleton() {
-        tableView.stopSkeletonAnimation()
-        view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-    }
-    
-    func showSkeleton() {
-        tableView.isSkeletonable = true
-        let gradient = SkeletonGradient(baseColor: .concrete)
-//        tableView.showGradientSkeleton()
-        tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
-    }
-    
-    func handleObtainedSymbols(_ symbols: [StockSymbols]) {
-      //  self.symbols = symbols
-        print(symbols.count)
-    }
-    
-    func handleObtainedCompanyProfiles(_ companies: [CompanyProfile]) {
-        tableDataManager?.companies = companies
-        //tableView.reloadData()
-    }
-    
     func handleObtainedTableViewModel(_ tableViewModel: [TableViewModel]) {
         tableDataManager?.viewModel = tableViewModel
         

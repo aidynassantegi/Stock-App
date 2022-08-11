@@ -16,7 +16,7 @@ protocol StockListInteractorInput {
 protocol StockListInteractorOutput: AnyObject {
     func didLoadStockSymbols(_ symbols: [StockSymbols])
     func didLoadCompanyProfiles(_ companies: [CompanyProfile])
-    func didLoadCandleSticks(_ tableViewModel: [TableViewModel])
+    func didLoadCandleSticks(_ companiesCandles: [CompanyProfile: [CandleStick]])
 }
 
 final class StockListInteractor: StockListInteractorInput {
@@ -49,27 +49,9 @@ final class StockListInteractor: StockListInteractorInput {
                 }
             }
         }
-        
         group.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
-            self.createViewModels()
-            self.output.didLoadCandleSticks(self.viewModel)
-        }
-    }
-    
-    func createViewModels() {
-        for (company, candleStick) in companiesMap {
-            let changePercentage = CalculateStockPriceDynamic.getChangePercentage(for: candleStick)
-            viewModel.append(.init(symbol: company.ticker,
-                                   companyName: company.name,
-                                   price: CalculateStockPriceDynamic.getLatestPrice(from: candleStick),
-                                   isFavorite: false,
-                                   changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
-                                   changePercentage: String.percentage(from: changePercentage),
-                                   logo: company.logo,
-                                   currency: company.currency,
-                                   chartView: .init(data: candleStick.reversed().map{ $0.close}, showLegend: false, showAxis: false, fillColor: changePercentage < 0 ? .systemRed : .systemGreen, timeStamp: candleStick.reversed().map { $0.date.timeIntervalSince1970})
-                                  ))
+            self.output.didLoadCandleSticks(self.companiesMap)
         }
     }
     

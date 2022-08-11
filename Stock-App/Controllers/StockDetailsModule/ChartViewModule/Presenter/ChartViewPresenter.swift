@@ -15,8 +15,8 @@ final class ChartViewPresenter: ChartViewInteractorOutput, ChartViewOutput, Char
     private var stockSymbol: String!
     private var numberOfDays: Double!
     
-    func didLoadChartViewModel(_ viewModel: StockChartView.ViewModel) {
-        print("chart view  got view model \(viewModel)")
+    func didLoadCandles(_ candles: [CandleStick]) {
+        let viewModel = createViewModel(candles)
         chartView.handleObtainedChartViewModel(viewModel)
     }
     
@@ -25,13 +25,22 @@ final class ChartViewPresenter: ChartViewInteractorOutput, ChartViewOutput, Char
     }
     
     func configure(with stockSymbol: String) {
-        print("chart view \(stockSymbol)")
         self.stockSymbol = stockSymbol
     }
     
     func didSelectTimeCell(with timePeriod: Double) {
         numberOfDays = timePeriod
         chartViewInteractor.obtainCandles(with: stockSymbol, numberOfDays: timePeriod)
+    }
+    
+    private func createViewModel(_ candles: [CandleStick]) -> StockChartView.ViewModel {
+        let change = CalculateStockPriceDynamic.getChangePercentage(for: candles)
+        let viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candles.reversed().map{ $0.close},
+                                                                           showLegend: true,
+                                                                           showAxis: true,
+                                                                           fillColor: change < 0 ? .systemRed : .systemGreen,
+                                                                           timeStamp: candles.reversed().map { $0.date.timeIntervalSince1970})
+      return viewModel
     }
     
 }
