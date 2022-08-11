@@ -8,7 +8,7 @@
 import Foundation
 import Charts
 
-final class CustomAxis: AxisValueFormatter {
+final class CustomAxisFormatter: AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
 
         let dateFormatter = DateFormatter()

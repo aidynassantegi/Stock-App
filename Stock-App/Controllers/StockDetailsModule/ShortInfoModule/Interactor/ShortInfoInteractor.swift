@@ -54,8 +54,8 @@ final class ShortInfoInteractor: ShortInfoViewInteractorInput {
     }
     
     private func createEntity() {
-        let changePercentage = CalculateStockDynamic.getChangePercentage(for: candles)
-        let entity = ShortInfoEntity(symbol: symbol, name: name, price: CalculateStockDynamic.getLatestPrice(from: candles), changePercentage: String.percentage(from: changePercentage), color: changePercentage < 0 ? .systemRed : .systemGreen)
+        let changePercentage = CalculateStockPriceDynamic.getChangePercentage(for: candles)
+        let entity = ShortInfoEntity(symbol: symbol, name: name, price: CalculateStockPriceDynamic.getLatestPrice(from: candles), changePercentage: String.percentage(from: changePercentage), color: changePercentage < 0 ? .systemRed : .systemGreen)
         shortInforInteractorOutput.didLoadEntity(entity)
     }
 

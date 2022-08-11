@@ -49,7 +49,7 @@ final class ChartViewInteractor: ChartViewInteractorInput {
     }
     
     private func createViewModel() {
-        let change = CalculateStockDynamic.getChangePercentage(for: candleStickData)
+        let change = CalculateStockPriceDynamic.getChangePercentage(for: candleStickData)
         let viewModel: StockChartView.ViewModel = StockChartView.ViewModel(data: candleStickData.reversed().map{ $0.close},
                                                                            showLegend: true,
                                                                            showAxis: true,

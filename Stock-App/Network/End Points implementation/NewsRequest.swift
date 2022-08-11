@@ -18,7 +18,6 @@ struct MarketNewsRequest: RequestProtocol {
     var path: String {
         switch type {
         case .topNews:
-            print(EndPoint.news.rawValue)
             return EndPoint.news.rawValue
         case .company(let symbol):
             return "/company-news"

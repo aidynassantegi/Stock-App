@@ -59,10 +59,10 @@ final class StockListInteractor: StockListInteractorInput {
     
     func createViewModels() {
         for (company, candleStick) in companiesMap {
-            let changePercentage = CalculateStockDynamic.getChangePercentage(for: candleStick)
+            let changePercentage = CalculateStockPriceDynamic.getChangePercentage(for: candleStick)
             viewModel.append(.init(symbol: company.ticker,
                                    companyName: company.name,
-                                   price: CalculateStockDynamic.getLatestPrice(from: candleStick),
+                                   price: CalculateStockPriceDynamic.getLatestPrice(from: candleStick),
                                    isFavorite: false,
                                    changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
                                    changePercentage: String.percentage(from: changePercentage),

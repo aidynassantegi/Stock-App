@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CalculateStockDynamic {
+struct CalculateStockPriceDynamic {
     static func getLatestPrice(from data: [CandleStick]) -> String {
         guard let closingPrice = data.first?.close else { return ""}
         

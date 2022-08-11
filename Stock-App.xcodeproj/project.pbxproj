@@ -60,11 +60,10 @@
 		59834EAF289CE2AC00690D1B /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EA2289CE2AC00690D1B /* APIConstants.swift */; };
 		59834EB0289CE2AC00690D1B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EA3289CE2AC00690D1B /* APIManager.swift */; };
 		59834EB1289CE2AC00690D1B /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EA4289CE2AC00690D1B /* RequestProtocol.swift */; };
-		59834EB2289CE2AC00690D1B /* DataParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EA5289CE2AC00690D1B /* DataParserProtocol.swift */; };
 		59834EB3289CE2AC00690D1B /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EA6289CE2AC00690D1B /* RequestType.swift */; };
-		59834EB8289CE2C600690D1B /* CustomAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB5289CE2C600690D1B /* CustomAxis.swift */; };
+		59834EB8289CE2C600690D1B /* CustomAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB5289CE2C600690D1B /* CustomAxisFormatter.swift */; };
 		59834EB9289CE2C600690D1B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB6289CE2C600690D1B /* Extensions.swift */; };
-		59834EBA289CE2C600690D1B /* CalculateStockDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */; };
+		59834EBA289CE2C600690D1B /* CalculateStockPriceDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59834EB7289CE2C600690D1B /* CalculateStockPriceDynamic.swift */; };
 		598A684D28A232C7009BA517 /* StockDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A684C28A232C7009BA517 /* StockDetailPresenter.swift */; };
 		598A684F28A232E3009BA517 /* StockDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A684E28A232E3009BA517 /* StockDetailInteractor.swift */; };
 		598F5C37289BD73A00CFA870 /* Stock-App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598F5C35289BD73A00CFA870 /* Stock-App.xcdatamodeld */; };
@@ -158,11 +157,10 @@
 		59834EA2289CE2AC00690D1B /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		59834EA3289CE2AC00690D1B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		59834EA4289CE2AC00690D1B /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
-		59834EA5289CE2AC00690D1B /* DataParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataParserProtocol.swift; sourceTree = "<group>"; };
 		59834EA6289CE2AC00690D1B /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
-		59834EB5289CE2C600690D1B /* CustomAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAxis.swift; sourceTree = "<group>"; };
+		59834EB5289CE2C600690D1B /* CustomAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAxisFormatter.swift; sourceTree = "<group>"; };
 		59834EB6289CE2C600690D1B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateStockDynamic.swift; sourceTree = "<group>"; };
+		59834EB7289CE2C600690D1B /* CalculateStockPriceDynamic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateStockPriceDynamic.swift; sourceTree = "<group>"; };
 		598A684C28A232C7009BA517 /* StockDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailPresenter.swift; sourceTree = "<group>"; };
 		598A684E28A232E3009BA517 /* StockDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailInteractor.swift; sourceTree = "<group>"; };
 		598F5C36289BD73A00CFA870 /* Stock-App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stock-App.xcdatamodel"; sourceTree = "<group>"; };
@@ -533,7 +531,6 @@
 				59834EA2289CE2AC00690D1B /* APIConstants.swift */,
 				59834EA3289CE2AC00690D1B /* APIManager.swift */,
 				59834EA4289CE2AC00690D1B /* RequestProtocol.swift */,
-				59834EA5289CE2AC00690D1B /* DataParserProtocol.swift */,
 				59834EA6289CE2AC00690D1B /* RequestType.swift */,
 			);
 			path = Network;
@@ -555,9 +552,9 @@
 		59834EB4289CE2C600690D1B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				59834EB5289CE2C600690D1B /* CustomAxis.swift */,
+				59834EB5289CE2C600690D1B /* CustomAxisFormatter.swift */,
 				59834EB6289CE2C600690D1B /* Extensions.swift */,
-				59834EB7289CE2C600690D1B /* CalculateStockDynamic.swift */,
+				59834EB7289CE2C600690D1B /* CalculateStockPriceDynamic.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -928,7 +925,6 @@
 				59239013289E5D4D00D84F5E /* FinancialMetricDataManager.swift in Sources */,
 				59834EAF289CE2AC00690D1B /* APIConstants.swift in Sources */,
 				64810A4628A0F4620062834F /* NewsViewController.swift in Sources */,
-				59834EB2289CE2AC00690D1B /* DataParserProtocol.swift in Sources */,
 				5923900E289E5D4D00D84F5E /* ChartViewInteractor.swift in Sources */,
 				5996A63B2897DBA7004A15BB /* SearchViewController.swift in Sources */,
 				598A684F28A232E3009BA517 /* StockDetailInteractor.swift in Sources */,
@@ -938,7 +934,7 @@
 				598F5C37289BD73A00CFA870 /* Stock-App.xcdatamodeld in Sources */,
 				59239017289E5D4D00D84F5E /* TickerView.swift in Sources */,
 				59239021289E652400D84F5E /* FavoriteManager.swift in Sources */,
-				59834EBA289CE2C600690D1B /* CalculateStockDynamic.swift in Sources */,
+				59834EBA289CE2C600690D1B /* CalculateStockPriceDynamic.swift in Sources */,
 				598F5C44289BE90500CFA870 /* LastSearchPresenter.swift in Sources */,
 				64810A4428A0F4620062834F /* NewsViewPresenter.swift in Sources */,
 				5970B766289A493000AAC039 /* StockSymbols.swift in Sources */,
@@ -956,7 +952,7 @@
 				59834E97289CE26200690D1B /* CustomMarkerView.swift in Sources */,
 				64810A4728A0F4620062834F /* NewsViewInteractor.swift in Sources */,
 				59834E93289CE26200690D1B /* TimePeriodCollectionViewCell.swift in Sources */,
-				59834EB8289CE2C600690D1B /* CustomAxis.swift in Sources */,
+				59834EB8289CE2C600690D1B /* CustomAxisFormatter.swift in Sources */,
 				59741B3A289BA84E003DFF8C /* SearchRouter.swift in Sources */,
 				59239019289E5D4D00D84F5E /* ShortInfoEntity.swift in Sources */,
 				5970B763289A493000AAC039 /* Stock.swift in Sources */,

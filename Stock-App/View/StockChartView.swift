@@ -72,7 +72,7 @@ class StockChartView: UIView {
         chartView.leftAxis.enabled = viewModel.showAxis
         chartView.xAxis.enabled = viewModel.showAxis
         chartView.xAxis.labelPosition = .bottom
-        chartView.xAxis.valueFormatter = CustomAxis()
+        chartView.xAxis.valueFormatter = CustomAxisFormatter()
         
         customMarkerView.chartView = chartView
         chartView.marker = customMarkerView
