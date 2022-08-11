@@ -93,7 +93,6 @@ class StockTableViewCell: UITableViewCell {
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
 		configureUI()
 	}
 	
@@ -160,8 +159,5 @@ class StockTableViewCell: UITableViewCell {
             
             stackView.widthAnchor.constraint(equalTo: changesLabel.frame.width > priceLabel.frame.width ? changesLabel.widthAnchor : priceLabel.widthAnchor)
 		])
-        
-        
-        
 	}
 }

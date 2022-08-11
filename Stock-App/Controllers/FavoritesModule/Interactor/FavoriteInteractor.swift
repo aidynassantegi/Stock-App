@@ -15,7 +15,6 @@ protocol FavoriteInteractorOutput: AnyObject {
 protocol FavoriteInteractorInput: AnyObject {
     func fetchFromCoreData()
 	func deleteItem(at index: Int)
-
 }
 
 final class FavoriteInteractor: FavoriteInteractorInput {

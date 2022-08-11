@@ -19,9 +19,6 @@ protocol StockDetailInteractorOutput: AnyObject {
 }
 
 final class StockDetailInteractor: StockDetailInteractorInput {
-    
-    
-    
     weak var output: StockDetailInteractorOutput?
     
     func save(name: String, companyName: String) {
@@ -51,8 +48,6 @@ final class StockDetailInteractor: StockDetailInteractorInput {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
-    
     
     func delete(name: String, companyName: String) {
         guard let data = fetchObjects() else { return }

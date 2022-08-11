@@ -18,12 +18,6 @@ class CustomMarkerView: MarkerView {
         return label
     }()
     
-//    private let view: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpMarker()
@@ -40,8 +34,6 @@ class CustomMarkerView: MarkerView {
             label.leadingAnchor.constraint(equalTo: leadingAnchor)
         ])
         layer.masksToBounds = true
-//        layer.cornerRadius = 5
-//        layer.cornerCurve = .continuous
         
         self.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
         self.offset.x = -self.frame.size.width / 2.0

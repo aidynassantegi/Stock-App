@@ -68,7 +68,6 @@ class StockChartView: UIView {
             entries.append(.init(x: viewModel.timeStamp[index], y: viewModel.data[index]))
         }
         
-      //  chartView.rightAxis.enabled = viewModel.showAxis
         chartView.leftAxis.enabled = viewModel.showAxis
         chartView.xAxis.enabled = viewModel.showAxis
         chartView.xAxis.labelPosition = .bottom
@@ -80,12 +79,12 @@ class StockChartView: UIView {
         let dataSet = LineChartDataSet(entries: entries, label: "")
         let colorTop = viewModel.fillColor.cgColor
         let colorBottom = UIColor.systemBackground.cgColor
-        let gradientColors = [colorTop, colorBottom] as CFArray // Colors of the gradient
-        let colorLocations:[CGFloat] = [0.75, 0.0] // Positioning of the gradient
+        let gradientColors = [colorTop, colorBottom] as CFArray
+        let colorLocations:[CGFloat] = [0.75, 0.0]
         
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(),
-                                       colors: gradientColors, locations: colorLocations) // Gradient Object
-        dataSet.fill = LinearGradientFill(gradient: gradient!, angle: 90.0) // Set the Gradient
+                                       colors: gradientColors, locations: colorLocations)
+        dataSet.fill = LinearGradientFill(gradient: gradient!, angle: 90.0)
         
         dataSet.drawFilledEnabled = true
         dataSet.drawIconsEnabled = false

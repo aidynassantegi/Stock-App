@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 protocol FinancialDataViewInput: AnyObject {
-    func handleObtainedMetrics(_ metrics: Metrics)
     func handleObtainedEntity(_ entity: [MetricCollectionViewModel])
 }
 
@@ -64,10 +63,6 @@ extension FinancialCollectionViewController: FinancialDataViewInput {
             financialMetricDataManager?.metricViewModels = entity
         }
         collectionView.reloadData()
-    }
-    
-    func handleObtainedMetrics(_ metrics: Metrics) {
-       // print(metrics)
     }
 }
 
